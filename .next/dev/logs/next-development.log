@@ -1,3 +1,83 @@
-[00:00:01.380] Server  LOG     ✓ Ready in 1054ms
-[00:00:06.317] Server  LOG     ○ Compiling / ...
-[00:00:11.166] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.301] Server  LOG     ✓ Ready in 963ms
+[00:00:05.041] Server  LOG     ○ Compiling / ...
+[00:00:06.743] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.816] Server  LOG     🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...
+[00:00:07.999] Server  LOG     💰 Prices: {}
+[00:00:08.000] Server  LOG     🔍 Fetching REALTIME Lava...
+[00:00:08.004] Server  LOG     🔍 Fetching REALTIME Shido...
+[00:00:08.008] Server  LOG     🔍 Fetching REALTIME Paxi...
+[00:00:08.224] Server  WARN    ⚠️ Failed https://lava-mainnet-1-rpc.allthatnode.com:26657: TypeError: fetch failed
+[00:00:08.510] Server  LOG     ✓ Success from https://mainnet-lcd.paxinet.io
+[00:00:08.516] Server  LOG       Found Paxi validator: Unknown, bonded: 382581531367
+[00:00:08.516] Server  LOG     ✓ Paxi: 139 validators total, your bond: $3913.81 (REALTIME)
+[00:00:09.218] Server  WARN    ⚠️ Failed https://rpc.shido.mintserve.io: TypeError: fetch failed
+[00:00:09.432] Server  WARN    ⚠️ Failed https://shido-rpc.itrocket.net: TypeError: fetch failed
+[00:00:09.433] Server  WARN    ⚠️ Shido RPC all failed, using FALLBACK
+[00:00:10.063] Server  LOG     🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...
+[00:00:10.087] Server  LOG     💰 Prices: {}
+[00:00:10.088] Server  LOG     🔍 Fetching REALTIME Lava...
+[00:00:10.091] Server  LOG     🔍 Fetching REALTIME Shido...
+[00:00:10.093] Server  LOG     🔍 Fetching REALTIME Paxi...
+[00:00:10.153] Server  LOG     ✓ Success from https://mainnet-lcd.paxinet.io
+[00:00:10.159] Server  LOG       Found Paxi validator: Unknown, bonded: 382581531367
+[00:00:10.160] Server  LOG     ✓ Paxi: 139 validators total, your bond: $3913.81 (REALTIME)
+[00:00:10.391] Server  WARN    ⚠️ Failed https://rpc.shido.mintserve.io: TypeError: fetch failed
+[00:00:10.406] Server  WARN    ⚠️ Failed https://shido-rpc.itrocket.net: TypeError: fetch failed
+[00:00:10.406] Server  WARN    ⚠️ Shido RPC all failed, using FALLBACK
+[00:00:10.938] Server  WARN    ⚠️ Failed https://lava-mainnet-1-rpc.allthatnode.com:26657: TypeError: fetch failed
+[00:00:11.246] Server  LOG     ✓ Success from https://lava-api.polkachu.com
+[00:00:11.848] Server  LOG       Found Lava validator: Unknown, bonded: 5004486753762
+[00:00:11.849] Server  LOG     ✓ Lava: 187 validators total, your bond: $177622.30 (REALTIME)
+[00:00:11.858] Server  LOG     ✅ Ready: 🔴 REALTIME - Total USD: $203216.20
+[00:00:12.770] Server  LOG     ✓ Success from https://lava-api.polkachu.com
+[00:00:13.373] Server  LOG       Found Lava validator: Unknown, bonded: 5004486753762
+[00:00:13.374] Server  LOG     ✓ Lava: 187 validators total, your bond: $177622.30 (REALTIME)
+[00:00:13.375] Server  LOG     ✅ Ready: 🔴 REALTIME - Total USD: $203216.20
+[00:00:13.403] Server  LOG     🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...
+[00:00:13.420] Server  LOG     💰 Prices: {}
+[00:00:13.420] Server  LOG     🔍 Fetching REALTIME Lava...
+[00:00:13.424] Server  LOG     🔍 Fetching REALTIME Shido...
+[00:00:13.426] Server  LOG     🔍 Fetching REALTIME Paxi...
+[00:00:13.492] Server  LOG     ✓ Success from https://mainnet-lcd.paxinet.io
+[00:00:13.498] Server  LOG       Found Paxi validator: Unknown, bonded: 382581531367
+[00:00:13.499] Server  LOG     ✓ Paxi: 139 validators total, your bond: $3913.81 (REALTIME)
+[00:00:13.762] Server  WARN    ⚠️ Failed https://rpc.shido.mintserve.io: TypeError: fetch failed
+[00:00:13.839] Server  WARN    ⚠️ Failed https://lava-mainnet-1-rpc.allthatnode.com:26657: TypeError: fetch failed
+[00:00:14.175] Server  WARN    ⚠️ Failed https://shido-rpc.itrocket.net: TypeError: fetch failed
+[00:00:14.176] Server  WARN    ⚠️ Shido RPC all failed, using FALLBACK
+[00:00:14.819] Server  LOG     ✓ Success from https://lava-api.polkachu.com
+[00:00:15.422] Server  LOG       Found Lava validator: Unknown, bonded: 5004486753762
+[00:00:15.423] Server  LOG     ✓ Lava: 187 validators total, your bond: $177704.67 (REALTIME)
+[00:00:15.424] Server  LOG     ✅ Ready: 🔴 REALTIME - Total USD: $203298.57
+[00:01:10.995] Server  LOG     🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...
+[00:01:11.047] Server  LOG     💰 Prices: {}
+[00:01:11.048] Server  LOG     🔍 Fetching REALTIME Lava...
+[00:01:11.050] Server  LOG     🔍 Fetching REALTIME Shido...
+[00:01:11.053] Server  LOG     🔍 Fetching REALTIME Paxi...
+[00:01:11.183] Server  LOG     ✓ Success from https://mainnet-lcd.paxinet.io
+[00:01:11.190] Server  LOG       Found Paxi validator: Unknown, bonded: 382581531367
+[00:01:11.191] Server  LOG     ✓ Paxi: 139 validators total, your bond: $3913.81 (REALTIME)
+[00:01:11.466] Server  WARN    ⚠️ Failed https://lava-mainnet-1-rpc.allthatnode.com:26657: TypeError: fetch failed
+[00:01:12.051] Server  WARN    ⚠️ Failed https://rpc.shido.mintserve.io: TypeError: fetch failed
+[00:01:12.290] Server  WARN    ⚠️ Failed https://shido-rpc.itrocket.net: TypeError: fetch failed
+[00:01:12.290] Server  WARN    ⚠️ Shido RPC all failed, using FALLBACK
+[00:01:13.871] Server  LOG     ✓ Success from https://lava-api.polkachu.com
+[00:01:14.489] Server  LOG       Found Lava validator: Unknown, bonded: 5004486753762
+[00:01:14.489] Server  LOG     ✓ Lava: 187 validators total, your bond: $177704.67 (REALTIME)
+[00:01:14.490] Server  LOG     ✅ Ready: 🔴 REALTIME - Total USD: $203298.57
+[00:02:11.000] Server  LOG     🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...
+[00:02:11.298] Server  LOG     💰 Prices: {}
+[00:02:11.299] Server  LOG     🔍 Fetching REALTIME Lava...
+[00:02:11.301] Server  LOG     🔍 Fetching REALTIME Shido...
+[00:02:11.303] Server  LOG     🔍 Fetching REALTIME Paxi...
+[00:02:11.591] Server  LOG     ✓ Success from https://mainnet-lcd.paxinet.io
+[00:02:11.595] Server  LOG       Found Paxi validator: Unknown, bonded: 382581531367
+[00:02:11.596] Server  LOG     ✓ Paxi: 139 validators total, your bond: $3913.81 (REALTIME)
+[00:02:11.662] Server  WARN    ⚠️ Failed https://lava-mainnet-1-rpc.allthatnode.com:26657: TypeError: fetch failed
+[00:02:12.393] Server  WARN    ⚠️ Failed https://rpc.shido.mintserve.io: TypeError: fetch failed
+[00:02:12.589] Server  WARN    ⚠️ Failed https://shido-rpc.itrocket.net: TypeError: fetch failed
+[00:02:12.590] Server  WARN    ⚠️ Shido RPC all failed, using FALLBACK
+[00:02:14.003] Server  LOG     ✓ Success from https://lava-api.polkachu.com
+[00:02:14.556] Server  LOG       Found Lava validator: Unknown, bonded: 5004486753762
+[00:02:14.557] Server  LOG     ✓ Lava: 187 validators total, your bond: $177655.68 (REALTIME)
+[00:02:14.558] Server  LOG     ✅ Ready: 🔴 REALTIME - Total USD: $203249.58

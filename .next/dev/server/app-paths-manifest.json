@@ -1,3 +1,4 @@
 {
+  "/api/metrics/multi-chain/route": "app/api/metrics/multi-chain/route.js",
   "/page": "app/page.js"
 }

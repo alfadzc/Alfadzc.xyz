@@ -30,7 +30,7 @@ export default function LogoTicker() {
           </span>
         </h2>
         <p className="text-base font-medium text-slate-900 dark:text-gray-100">
-          𝖦𝗋𝗈𝗐𝗂𝗇𝗀 𝗐𝗂𝗍𝗁 𝗍𝗁𝖾 𝖡𝗅𝗈𝖼𝗄𝖼𝗁𝖺𝗂𝗇 𝖤𝖼𝗈𝗌𝗒𝗌𝗍𝖾𝗆
+          𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐧𝐠 𝐛𝐥𝐨𝐜𝐤𝐜𝐡𝐚𝐢𝐧 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐰𝐨𝐫𝐥𝐝𝐰𝐢𝐝𝐞
         </p>
       </div>
 

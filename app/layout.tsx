@@ -33,9 +33,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="relative min-h-screen overflow-x-hidden selection:bg-blue-500/30">
         <LoadingWrapper>
-          <div className="fixed inset-0 z-0 opacity-20 dark:opacity-100">
+          {/* Light mode: opacity dinaikkan biar garis/partikel terlihat tapi tetap soft */}
+          <div className="fixed inset-0 z-0 opacity-50 dark:opacity-100">
             <ParticlesBackground />
           </div>
+
           <div className="relative z-10 flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow container mx-auto px-4 py-8">

@@ -39,11 +39,11 @@ export default function Home() {
       {/* NETWORK */}
       <NetworkSection />
 
-      {/* DOCS */}
-      <DocsSection />
-
       {/* TOOLS */}
       <ToolsSection />
+
+      {/* DOCS */}
+      <DocsSection />      
 
       {/* CONTACT */}
       <ContactSection />

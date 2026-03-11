@@ -3,19 +3,51 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
+    /*
+      Light mode SUPER SOFT:
+      - putihnya diturunin (lebih ke abu-biru muda)
+      - glow dikurangi biar nggak "nyala"
+    */
+    --background: linear-gradient(
+      180deg,
+      #f2f6fb 0%,
+      #eef3f9 55%,
+      #e9eff7 100%
+    );
     --foreground: #0f172a;
+
+    /* Glow makin halus */
+    --bg-accent-1: rgba(59, 130, 246, 0.06);
+    --bg-accent-2: rgba(168, 85, 247, 0.05);
+
+    /* Optional: lapisan penghangat biar nggak "dingin/nyilau" */
+    --bg-warm: rgba(255, 255, 255, 0.55);
   }
+
   .dark {
     --background: #020617;
     --foreground: #f8fafc;
+
+    --bg-accent-1: rgba(59, 130, 246, 0.08);
+    --bg-accent-2: rgba(168, 85, 247, 0.08);
+    --bg-warm: transparent;
   }
 }
 
 body {
-  background-color: var(--background);
+  /* background gradient soft + glow kecil + warm veil */
+  background-image:
+    radial-gradient(1000px 650px at 18% 8%, var(--bg-accent-1), transparent 60%),
+    radial-gradient(1000px 650px at 82% 0%, var(--bg-accent-2), transparent 62%),
+    linear-gradient(0deg, var(--bg-warm), var(--bg-warm)),
+    var(--background);
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   color: var(--foreground);
-  transition: background-color 0.4s ease, color 0.3s ease;
+  transition: background-image 0.4s ease, color 0.3s ease;
   margin: 0;
   padding: 0;
 }
