@@ -1,249 +1,145 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface ChainMetrics {
   chain: string;
   validators: number;
   totalBonded: string;
   totalBondedUSD: number;
   price: number;
+  isFallback?: boolean;
 }
 
 interface AggregatedMetrics {
-  activeValidators: number;
+  activeValidators: string;
   networkUptime: number;
   totalStaked: string;
   totalStakedUSD: number;
-  networksSupporteed: string;
+  networksSupported: string;
   chains: ChainMetrics[];
   lastUpdated: string;
   isRealtime: boolean;
 }
 
-// RPC ENDPOINTS - STABLE & RELIABLE
-const RPC_ENDPOINTS = {
-  lava: [
-    "https://lava-mainnet-1-rpc.allthatnode.com:26657",
-    "https://lava.rpc.kjnodes.com",
-    "https://lava-rpc.publicnode.com",
-    "https://lava-api.polkachu.com",
-  ],
-  shido: [
-    "https://shido-rpc.polkachu.com",
-    "https://rpc.shido.mintserve.io",
-    "https://shido-rpc.itrocket.net",
-  ],
-  paxi: [
-    "https://mainnet-lcd.paxinet.io",
-    "https://paxi-rpc.itrocket.net",
-  ],
-};
-
-const YOUR_VALIDATORS = {
-  lava: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd",
-  shido: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h",
-  paxi: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj",
-};
-
-// FALLBACK DATA - REAL-TIME DATA
-const FALLBACK_VALIDATORS: ChainMetrics[] = [
-  {
-    chain: "Lava",
-    validators: 187,
-    totalBonded: "5004487000000",
-    totalBondedUSD: 177687.25,
-    price: 0.03550907,
-  },
-  {
-    chain: "Shido",
-    validators: 89,
-    totalBonded: "106047044000000",
-    totalBondedUSD: 21680.09,
-    price: 0.000204405,
-  },
-  {
-    chain: "Paxi",
-    validators: 139,
-    totalBonded: "382581531367",
-    totalBondedUSD: 3913.81,
-    price: 0.01023,
-  },
+const CHAIN_CONFIG: Array<{
+  chain: string;
+  lcd: string;
+  operator: string;
+  divisor: number;
+  price: number;
+}> = [
+  { chain: "Lava",        lcd: "https://lava-api.polkachu.com",               operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd",          divisor: 1_000_000,                 price: 0.03550907 },
+  { chain: "Shido",       lcd: "https://rest.shido.io",                        operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h",           divisor: 1_000_000,                 price: 0.000204405 },
+  { chain: "Paxi",        lcd: "https://mainnet-lcd.paxinet.io",               operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj",           divisor: 1_000_000,                 price: 0.01023 },
+  { chain: "Bitbadges",   lcd: "https://api.bitbadges.io",                     operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v",              divisor: 1_000_000,                 price: 0 },
+  { chain: "CNHO",        lcd: "https://api.cnho.io",                          operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0",            divisor: 1_000_000,                 price: 0 },
+  { chain: "Lumen",       lcd: "https://api.lumen.chaintools.tech",            operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah",             divisor: 1_000_000,                 price: 0 },
+  { chain: "Epix",        lcd: "https://api.epix.zone",                        operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f",            divisor: 1_000_000_000_000_000_000, price: 0 },
+  { chain: "Empeiria",    lcd: "https://empeiria-testnet-api.itrocket.net",    operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6",            divisor: 1_000_000,                 price: 0 },
+  { chain: "Safrochain",  lcd: "https://rest.testnet.safrochain.com",          operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs",      divisor: 1_000_000,                 price: 0 },
+  { chain: "Pushchain",   lcd: "https://api-t.pushchain.nodestake.org",        operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx",            divisor: 1_000_000_000_000_000_000,                 price: 0 },
+  { chain: "Republic",    lcd: "https://api-t.republicai.nodestake.org",       operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr",             divisor: 1_000_000_000_000_000_000,                 price: 0 },
+  { chain: "Monolythium", lcd: "https://api-t.mono.nodestake.org",             operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",            divisor: 1_000_000_000_000_000_000, price: 0 },
 ];
 
-// Fetch dengan multiple RPC endpoints
-const fetchFromMultipleRPCs = async (
-  rpcUrls: string[],
-  path: string,
-  timeout: number = 5000
-): Promise<any> => {
-  for (const url of rpcUrls) {
-    try {
-      const response = await fetch(`${url}${path}`, {
-        headers: { "Content-Type": "application/json" },
-        signal: AbortSignal.timeout(timeout),
-      });
-      
-      if (response.ok) {
-        console.log(`✓ Success from ${url}`);
-        return await response.json();
-      }
-    } catch (error) {
-      console.warn(`⚠️ Failed ${url}: ${error}`);
-      continue;
-    }
-  }
-  return null;
-};
+const CHAIN_ORDER = [
+  "Lava","Shido","Paxi","Bitbadges","CNHO","Lumen","Epix",
+  "Empeiria","Safrochain","Pushchain","Republic","Monolythium",
+];
 
-const fetchChainMetrics = async (
-  chainName: string,
-  rpcUrls: string[],
-  price: number,
-  yourValidator: string
-): Promise<ChainMetrics | null> => {
+const FALLBACK_VALIDATORS: ChainMetrics[] = [
+  { chain: "Lava",        validators: 87,  totalBonded: "153",        totalBondedUSD: 5.43,    price: 0.03550907,  isFallback: true },
+  { chain: "Shido",       validators: 38,  totalBonded: "107379490",  totalBondedUSD: 21948,   price: 0.000204405, isFallback: true },
+  { chain: "Paxi",        validators: 31,  totalBonded: "574.437",    totalBondedUSD: 5.87,    price: 0.01023,     isFallback: true },
+  { chain: "Bitbadges",   validators: 42,  totalBonded: "203.663",    totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "CNHO",        validators: 22,  totalBonded: "213120.00",  totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Lumen",       validators: 51,  totalBonded: "15.944",     totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Epix",        validators: 23,  totalBonded: "1823.20",    totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Empeiria",    validators: 97, totalBonded: "1340",       totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Safrochain",  validators: 61,  totalBonded: "539.138",    totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Pushchain",   validators: 59,  totalBonded: "242",        totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Republic",    validators: 100, totalBonded: "4260",       totalBondedUSD: 0,       price: 0,           isFallback: true },
+  { chain: "Monolythium", validators: 38,  totalBonded: "110.500",    totalBondedUSD: 0,       price: 0,           isFallback: true },
+];
+
+const TIMEOUT = 5000;
+
+async function fetchChain(cfg: typeof CHAIN_CONFIG[0]): Promise<ChainMetrics | null> {
   try {
-    console.log(`🔍 Fetching REALTIME ${chainName}...`);
-
-    const validatorData = await fetchFromMultipleRPCs(
-      rpcUrls,
-      "/cosmos/staking/v1beta1/validators?pagination.limit=1000"
-    );
-
-    if (!validatorData) {
-      console.warn(`⚠️ ${chainName} RPC all failed, using FALLBACK`);
-      return null;
-    }
-
-    const totalValidators = validatorData.validators?.length || 0;
-    
-    // Find your validator
-    let yourValidatorBonded = BigInt(0);
-    if (validatorData.validators && Array.isArray(validatorData.validators)) {
-      validatorData.validators.forEach((v: any) => {
-        if (v.operator_address === yourValidator) {
-          yourValidatorBonded = BigInt(v.tokens || 0);
-          console.log(`  Found ${chainName} validator: ${v.moniker || 'Unknown'}, bonded: ${v.tokens}`);
-        }
-      });
-    }
-
-    const totalBonded = yourValidatorBonded.toString();
-    const tokensAmount = Number(yourValidatorBonded) / 1_000_000;
-    const totalBondedUSD = tokensAmount * price;
-
-    console.log(`✓ ${chainName}: ${totalValidators} validators total, your bond: $${totalBondedUSD.toFixed(2)} (REALTIME)`);
-
-    return {
-      chain: chainName,
-      validators: totalValidators,
-      totalBonded,
-      totalBondedUSD,
-      price,
-    };
-  } catch (error) {
-    console.warn(`⚠️ ${chainName} error:`, error);
-    return null;
-  }
-};
-
-const fetchPrices = async (): Promise<{ [key: string]: number }> => {
-  try {
-    const res = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=lava-network,shido&vs_currencies=usd",
-      { signal: AbortSignal.timeout(5000) }
-    );
-    const data = await res.json();
-    
-    console.log("💰 Prices:", {
-      lava: data["lava-network"]?.usd,
-      shido: data["shido"]?.usd,
-    });
-
-    return {
-      lava: data["lava-network"]?.usd || 0.03550907,
-      shido: data["shido"]?.usd || 0.000204405,
-      paxi: 0.01023,
-    };
-  } catch (error) {
-    console.warn("⚠️ Price fetch failed");
-    return {
-      lava: 0.03550907,
-      shido: 0.000204405,
-      paxi: 0.01023,
-    };
-  }
-};
-
-export async function GET() {
-  try {
-    console.log("🔄 Fetching metrics (HYBRID: Multi-RPC + Fallback)...");
-
-    const prices = await fetchPrices();
-
-    const results = await Promise.allSettled([
-      fetchChainMetrics("Lava", RPC_ENDPOINTS.lava, prices.lava, YOUR_VALIDATORS.lava),
-      fetchChainMetrics("Shido", RPC_ENDPOINTS.shido, prices.shido, YOUR_VALIDATORS.shido),
-      fetchChainMetrics("Paxi", RPC_ENDPOINTS.paxi, prices.paxi, YOUR_VALIDATORS.paxi),
+    // Fetch validator count & my validator tokens secara parallel
+    const [validatorRes, myValidatorRes] = await Promise.all([
+      fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`, {
+        signal: AbortSignal.timeout(TIMEOUT), cache: "no-store",
+      }),
+      fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators/${cfg.operator}`, {
+        signal: AbortSignal.timeout(TIMEOUT), cache: "no-store",
+      }),
     ]);
 
-    let chainMetrics = results
-      .filter((r) => r.status === "fulfilled" && r.value !== null)
-      .map((r) => (r as PromiseFulfilledResult<ChainMetrics>).value);
+    if (!validatorRes.ok || !myValidatorRes.ok) return null;
 
-    let isRealtime = chainMetrics.length > 0;
-    
-    if (chainMetrics.length === 0) {
-      console.warn("⚠️ Using FALLBACK");
-      chainMetrics = FALLBACK_VALIDATORS;
-      isRealtime = false;
-    } else {
-      // Tambahkan chain yang gagal dari fallback
-      const successChains = chainMetrics.map(m => m.chain);
-      FALLBACK_VALIDATORS.forEach(fb => {
-        if (!successChains.includes(fb.chain)) {
-          chainMetrics.push(fb);
-        }
-      });
-    }
+    const [validatorData, myValidatorData] = await Promise.all([
+      validatorRes.json(),
+      myValidatorRes.json(),
+    ]);
 
-    const totalValidators = 11;
-    const totalBondedUSD = chainMetrics.reduce((sum, m) => sum + m.totalBondedUSD, 0);
+    const validators: any[] = validatorData?.validators ?? [];
+    const tokensRaw: string = myValidatorData?.validator?.tokens ?? "0";
+    const totalBonded = Number(tokensRaw) / cfg.divisor;
+    const totalBondedUSD = totalBonded * cfg.price;
 
-    const metrics: AggregatedMetrics = {
-      activeValidators: totalValidators,
-      networkUptime: 99.8,
-      totalStaked: (totalBondedUSD).toFixed(2),
-      totalStakedUSD: totalBondedUSD,
-      networksSupporteed: "10+",
-      chains: chainMetrics.sort((a, b) => b.totalBondedUSD - a.totalBondedUSD),
-      lastUpdated: new Date().toISOString(),
-      isRealtime,
+    return {
+      chain: cfg.chain,
+      validators: validators.length,
+      totalBonded: totalBonded.toFixed(2),
+      totalBondedUSD: parseFloat(totalBondedUSD.toFixed(2)),
+      price: cfg.price,
+      isFallback: false,
     };
-
-    console.log(`✅ Ready: ${isRealtime ? "🔴 REALTIME" : "🟡 FALLBACK"} - Total USD: $${totalBondedUSD.toFixed(2)}`);
-
-    return NextResponse.json(metrics, {
-      status: 200,
-      headers: {
-        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
-      },
-    });
-  } catch (error) {
-    console.error("❌ Critical error:", error);
-    
-    const totalBondedUSD = FALLBACK_VALIDATORS.reduce((sum, m) => sum + m.totalBondedUSD, 0);
-
-    return NextResponse.json(
-      {
-        activeValidators: 11,
-        networkUptime: 99.8,
-        totalStaked: totalBondedUSD.toFixed(2),
-        totalStakedUSD: totalBondedUSD,
-        networksSupporteed: "10+",
-        chains: FALLBACK_VALIDATORS,
-        lastUpdated: new Date().toISOString(),
-        isRealtime: false,
-      },
-      { status: 200 }
-    );
+  } catch {
+    return null;
   }
+}
+
+const sortByCustomOrder = (chains: ChainMetrics[]): ChainMetrics[] =>
+  [...chains].sort((a, b) => CHAIN_ORDER.indexOf(a.chain) - CHAIN_ORDER.indexOf(b.chain));
+
+export async function GET() {
+  const results = await Promise.allSettled(CHAIN_CONFIG.map(fetchChain));
+
+  let chainMetrics: ChainMetrics[] = results
+    .filter((r): r is PromiseFulfilledResult<ChainMetrics | null> => r.status === "fulfilled")
+    .map((r) => r.value)
+    .filter((v): v is ChainMetrics => v !== null);
+
+  const isRealtime = chainMetrics.some((m) => !m.isFallback);
+
+  const successChains = new Set(chainMetrics.map((m) => m.chain));
+  for (const fb of FALLBACK_VALIDATORS) {
+    if (!successChains.has(fb.chain)) chainMetrics.push(fb);
+  }
+
+  chainMetrics = sortByCustomOrder(chainMetrics);
+
+  const totalBondedUSD = chainMetrics.reduce(
+    (sum, m) => sum + (Number.isFinite(m.totalBondedUSD) ? m.totalBondedUSD : 0), 0
+  );
+
+  const metrics: AggregatedMetrics = {
+    activeValidators: "11+",
+    networkUptime: 99.9,
+    totalStaked: totalBondedUSD.toFixed(2),
+    totalStakedUSD: totalBondedUSD,
+    networksSupported: "12",
+    chains: chainMetrics,
+    lastUpdated: new Date().toISOString(),
+    isRealtime,
+  };
+
+  return NextResponse.json(metrics, {
+    status: 200,
+    headers: { "Cache-Control": "no-store, no-cache, must-revalidate" },
+  });
 }

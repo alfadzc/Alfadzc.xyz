@@ -2,14 +2,38 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const RPC_URL = "https://rpc.paxi.xyz";
+    const RPC_URL = "https://mainnet-lcd.paxinet.io";
+    const VALIDATOR_OPERATOR = "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj";
+    const CHAIN_DIVISOR = 1_000_000; // 6 decimals
+    const PRICE_USD = 0.01023;
 
     const validatorRes = await fetch(
-      `${RPC_URL}/cosmos/staking/v1beta1/validators?pagination.limit=100`
+      `${RPC_URL}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`
     );
     const validatorData = await validatorRes.json();
+    const validators = validatorData.validators || [];
 
-    return NextResponse.json(validatorData, {
+    // Find my validator
+    const myValidator = validators.find((v: any) => v.operator_address === VALIDATOR_OPERATOR);
+    if (!myValidator) {
+      return NextResponse.json({ error: "Validator not found" }, { status: 404 });
+    }
+
+    const tokens = BigInt(myValidator.tokens || 0);
+    const totalBondedTokens = Number(tokens) / CHAIN_DIVISOR;
+    const totalBondedUSD = totalBondedTokens * PRICE_USD;
+
+    return NextResponse.json({
+      chain: "Paxi",
+      moniker: myValidator.description?.moniker || "alfadzc",
+      operatorAddress: VALIDATOR_OPERATOR,
+      totalBonded: totalBondedTokens.toFixed(2),
+      totalBondedUSD: totalBondedUSD.toFixed(2),
+      price: PRICE_USD,
+      validators: validators.length,
+      uptime: 99.9,
+      lastUpdated: new Date().toISOString(),
+    }, {
       status: 200,
       headers: { "Cache-Control": "public, s-maxage=300" },
     });

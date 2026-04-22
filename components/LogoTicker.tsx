@@ -14,6 +14,7 @@ const TICKER_LOGOS = [
   { name: "Safrochain",  logo: "/chains/safrochain.png" },
   { name: "Pushchain",   logo: "/chains/pushchain.png" },
   { name: "Republic AI", logo: "/chains/republic.png" },
+  { name: "Monolythium", logo: "/chains/monolythium.png" },
 ];
 
 const ROW1 = [...TICKER_LOGOS, ...TICKER_LOGOS];
@@ -29,8 +30,9 @@ export default function LogoTicker() {
             𝐃𝐞𝐜𝐞𝐧𝐭𝐫𝐚𝐥𝐢𝐳𝐞𝐝 𝐍𝐞𝐭𝐰𝐨𝐫𝐤
           </span>
         </h2>
-        <p className="text-base font-medium text-slate-900 dark:text-gray-100">
-          𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐧𝐠 𝐛𝐥𝐨𝐜𝐤𝐜𝐡𝐚𝐢𝐧 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐰𝐨𝐫𝐥𝐝𝐰𝐢𝐝𝐞
+        
+        <p className="mt-3 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-100">
+         𝐂𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐧𝐠 𝐛𝐥𝐨𝐜𝐤𝐜𝐡𝐚𝐢𝐧 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐰𝐨𝐫𝐥𝐝𝐰𝐢𝐝𝐞  
         </p>
       </div>
 

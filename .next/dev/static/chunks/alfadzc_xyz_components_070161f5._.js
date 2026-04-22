@@ -83,39 +83,48 @@ function Navbar() {
                     className: "flex items-center gap-3 group cursor-pointer",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#A855F7] shadow-[0_0_15px_rgba(168,85,247,0.5)]",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                src: "/logo.png",
-                                alt: "alfadzc logo",
-                                className: "w-full h-full object-cover"
-                            }, void 0, false, {
-                                fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 18,
-                                columnNumber: 11
-                            }, this)
-                        }, void 0, false, {
+                            className: "relative w-12 h-12 coin-spin",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute inset-0 rounded-full border-2 border-[#A855F7] shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                                }, void 0, false, {
+                                    fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
+                                    lineNumber: 23,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: "/logo.png",
+                                    alt: "alfadzc logo",
+                                    className: "w-full h-full object-cover rounded-full"
+                                }, void 0, false, {
+                                    fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
+                                    lineNumber: 24,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                            lineNumber: 17,
-                            columnNumber: 11
+                            lineNumber: 22,
+                            columnNumber: 5
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-base font-black tracking-tighter text-slate-800 dark:text-white",
+                            className: "text-xl font-medium tracking-tighter gradient-text",
                             children: "𝐀𝐥𝐟𝐚𝐝𝐳𝐜.𝐱𝐲𝐳"
                         }, void 0, false, {
                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                            lineNumber: 20,
-                            columnNumber: 10
+                            lineNumber: 30,
+                            columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                    lineNumber: 16,
-                    columnNumber: 11
+                    lineNumber: 17,
+                    columnNumber: 4
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                lineNumber: 15,
-                columnNumber: 8
+                lineNumber: 16,
+                columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-center space-x-8",
@@ -125,7 +134,7 @@ function Navbar() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
                                 href: "#home",
-                                label: "𝐇𝐨𝐦𝐞",
+                                label: "Home",
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     width: "15",
@@ -141,30 +150,30 @@ function Navbar() {
                                             d: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 29,
+                                            lineNumber: 39,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                             points: "9 22 9 12 15 12 15 22"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 29,
+                                            lineNumber: 39,
                                             columnNumber: 73
                                         }, void 0)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 28,
+                                    lineNumber: 38,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 27,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
-                                href: "#network",
-                                label: "𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬",
+                                href: "#ecosystem",
+                                label: "Network",
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     width: "15",
@@ -182,7 +191,7 @@ function Navbar() {
                                             r: "10"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 34,
+                                            lineNumber: 44,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -192,30 +201,30 @@ function Navbar() {
                                             y2: "12"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 34,
+                                            lineNumber: 44,
                                             columnNumber: 47
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 34,
+                                            lineNumber: 44,
                                             columnNumber: 85
                                         }, void 0)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 33,
+                                    lineNumber: 43,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 32,
+                                lineNumber: 42,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
                                 href: "#tools",
-                                label: "𝐓𝐨𝐨𝐥𝐬",
+                                label: "Monitoring",
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     width: "15",
@@ -227,25 +236,25 @@ function Navbar() {
                                     strokeLinecap: "round",
                                     strokeLinejoin: "round",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                        d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                                        d: "M3 13h4l2-6 3 12 3-8 2 4h4"
                                     }, void 0, false, {
                                         fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                        lineNumber: 39,
+                                        lineNumber: 49,
                                         columnNumber: 15
                                     }, void 0)
                                 }, void 0, false, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 38,
+                                    lineNumber: 48,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 37,
+                                lineNumber: 47,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
                                 href: "#docs",
-                                label: "𝐃𝐨𝐜𝐬",
+                                label: "Docs",
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     width: "15",
@@ -261,14 +270,14 @@ function Navbar() {
                                             d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 44,
+                                            lineNumber: 54,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                             points: "14 2 14 8 20 8"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 44,
+                                            lineNumber: 54,
                                             columnNumber: 85
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -278,7 +287,7 @@ function Navbar() {
                                             y2: "13"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 44,
+                                            lineNumber: 54,
                                             columnNumber: 120
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -288,30 +297,30 @@ function Navbar() {
                                             y2: "17"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 44,
+                                            lineNumber: 54,
                                             columnNumber: 158
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                             points: "10 9 9 9 8 9"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 44,
+                                            lineNumber: 54,
                                             columnNumber: 196
                                         }, void 0)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 43,
+                                    lineNumber: 53,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 42,
+                                lineNumber: 52,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
                                 href: "https://explorer.alfadzc.xyz",
-                                label: "𝐄𝐱𝐩𝐥𝐨𝐫𝐞𝐫",
+                                label: "Explorer",
                                 external: true,
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
@@ -330,7 +339,7 @@ function Navbar() {
                                             r: "8"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 49,
+                                            lineNumber: 59,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -340,23 +349,23 @@ function Navbar() {
                                             y2: "16.65"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 49,
+                                            lineNumber: 59,
                                             columnNumber: 46
                                         }, void 0)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 58,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 47,
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavLink, {
                                 href: "#contact",
-                                label: "𝐂𝐨𝐧𝐭𝐚𝐜𝐭",
+                                label: "Contact",
                                 icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     xmlns: "http://www.w3.org/2000/svg",
                                     width: "15",
@@ -372,49 +381,49 @@ function Navbar() {
                                             d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 64,
                                             columnNumber: 15
                                         }, void 0),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                             points: "22,6 12,13 2,6"
                                         }, void 0, false, {
                                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 64,
                                             columnNumber: 102
                                         }, void 0)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                    lineNumber: 53,
+                                    lineNumber: 63,
                                     columnNumber: 13
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                                lineNumber: 52,
+                                lineNumber: 62,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                        lineNumber: 26,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "pl-4 border-l border-slate-200 dark:border-slate-700",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$alfadzc$2e$xyz$2f$components$2f$ThemeToggle$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                            lineNumber: 59,
+                            lineNumber: 69,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                        lineNumber: 58,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-                lineNumber: 25,
+                lineNumber: 35,
                 columnNumber: 7
             }, this)
         ]
@@ -430,14 +439,14 @@ function NavLink({ href, label, icon, external }) {
         href: href,
         target: external ? "_blank" : undefined,
         rel: external ? "noopener noreferrer" : undefined,
-        className: "flex items-center gap-1.5 text-sm font-bold text-slate-700 dark:text-white/80 hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer",
+        className: "flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-white/80 hover:text-blue-600 dark:hover:text-white transition-colors cursor-pointer",
         children: [
             icon,
             label
         ]
     }, void 0, true, {
         fileName: "[project]/alfadzc.xyz/components/Navbar.tsx",
-        lineNumber: 68,
+        lineNumber: 78,
         columnNumber: 5
     }, this);
 }
@@ -503,32 +512,32 @@ function ParticlesBackground() {
                 zIndex: -1
             },
             background: {
-                /* FIX: Biru Royal yang lebih hidup untuk Dark Mode */ color: {
+                color: {
                     value: dark ? "#0a192f" : "#f8fafc"
                 },
                 image: dark ? "linear-gradient(180deg, #1e3a8a 0%, #0a192f 100%)" : "linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%)"
             },
             particles: {
                 number: {
-                    value: dark ? 100 : 50,
+                    value: dark ? 90 : 50,
                     density: {
                         enable: true,
-                        area: 800
+                        area: 1000
                     }
                 },
                 color: {
-                    /* Warna partikel Biru Sky terang agar kontras di BG Biru */ value: dark ? "#60a5fa" : "#3b82f6"
+                    value: dark ? "#93c5fd" : "#3b82f6"
                 },
                 links: {
                     enable: true,
-                    color: dark ? "#60a5fa" : "#3b82f6",
-                    distance: 150,
-                    opacity: 0.3,
-                    width: 1
+                    color: dark ? "#93c5fd" : "#3b82f6",
+                    distance: 130,
+                    opacity: 0.2,
+                    width: 0.8
                 },
                 move: {
                     enable: true,
-                    speed: 0.8,
+                    speed: 0.5,
                     direction: "none",
                     random: true,
                     straight: false,
@@ -539,13 +548,13 @@ function ParticlesBackground() {
                 size: {
                     value: {
                         min: 1,
-                        max: 3
+                        max: 2
                     }
                 },
                 opacity: {
                     value: {
-                        min: 0.2,
-                        max: 0.5
+                        min: 0.1,
+                        max: 0.3
                     }
                 }
             },
@@ -558,9 +567,9 @@ function ParticlesBackground() {
                 },
                 modes: {
                     grab: {
-                        distance: 200,
+                        distance: 180,
                         links: {
-                            opacity: 0.5
+                            opacity: 0.3
                         }
                     }
                 }
@@ -569,7 +578,7 @@ function ParticlesBackground() {
         }
     }, void 0, false, {
         fileName: "[project]/alfadzc.xyz/components/ParticlesBackground.tsx",
-        lineNumber: 31,
+        lineNumber: 23,
         columnNumber: 5
     }, this);
 }

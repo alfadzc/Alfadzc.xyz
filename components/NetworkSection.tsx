@@ -1,26 +1,56 @@
-"use client";
+  "use client";
 
-import { useState } from "react";
-import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
-import ChainLogo from "./ChainLogo";
+  import { useState } from "react";
+  import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
+  import ChainLogo from "./ChainLogo";
 
-export default function NetworkSection() {
+  export default function NetworkSection() {
   const [tab, setTab] = useState<"all" | "mainnet" | "testnet">("mainnet");
   const ALL_NETWORKS = [...MAINNET, ...TESTNET];
   const data: NetworkItem[] = tab === "all" ? ALL_NETWORKS : tab === "mainnet" ? MAINNET : TESTNET;
 
   return (
     <section id="ecosystem" className="relative z-10 py-16 px-6 max-w-7xl mx-auto flex flex-col items-center">
+  
+  {/* HEADER */}
+   <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
 
-      {/* HEADER */}
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2 className="text-base md:text-3xl font-extrabold tracking-tight">
-          <span className="text-2xl font-bold mb-6 text-[#ff7b00]">𝐄𝐱𝐩𝐥𝐨𝐫𝐞 𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤</span>
-        </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-gray-100">
-          A comprehensive list of our validation services across all networks.
-        </p>
-      </div>
+  {/* ICON + TITLE */}
+  <div className="flex items-center gap-3 mb-4">
+
+    {/* ICON SERVER */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#38bdf8"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-7 h-7 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
+    >
+      <rect x="3" y="4" width="18" height="6" rx="2"/>
+      <rect x="3" y="14" width="18" height="6" rx="2"/>
+      <circle cx="7" cy="7" r="1"/>
+      <circle cx="7" cy="17" r="1"/>
+      <line x1="11" y1="7" x2="17" y2="7"/>
+      <line x1="11" y1="17" x2="17" y2="17"/>
+    </svg>
+
+    {/* TITLE */}
+    <h2 className="text-xl md:text-3xl font-extrabold tracking-tight text-[#ff7b00]">
+     𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬  
+    </h2>
+
+  </div>
+
+    {/* DESCRIPTION */}
+     <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-100">
+      𝐖𝐞 𝐬𝐮𝐩𝐩𝐨𝐫𝐭 𝐦𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐦𝐚𝐢𝐧𝐧𝐞𝐭 𝐚𝐧𝐝 𝐭𝐞𝐬𝐭𝐧𝐞𝐭 𝐞𝐜𝐨𝐬𝐲𝐬𝐭𝐞𝐦𝐬,<br/>
+      𝐩𝐫𝐨𝐯𝐢𝐝𝐢𝐧𝐠 𝐫𝐞𝐥𝐢𝐚𝐛𝐥𝐞 𝐯𝐚𝐥𝐢𝐝𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬<br/>
+      𝐚𝐜𝐫𝐨𝐬𝐬 𝐂𝐨𝐬𝐦𝐨𝐬-𝐛𝐚𝐬𝐞𝐝 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐬
+   </p>
+  </div>
 
       {/* 1. TABS */}
       <div className="flex p-1.5 rounded-2xl border w-full mb-12 bg-slate-100/10 border-sky-400/50 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
@@ -39,7 +69,7 @@ export default function NetworkSection() {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
-          <h2 className="text-sm font-bold text-white tracking-wide">
+          <h2 className="text-sm font-normal text-white tracking-wide">
             {tab === "mainnet" ? "𝐌𝐚𝐢𝐧𝐧𝐞𝐭 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬" : tab === "testnet" ? "𝐓𝐞𝐬𝐭𝐧𝐞𝐭 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬" : "𝐀𝐥𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬"}
           </h2>
         </div>
@@ -57,11 +87,11 @@ export default function NetworkSection() {
         {data.map((item, index) => (
           <div
             key={`${item.name}-${index}`}
-            className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border-2
+            className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border
               bg-white border-slate-200 shadow-sm
-              dark:bg-[#0b1120] dark:border-sky-400/60 dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]
-              hover:-translate-y-2 hover:border-sky-300 hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]"
-          >
+              dark:bg-slate-800 dark:border-sky-400/60 dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]
+              hover:-translate-y-2 hover:border-sky-300 hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]"            
+>
 
        {/* INDIKATOR HIJAU */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40">

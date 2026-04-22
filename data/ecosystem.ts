@@ -75,4 +75,10 @@ export const TESTNET: NetworkItem[] = [
     delegateUrl: "https://explorer.alfadzc.xyz/republic/staking/raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr",
     explorerUrl: "https://explorer.alfadzc.xyz/republic/staking",
   },
+  {
+    name: "Monolythium",
+    logo: "/chains/monolythium.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/mono/staking/monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",
+    explorerUrl: "https://explorer.alfadzc.xyz/mono/staking",
+  } 
 ];
