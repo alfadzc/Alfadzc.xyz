@@ -2,8 +2,10 @@
 import { useCallback, useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
+
 export default function ParticlesBackground() {
   const [dark, setDark] = useState(false);
+  
   useEffect(() => {
     const updateTheme = () => {
       setDark(document.documentElement.classList.contains("dark"));
@@ -16,10 +18,13 @@ export default function ParticlesBackground() {
     });
     return () => observer.disconnect();
   }, []);
+  
   const particlesInit = useCallback(async (engine: any) => {
     await loadSlim(engine);
   }, []);
+  
   return (
+    // @ts-ignore
     <Particles
       id="particles-bg"
       init={particlesInit}
@@ -30,11 +35,8 @@ export default function ParticlesBackground() {
         },
         background: {
           color: {
-            value: dark ? "#0a192f" : "#f8fafc",
+            value: dark ? "#132d5a" : "#f8fafc",
           },
-          image: dark
-            ? "linear-gradient(180deg, #1e3a8a 0%, #0a192f 100%)"
-            : "linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%)",
         },
         particles: {
           number: {
@@ -42,14 +44,14 @@ export default function ParticlesBackground() {
             density: { enable: true, area: 1000 }
           },
           color: {
-            value: dark ? "#93c5fd" : "#3b82f6"
+            value: dark ? "#4da6ff" : "#3b82f6"
           },
           links: {
             enable: true,
-            color: dark ? "#93c5fd" : "#3b82f6",
+            color: dark ? "#4da6ff" : "#3b82f6",
             distance: 130,
-            opacity: 0.2,
-            width: 0.8,
+            opacity: 0.3,
+            width: 1,
           },
           move: {
             enable: true,
@@ -60,10 +62,10 @@ export default function ParticlesBackground() {
             outModes: { default: "out" },
           },
           size: {
-            value: { min: 1, max: 2 }
+            value: { min: 1.5, max: 3 }
           },
           opacity: {
-            value: { min: 0.1, max: 0.3 }
+            value: { min: 0.2, max: 0.5 }
           },
         },
         interactivity: {
@@ -76,7 +78,7 @@ export default function ParticlesBackground() {
           modes: {
             grab: {
               distance: 180,
-              links: { opacity: 0.3 }
+              links: { opacity: 0.5 }
             }
           }
         },

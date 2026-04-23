@@ -1,0 +1,164 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/api/metrics/multi-chain",
+      "regex": "^/api/metrics/multi\\-chain(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/metrics/multi\\-chain(?:/)?$"
+    },
+    {
+      "page": "/api/validators/bitbadges",
+      "regex": "^/api/validators/bitbadges(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/bitbadges(?:/)?$"
+    },
+    {
+      "page": "/api/validators/cnho",
+      "regex": "^/api/validators/cnho(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/cnho(?:/)?$"
+    },
+    {
+      "page": "/api/validators/empeiria",
+      "regex": "^/api/validators/empeiria(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/empeiria(?:/)?$"
+    },
+    {
+      "page": "/api/validators/epix",
+      "regex": "^/api/validators/epix(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/epix(?:/)?$"
+    },
+    {
+      "page": "/api/validators/lava",
+      "regex": "^/api/validators/lava(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/lava(?:/)?$"
+    },
+    {
+      "page": "/api/validators/lumen",
+      "regex": "^/api/validators/lumen(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/lumen(?:/)?$"
+    },
+    {
+      "page": "/api/validators/monolythium",
+      "regex": "^/api/validators/monolythium(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/monolythium(?:/)?$"
+    },
+    {
+      "page": "/api/validators/paxi",
+      "regex": "^/api/validators/paxi(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/paxi(?:/)?$"
+    },
+    {
+      "page": "/api/validators/pushchain",
+      "regex": "^/api/validators/pushchain(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/pushchain(?:/)?$"
+    },
+    {
+      "page": "/api/validators/republic",
+      "regex": "^/api/validators/republic(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/republic(?:/)?$"
+    },
+    {
+      "page": "/api/validators/safrochain",
+      "regex": "^/api/validators/safrochain(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/safrochain(?:/)?$"
+    },
+    {
+      "page": "/api/validators/shido",
+      "regex": "^/api/validators/shido(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/validators/shido(?:/)?$"
+    },
+    {
+      "page": "/coming-soon",
+      "regex": "^/coming\\-soon(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/coming\\-soon(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/tools/analytics",
+      "regex": "^/tools/analytics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/analytics(?:/)?$"
+    },
+    {
+      "page": "/tools/validator-monitor",
+      "regex": "^/tools/validator\\-monitor(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tools/validator\\-monitor(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

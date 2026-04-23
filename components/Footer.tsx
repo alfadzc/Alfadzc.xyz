@@ -9,7 +9,7 @@ export default function Footer() {
       z-50"
     >
       <p className="text-xs md:text-base font-bold text-gray-800 dark:text-gray-300">
-       © 𝟸𝟶𝟸𝟻 𝙰𝚕𝚏𝚊𝚍𝚣𝚌.𝚡𝚢𝚣. &nbsp; 𝙰𝚕𝚕 𝚁𝚒𝚐𝚑𝚝𝚜 𝚁𝚎𝚜𝚎𝚛𝚟𝚎𝚍.
+       © 2025 Alfadzc. &nbsp; All Right Reserved.
       </p>
     </footer>
   );

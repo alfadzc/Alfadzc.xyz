@@ -1,0 +1,3 @@
+{
+  "/api/validators/pushchain/route": "app/api/validators/pushchain/route.js"
+}

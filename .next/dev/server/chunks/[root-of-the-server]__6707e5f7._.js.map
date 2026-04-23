@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///root/alfadzc.xyz/app/api/validators/bitbadges/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\n\nexport const dynamic = \"force-dynamic\";\nexport const revalidate = 0;\n\nexport async function GET() {\n  return NextResponse.json(\n    {\n      chain: \"Bitbadges\",\n      moniker: \"alfadzc\",\n      operatorAddress: \"\",\n      totalBonded: \"202974.11\",\n      totalBondedUSD: \"0.00\",\n      price: 0,\n      validators: 45,\n      uptime: 99.9,\n      isFallback: true,\n      lastUpdated: new Date().toISOString(),\n    },\n    {\n      status: 200,\n      headers: {\n        \"Cache-Control\": \"no-store, no-cache, must-revalidate, proxy-revalidate\",\n      },\n    }\n  );\n}\n"],"names":[],"mappings":";;;;;;;;AAAA;;AAEO,MAAM,UAAU;AAChB,MAAM,aAAa;AAEnB,eAAe;IACpB,OAAO,gJAAY,CAAC,IAAI,CACtB;QACE,OAAO;QACP,SAAS;QACT,iBAAiB;QACjB,aAAa;QACb,gBAAgB;QAChB,OAAO;QACP,YAAY;QACZ,QAAQ;QACR,YAAY;QACZ,aAAa,IAAI,OAAO,WAAW;IACrC,GACA;QACE,QAAQ;QACR,SAAS;YACP,iBAAiB;QACnB;IACF;AAEJ"}}]
+}

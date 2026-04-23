@@ -1,63 +1,120 @@
-  "use client";
+"use client";
 
-  import { useState } from "react";
-  import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
-  import ChainLogo from "./ChainLogo";
+import { useState, useEffect } from "react";
+import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
+import ChainLogo from "./ChainLogo";
 
-  export default function NetworkSection() {
+interface ValidatorStatus {
+  [key: string]: "online" | "offline";
+}
+
+export default function NetworkSection() {
   const [tab, setTab] = useState<"all" | "mainnet" | "testnet">("mainnet");
+  const [validatorStatus, setValidatorStatus] = useState<ValidatorStatus>({});
+  const [loading, setLoading] = useState(true);
+  
   const ALL_NETWORKS = [...MAINNET, ...TESTNET];
   const data: NetworkItem[] = tab === "all" ? ALL_NETWORKS : tab === "mainnet" ? MAINNET : TESTNET;
 
+  // Fetch real-time status dari API
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const res = await fetch(`/api/validators/status?t=${Date.now()}`, {
+          cache: "no-store",
+        });
+        if (res.ok) {
+          const status = await res.json();
+          setValidatorStatus(status);
+        }
+      } catch (error) {
+        console.error("Failed to fetch validator status:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatus();
+    
+    // Poll setiap 15 detik
+    const interval = setInterval(fetchStatus, 15000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getStatusBadge = (name: string) => {
+    const status = validatorStatus[name] || "online";
+    const isOnline = status === "online";
+    
+    return (
+      <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full transition-all duration-300 ${
+        isOnline 
+          ? "bg-emerald-500/10 border border-emerald-400/40" 
+          : "bg-red-500/10 border border-red-400/40"
+      }`}>
+        <div className="relative flex h-2 w-2">
+          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+            isOnline ? "bg-emerald-400" : "bg-red-400"
+          }`}></span>
+          <span className={`relative inline-flex rounded-full h-2 w-2 ${
+            isOnline ? "bg-emerald-500" : "bg-red-500"
+          }`}></span>
+        </div>
+        <span className={`text-[10px] font-bold ${isOnline ? "text-emerald-400" : "text-red-400"}`}>
+          {isOnline ? "Online" : "Offline"}
+        </span>
+      </div>
+    );
+  };
+
   return (
     <section id="ecosystem" className="relative z-10 py-16 px-6 max-w-7xl mx-auto flex flex-col items-center">
-  
-  {/* HEADER */}
-   <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
+      
+      {/* HEADER */}
+      <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
 
-  {/* ICON + TITLE */}
-  <div className="flex items-center gap-3 mb-4">
+        {/* ICON + TITLE */}
+        <div className="flex items-center gap-3 mb-4">
 
-    {/* ICON SERVER */}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#38bdf8"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-7 h-7 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
-    >
-      <rect x="3" y="4" width="18" height="6" rx="2"/>
-      <rect x="3" y="14" width="18" height="6" rx="2"/>
-      <circle cx="7" cy="7" r="1"/>
-      <circle cx="7" cy="17" r="1"/>
-      <line x1="11" y1="7" x2="17" y2="7"/>
-      <line x1="11" y1="17" x2="17" y2="17"/>
-    </svg>
+          {/* ICON SERVER */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-7 h-7 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
+          >
+            <rect x="3" y="4" width="18" height="6" rx="2"/>
+            <rect x="3" y="14" width="18" height="6" rx="2"/>
+            <circle cx="7" cy="7" r="1"/>
+            <circle cx="7" cy="17" r="1"/>
+            <line x1="11" y1="7" x2="17" y2="7"/>
+            <line x1="11" y1="17" x2="17" y2="17"/>
+          </svg>
 
-    {/* TITLE */}
-    <h2 className="text-xl md:text-3xl font-extrabold tracking-tight text-[#ff7b00]">
-     𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬  
-    </h2>
+          {/* TITLE */}
+          <h2 className="text-xl md:text-3xl font-extrabold tracking-tight text-[#ff7b00]">
+           𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬  
+          </h2>
 
-  </div>
+        </div>
 
-    {/* DESCRIPTION */}
-     <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-100">
-      𝐖𝐞 𝐬𝐮𝐩𝐩𝐨𝐫𝐭 𝐦𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐦𝐚𝐢𝐧𝐧𝐞𝐭 𝐚𝐧𝐝 𝐭𝐞𝐬𝐭𝐧𝐞𝐭 𝐞𝐜𝐨𝐬𝐲𝐬𝐭𝐞𝐦𝐬,<br/>
-      𝐩𝐫𝐨𝐯𝐢𝐝𝐢𝐧𝐠 𝐫𝐞𝐥𝐢𝐚𝐛𝐥𝐞 𝐯𝐚𝐥𝐢𝐝𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬<br/>
-      𝐚𝐜𝐫𝐨𝐬𝐬 𝐂𝐨𝐬𝐦𝐨𝐬-𝐛𝐚𝐬𝐞𝐝 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐬
-   </p>
-  </div>
+        {/* DESCRIPTION */}
+        <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-100">
+          𝐖𝐞 𝐬𝐮𝐩𝐩𝐨𝐫𝐭 𝐦𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐦𝐚𝐢𝐧𝐧𝐞𝐭 𝐚𝐧𝐝 𝐭𝐞𝐬𝐭𝐧𝐞𝐭 𝐞𝐜𝐨𝐬𝐲𝐬𝐭𝐞𝐦𝐬,<br/>
+          𝐩𝐫𝐨𝐯𝐢𝐝𝐢𝐧𝐠 𝐫𝐞𝐥𝐢𝐚𝐛𝐥𝐞 𝐯𝐚𝐥𝐢𝐝𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬<br/>
+          𝐚𝐜𝐫𝐨𝐬𝐬 𝐂𝐨𝐬𝐦𝐨𝐬-𝐛𝐚𝐬𝐞𝐝 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐬
+        </p>
+      </div>
 
       {/* 1. TABS */}
       <div className="flex p-1.5 rounded-2xl border w-full mb-12 bg-slate-100/10 border-sky-400/50 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
         <div className="grid grid-cols-3 w-full gap-2">
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="𝐌𝐚𝐢𝐧𝐧𝐞𝐭" />
           <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="𝐓𝐞𝐬𝐭𝐧𝐞𝐭" />
-         <TabButton active={tab === "all"} onClick={() => setTab("all")} label="𝐀𝐥𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬" />
+          <TabButton active={tab === "all"} onClick={() => setTab("all")} label="𝐀𝐥𝐥 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬" />
         </div>
       </div>
 
@@ -91,16 +148,10 @@
               bg-white border-slate-200 shadow-sm
               dark:bg-slate-800 dark:border-sky-400/60 dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]
               hover:-translate-y-2 hover:border-sky-300 hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]"            
->
+          >
 
-       {/* INDIKATOR HIJAU */}
-          <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40">
-             <div className="relative flex h-2 w-2">
-               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-             </div>
-           <span className="text-[10px] font-bold text-emerald-400">Online</span>
-         </div>
+            {/* STATUS BADGE - Real-time dari API */}
+            {getStatusBadge(item.name)}
 
             {/* LOGO */}
             <div className="mb-4 transform group-hover:scale-110 transition-all duration-500">

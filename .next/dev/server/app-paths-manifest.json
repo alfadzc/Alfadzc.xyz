@@ -1,5 +1,18 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/metrics/multi-chain/route": "app/api/metrics/multi-chain/route.js",
+  "/api/validators/bitbadges/route": "app/api/validators/bitbadges/route.js",
+  "/api/validators/cnho/route": "app/api/validators/cnho/route.js",
+  "/api/validators/empeiria/route": "app/api/validators/empeiria/route.js",
+  "/api/validators/lava/route": "app/api/validators/lava/route.js",
+  "/api/validators/lumen/route": "app/api/validators/lumen/route.js",
+  "/api/validators/monolythium/route": "app/api/validators/monolythium/route.js",
+  "/api/validators/paxi/route": "app/api/validators/paxi/route.js",
+  "/api/validators/pushchain/route": "app/api/validators/pushchain/route.js",
+  "/api/validators/republic/route": "app/api/validators/republic/route.js",
+  "/api/validators/safrochain/route": "app/api/validators/safrochain/route.js",
+  "/api/validators/shido/route": "app/api/validators/shido/route.js",
   "/page": "app/page.js",
-  "/tools/analytics/page": "app/tools/analytics/page.js"
+  "/tools/analytics/page": "app/tools/analytics/page.js",
+  "/tools/validator-monitor/page": "app/tools/validator-monitor/page.js"
 }

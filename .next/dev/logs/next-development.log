@@ -1,5 +1,8 @@
-[00:00:01.340] Server  LOG     ✓ Ready in 1047ms
-[00:00:04.401] Server  LOG     ○ Compiling / ...
-[00:00:07.695] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:24.608] Server  LOG     ○ Compiling /tools/analytics ...
-[00:00:25.364] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.422] Server  LOG     ✓ Ready in 999ms
+[00:00:01.451] Browser ERROR   Error fetching metrics: {}
+[00:00:04.474] Server  LOG     ○ Compiling /tools/analytics ...
+[00:00:10.317] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:10.462] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:49.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:44.020] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:56.362] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

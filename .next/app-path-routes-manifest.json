@@ -1,0 +1,22 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/metrics/multi-chain/route": "/api/metrics/multi-chain",
+  "/api/validators/bitbadges/route": "/api/validators/bitbadges",
+  "/api/validators/cnho/route": "/api/validators/cnho",
+  "/api/validators/empeiria/route": "/api/validators/empeiria",
+  "/api/validators/epix/route": "/api/validators/epix",
+  "/api/validators/lava/route": "/api/validators/lava",
+  "/api/validators/lumen/route": "/api/validators/lumen",
+  "/api/validators/monolythium/route": "/api/validators/monolythium",
+  "/api/validators/paxi/route": "/api/validators/paxi",
+  "/api/validators/pushchain/route": "/api/validators/pushchain",
+  "/api/validators/republic/route": "/api/validators/republic",
+  "/api/validators/safrochain/route": "/api/validators/safrochain",
+  "/api/validators/shido/route": "/api/validators/shido",
+  "/coming-soon/page": "/coming-soon",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/tools/analytics/page": "/tools/analytics",
+  "/tools/validator-monitor/page": "/tools/validator-monitor"
+}
