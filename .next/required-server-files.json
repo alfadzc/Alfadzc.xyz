@@ -100,7 +100,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/root/alfadzc.xyz",
+    "outputFileTracingRoot": "/root",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -293,12 +293,12 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/root/alfadzc.xyz"
+      "root": "/root"
     },
     "distDirRoot": ".next"
   },
   "appDir": "/root/alfadzc.xyz",
-  "relativeAppDir": "",
+  "relativeAppDir": "alfadzc.xyz",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",

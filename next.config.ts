@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  turbopack: {
-    root: '/root/alfadzc.xyz',
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
+
+
