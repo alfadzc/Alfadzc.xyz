@@ -71,7 +71,7 @@ export default function AnalyticsDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <button
             onClick={handleBackToHome}
-            className="text-sm text-slate-400 hover:text-slate-300 mb-4 inline-block cursor-pointer hover:underline"
+            className="text-sm text-slate-900 dark:text-slate-200 mb-4 inline-block cursor-pointer hover:underline"
           >
             ← Back to Home
           </button>
@@ -90,35 +90,40 @@ export default function AnalyticsDashboard() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-lg text-center text-slate-900 dark:text-slate-300 mb-2">Total Value Staked</p>
-            <p className="text-2xl font-bold text-center text-emerald-400">${metrics?.totalStakedUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Total Value Staked</p>
+            <p className="text-2xl font-bold text-center text-purple-500">${metrics?.totalStakedUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
           </div>
-  <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-lg text-center text-slate-900 dark:text-slate-300 mb-2">Network Uptime</p>
-            <p className="text-2xl font-bold text-center text-emerald-400">{metrics?.networkUptime}%</p>
+  <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgb
+a(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Network Uptime</p>
+            <p className="text-2xl font-bold text-center text-emerald-500">{metrics?.networkUptime}%</p>
           </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-lg text-center text-slate-900 dark:text-slate-300 mb-2">Active Validators</p>
-            <p className="text-2xl font-bold text-center text-purple-400">{metrics?.activeValidators}</p>
-          </div>    
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-lg text-center text-slate-900 dark:text-slate-300 mb-2">Networks</p>
-            <p className="text-2xl font-bold text-center text-blue-400">{metrics?.networksSupported}</p>
-          </div> 
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Active Validators</p>
+            <p className="text-2xl font-bold text-center text-blue-500">{metrics?.activeValidators}</p>
+          </div>
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Networks</p>
+            <p className="text-2xl font-bold text-center text-orange-500">{metrics?.networksSupported}</p>
+          </div>
         </div>
 
         {loading ? (
           <div className="text-center py-12 text-slate-400">Loading analytics...</div>
         ) : (
           <>
-            
+
    {/* Charts Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-           {/* Bar Chart - Value per Chain */}  
-              <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-                <h3 className="text-lg font-semibold mb-4 text-center text-slate-900 dark:text-slate-300">Total Value per Chain</h3>
+           {/* Bar Chart - Value per Chain */}
+              <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[
+0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+                <h3 className="text-lg font-bold mb-4 text-center text-slate-900 dark:text-slate-300">Total Value Per Chain</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
@@ -134,8 +139,9 @@ export default function AnalyticsDashboard() {
               </div>
 
               {/* Pie Chart - Distribution */}
-              <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-                <h3 className="text-lg font-semibold mb-4 text-center text-slate-900 dark:text-slate-300">Value Distribution</h3>
+              <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[
+0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+                <h3 className="text-lg font-bold mb-4 text-center text-slate-900 dark:text-slate-300">Value Distributions</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
@@ -163,13 +169,14 @@ export default function AnalyticsDashboard() {
             </div>
 
             {/* Table */}
-            <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 overflow-hidden">
+            <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 overflow-hidden transition-all duration-300 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:sh
+adow-[0_0_35px_rgba(56,189,248,0.7)]">
               <div className="grid grid-cols-5 px-6 py-3 bg-slate-100 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-700/50">
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Network</p>
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Validators</p>
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Total Bonded</p>
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-300 uppercase tracking-wider">USD Value</p>
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-300 uppercase tracking-wider text-right">% of Total</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Network</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Validators</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider">Total Bonded</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider">USD Value</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-slate-300 uppercase tracking-wider text-right">% of Total</p>
               </div>
               {chartData.map((chain, idx) => {
                 const percentage = ((chain.totalBondedUSD / totalStakedValue) * 100).toFixed(2);
@@ -178,7 +185,7 @@ export default function AnalyticsDashboard() {
                     <p className="text-sm font-semibold text-slate-900 dark:text-white">{chain.chain}</p>
                     <p className="text-sm text-slate-900 dark:text-slate-300">{chain.validators}</p>
                     <p className="text-sm text-slate-900 dark:text-slate-300">{Number(chain.totalBonded).toLocaleString('en-US', { maximumFractionDigits: 2 })}</p>
-                    <p className="text-sm font-semibold text-emerald-400">${chain.totalBondedUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                    <p className="text-sm font-semibold text-emerald-500">${chain.totalBondedUSD.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                     <p className="text-sm text-slate-900 dark:text-slate-300 text-right">{percentage}%</p>
                   </div>
                 );
@@ -186,24 +193,21 @@ export default function AnalyticsDashboard() {
             </div>
 
             {/* Summary */}
-            <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-              <h3 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-300">Summary</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
-                <div>
-                  <p className="text-slate-900 dark:text-slate-300 mb-1">Total Chains</p>
-                  <p className="text-xl font-semibold text-slate-900 dark:text-slate-300">{chartData.length}</p>
+            <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_
+0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+              <h3 className="text-lg text-center font-bold mb-4 pb-3 border-b border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-300">𝖲𝗎𝗆𝗆𝖺𝗋𝗒</h3>
+              <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="text-center">
+                  <p className="font-semibold text-slate-900 dark:text-slate-300 mb-1">Total Chains</p>
+                  <p className="text-xl font-bold text-blue-500">{chartData.length}</p>
                 </div>
-                <div>
-                  <p className="text-slate-900 dark:text-slate-300 mb-1">Total Validators Across Chains</p>
-                  <p className="text-xl font-semibold text-slate-900 dark:text-slate-300">{chartData.reduce((sum, c) => sum + c.validators, 0)}</p>
+                <div className="text-center">
+                  <p className="font-semibold text-slate-900 dark:text-slate-300 mb-1">Total Validators Across Chains</p>
+                  <p className="text-xl font-bold text-emerald-500">{chartData.reduce((sum, c) => sum + c.validators, 0)}</p>
                 </div>
-                <div>
-                  <p className="text-slate-900 dark:text-slate-300 mb-1">Avg Value per Chain</p>
-                  <p className="text-xl font-semibold text-emerald-400">${(totalStakedValue / chartData.length).toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
-                </div>
-                <div>
-                  <p className="text-slate-800 dark:text-slate-300 mb-1">Last Updated</p>
-                  <p className="text-sm text-slate-900 dark:text-slate-300">{metrics?.lastUpdated ? new Date(metrics.lastUpdated).toLocaleTimeString() : "—"}</p>
+                <div className="text-center">
+                  <p className="font-semibold text-slate-900 dark:text-slate-300 mb-1">Last Updated</p>
+                  <p className="text-base font-semibold text-[#ff7b00]">{metrics?.lastUpdated ? new Date(metrics.lastUpdated).toLocaleTimeString() : "—"}</p>
                 </div>
               </div>
             </div>

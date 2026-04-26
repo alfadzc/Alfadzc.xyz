@@ -230,21 +230,19 @@ export default function ToolsSection() {
     return (
       <article
         key={`${keyPrefix}-${chain.chain}`}
-        className="max-w-[360px] rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-6 min-h-[180px] transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 dark:hover:bg-slate-900 hover:sha
-dow-[0_0_20px_rgba(56,189,248,0.4)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,0.3)]"
-      >
+        className="max-w-[360px] rounded-lg border border-blue-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
         <div className="mb-4 flex items-center gap-3">
           <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
             {CHAIN_LOGOS[chain.chain] ? (
               <img src={CHAIN_LOGOS[chain.chain]} alt={chain.chain} className="h-full w-full object-cover" />
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-700 dark:text-slate-300">
+              <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-900 dark:text-slate-300">
                 {chain.chain?.[0] ?? "?"}
               </div>
             )}
           </div>
           <div className="min-w-0">
-            <p className="truncate text-lg font-bold text-slate-900 dark:text-slate-200">{chain.chain}</p>
+            <p className="truncate text-lg font-bold text-slate-900 dark:text-slate-300">{chain.chain}</p>
             <span className="inline-block rounded-md border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400">
               {aprFromChain(chain)}
             </span>
@@ -256,7 +254,7 @@ dow-[0_0_20px_rgba(56,189,248,0.4)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,
           <p className="text-slate-900 dark:text-slate-300">TVL</p>
           <p className="text-slate-900 dark:text-slate-300">{formatUsd(chain.totalBondedUSD)}</p>
           <p className="text-slate-900 dark:text-slate-300">Validators</p>
-          <p className="text-orange-500">{chain.validators}</p>
+          <p className="text-orange-400">{chain.validators}</p>
         </div>
       </article>
     );
@@ -274,143 +272,147 @@ dow-[0_0_20px_rgba(56,189,248,0.4)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,
             <span className="text-2xl md:text-3xl font-bold text-[#ff7b00]">𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠</span>
           </h2>
         </div>
-        <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-gray-300">
+        <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-slate-300">
          Real-time monitoring validator across multiple network.
         </p>
       </div>
 
       <div className="mt-6 mb-12 flex justify-center">
         <div className="relative w-full max-w-sm">
-          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400">⌕</span>
+          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-900 dark:text-slate-300">⌕</span>
           <input
             id="network-search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search"
-            className="w-full rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#100c2a] py-2.5 pl-11 pr-12 text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-n
-one transition focus:border-blue-400 dark:focus:border-slate-500"
+            className="w-full rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#100c2a] py-2.5 pl-11 pr-12 text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition focus:border-blue-400 dark:focus:border-slate-500"
           />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs text-slate-500 dark:text-slate-300">
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs text-slate-900 dark:text-slate-300">
             {'/'}
           </span>
         </div>
-      </div>
-
-      <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
-        {/* Networks Supported */}
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,2
-48,0.3)] dark:hover:bg-slate-900">
-          <div className="flex items-center justify-between">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-700/80">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      </div>   
+      
+      {/* Networks Supported */}
+   <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
+       <div className="rounded-lg border border-orange-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+          <div className="relative flex items-center justify-center mb-4">
+            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#ff7b00]/20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
               </svg>
             </div>
-            <span className="flex items-center gap-3 text-xs font-semibold text-emerald-400">
-              <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
-00"></span></span>
+        {/* Live */}
+          <span className="absolute right-2 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+          <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
+00"></span></span> 
               Live
             </span>
           </div>
-          <p className="text-3xl font-bold text-orange-500">{normalizedNetworksSupported}+</p>
+          <p className="text-3xl font-bold text-center text-orange-500">{normalizedNetworksSupported}+</p>
           <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm font-semibold text-slate-900 dark:text-slate-300">Networks Supported</p>
-            <p className="text-xs text-slate-900 dark:text-slate-300">Mainnet & Testnet Validator</p>
-          </div>
-        </div>
-
-        {/* Network Uptime */}
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,2
-48,0.3)] dark:hover:bg-slate-900">
-          <div className="flex items-center justify-between">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-700/80">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-              </svg>
-            </div>
-            <span className="flex items-center gap-3 text-xs font-semibold text-emerald-400">
-              <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
-00"></span></span>
-              Live
-            </span>
-          </div>
-          <p className="text-3xl font-bold text-emerald-400">{metrics?.networkUptime?.toFixed(1) ?? "—"}%</p>
-          <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm font-semibold text-slate-900 dark:text-slate-300">Network Uptime</p>
-            <p className="text-xs text-slate-900 dark:text-slate-300">7-day average</p>
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-300">Networks Supported</p>
+            <p className="text-xs text-center text-slate-900 dark:text-slate-400">Mainnet & Testnet Validator</p>
           </div>
         </div>
 
         {/* Total Staked */}
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,2
-48,0.3)] dark:hover:bg-slate-900">
-          <div className="flex items-center justify-between">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-700/80">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <div className="rounded-lg border border-purple-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+          <div className="relative flex items-center justify-center mb-4">
+            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-purple-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751 h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
               </svg>
             </div>
-            <span className="flex items-center gap-3 text-xs font-semibold text-emerald-400">
-              <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
-00"></span></span>
+        {/* Live */}
+          <span className="absolute right-2 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+          <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
+00"></span></span> 
               Live
             </span>
           </div>
-          <p className="text-3xl font-bold text-purple-400">{formatUsd(metrics?.totalStakedUSD ?? 0)}</p>
+          <p className="text-2xl font-bold text-center text-purple-500">{formatUsd(metrics?.totalStakedUSD ?? 0)}</p>
           <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm font-semibold text-slate-900 dark:text-slate-300">Total Staked</p>
-            <p className="text-xs text-slate-900 dark:text-slate-300">Secured assets</p>
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-300">Total Staked</p>
+            <p className="text-xs text-center text-slate-900 dark:text-slate-400">Secured assets</p>
+          </div>
+        </div>
+
+        {/* Network Uptime */}
+        <div className="rounded-lg border border-emerald-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+          <div className="relative flex items-center justify-center mb-4">
+            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-emerald-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+              </svg>
+            </div>
+        {/* Live */}
+          <span className="absolute right-2 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+          <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
+00"></span></span> 
+              Live
+            </span>
+          </div>
+          <p className="text-2xl font-bold text-center text-emerald-400">{metrics?.networkUptime?.toFixed(1) ?? "—"}%</p>
+          <div className="border-t border-slate-700 pt-2">
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-300">Network Uptime</p>
+            <p className="text-xs text-center text-slate-900 dark:text-slate-400">7-day average</p>
           </div>
         </div>
 
         {/* Active Validators */}
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,2
-48,0.3)] dark:hover:bg-slate-900">
-          <div className="flex items-center justify-between">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-700/80">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <div className="rounded-lg border border-blue-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">          
+  <div className="relative flex items-center justify-center mb-4">
+     <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-blue-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>   
                 <rect x="2" y="4" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
                 <rect x="2" y="14" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 7h.01M6 17h.01"/>
               </svg>
             </div>
-            <span className="flex items-center gap-3 text-xs font-semibold text-emerald-400">
-              <span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
-00"></span></span>
+        {/* Live */}
+    <span className="absolute right-2 flex items-center gap-2 text-xs font-semibold text-emerald-400">
+          <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-5
+00"></span></span> 
               Live
             </span>
-          </div>
-          <p className="text-3xl font-bold text-blue-400">{normalizedChains.length}</p>
+           </div>
+          <p className="text-2xl text-center font-bold text-blue-500">{normalizedChains.length}</p>
           <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm font-semibold text-slate-900 dark:text-slate-300">Active Validators</p>
-            <p className="text-xs text-slate-900 dark:text-slate-300">Across {normalizedNetworksSupported}+ networks</p>
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-300">Active Validators</p>
+            <p className="text-xs text-center text-slate-900 dark:text-slate-400">Across {normalizedNetworksSupported}+ networks</p>
           </div>
         </div>
 
         {/* 24/7 Support */}
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-5 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:sh
-adow-[0_0_20px_rgba(56,189,248,0.3)] dark:hover:bg-slate-900">
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-          </svg>
-          <p className="text-3xl font-bold gradient-text">24/7</p>
-          <p className="text-sm font-semibold text-emerald-500">Support</p>
+        <div className="rounded-lg border border-pink-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 cursor-pointer flex flex-col items-center justify-center gap-3">        
+<div className="flex justify-center">   
+         <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+         <path strokeLinecap="round" strokeLinejoin="round" d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+         <path strokeLinecap="round" strokeLinejoin="round" d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+       </svg>
+      </div>
+    <p className="text-2xl text-center font-bold text-pink-500">24/7</p>
+        <p className="text-sm text-center font-semibold text-emerald-400">Support</p>
         </div>
       </div>
 
       {loading ? (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="h-40 animate-pulse rounded-2xl border border-slate-700 bg-slate-900/80" />
+            <div key={i} className="h-40 animate-pulse rounded-2xl border border-slate-700 bg-slate-800/90" />
           ))}
         </div>
       ) : (
         <div className="space-y-10">
           <div>
             <div className="mb-4 flex items-center justify-between border-b border-slate-700 pb-3">
-              <h3 className="text-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-full inline-block">Mainnet</h3>
-              <span className="text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-1 rounded-full">{mainnetChains.length} networks</span>
+              <h3 className="text-xl font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-full inline-block">Mainnet</h3>
+              <span className="text-sm font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-1 rounded-full">{mainnetChains.length} networks</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {mainnetChains.map((chain) => renderCard(chain, "mainnet"))}
@@ -418,8 +420,8 @@ adow-[0_0_20px_rgba(56,189,248,0.3)] dark:hover:bg-slate-900">
           </div>
           <div>
             <div className="mb-4 flex items-center justify-between border-b border-slate-700 pb-3">
-              <h3 className="text-xl font-bold text-white bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-1.5 rounded-full inline-block">Tesnet</h3>
-              <span className="text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-1 rounded-full">{testnetChains.length} networks</span>
+              <h3 className="text-xl font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-1.5 rounded-full inline-block">Testnet</h3>
+              <span className="text-sm font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-1 rounded-full">{testnetChains.length} networks</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {testnetChains.map((chain) => renderCard(chain, "testnet"))}
@@ -429,20 +431,21 @@ adow-[0_0_20px_rgba(56,189,248,0.3)] dark:hover:bg-slate-900">
       )}
 
       {!loading && filteredChains.length === 0 && (
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/80 p-10 text-center text-slate-400">
+        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/90 p-10 text-center text-slate-400">
           Network tidak ditemukan.
         </div>
       )}
 
     {/* VALIDATOR MONITOR */}
-     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-40 max-w-4xl mx-auto">
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-40 max-w-5xl mx-auto">
   <button onClick={() => handleToolClick("/tools/validator-monitor")}
-  className="group rounded-xl border border-pink-500 bg-white dark:bg-slate-900/80 p-5 min-h-[140px] transition-all duration-300 text-left hover:border-pink-400 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] hover:-translate-y-1">       
+  className="group rounded-xl border border-pink-500 dark:bg-slate-800/90 p-5 min-h-[140px] transition-all duration-300 text-left hover:border-pink-400 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] hover:-translate-y-1 dark:hover:bg-slate-800 cursor-pointer">
 
     {/* SVG LOGO */} 
       <h3 className="text-2xl font-bold mb-6 text-[#ff7b00] flex items-center gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751 h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" 
+  className="w-8 h-8 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
       </svg>
       𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫 𝐌𝐨𝐧𝐢𝐭𝐨𝐫
   </h3>
@@ -457,12 +460,12 @@ adow-[0_0_20px_rgba(56,189,248,0.3)] dark:hover:bg-slate-900">
   {/* ANALYTICS */}
   <button
    onClick={() => handleToolClick("/tools/analytics")}
-   className="group rounded-xl border border-blue-500 bg-white dark:bg-slate-900/80 p-5 min-h-[140px] transition-all duration-300 text-left hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:-translate-y-1"> 
+   className="group rounded-xl border border-blue-500 dark:bg-slate-800/90 p-5 min-h-[140px] transition-all duration-300 text-left hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:-translate-y-1 dark:hover:bg-slate-800 cursor-pointer">
 
     {/* SVG LOGO */}
-     <h3 className="text-2xl font-bold mb-6 text-blue-400 flex items-center gap-2">
+     <h3 className="text-2xl font-bold mb-6 text-blue-500 flex items-center gap-2">
  <svg xmlns="http://www.w3.org/2000/svg"
-     className="w-6 h-6 text-blue-400 transition group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+     className="w-9 h-9 text-blue-500 transition group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13h4l2-6 3 12 3-8 2 4h4"/>
     </svg>
      𝐍𝐞𝐭𝐰𝐨𝐫𝐤 𝐀𝐧𝐚𝐥𝐲𝐭𝐢𝐜𝐬

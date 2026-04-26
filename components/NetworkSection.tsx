@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
-import ChainLogo from "./ChainLogo";
+import ChainLogo from "./chainLogo";
 
 interface ValidatorStatus {
   [key: string]: "online" | "offline";
@@ -98,11 +98,10 @@ export default function NetworkSection() {
           <h2 className="text-xl md:text-3xl font-extrabold tracking-tight text-[#ff7b00]">
            𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬  
           </h2>
-
         </div>
 
         {/* DESCRIPTION */}
-        <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-100">
+        <p className="mt-2 max-w-2xl text-sm md:text-base leading-relaxed text-slate-900 dark:text-gray-300">
           𝐖𝐞 𝐬𝐮𝐩𝐩𝐨𝐫𝐭 𝐦𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐦𝐚𝐢𝐧𝐧𝐞𝐭 𝐚𝐧𝐝 𝐭𝐞𝐬𝐭𝐧𝐞𝐭 𝐞𝐜𝐨𝐬𝐲𝐬𝐭𝐞𝐦𝐬,<br/>
           𝐩𝐫𝐨𝐯𝐢𝐝𝐢𝐧𝐠 𝐫𝐞𝐥𝐢𝐚𝐛𝐥𝐞 𝐯𝐚𝐥𝐢𝐝𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬<br/>
           𝐚𝐜𝐫𝐨𝐬𝐬 𝐂𝐨𝐬𝐦𝐨𝐬-𝐛𝐚𝐬𝐞𝐝 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐬
@@ -122,7 +121,7 @@ export default function NetworkSection() {
       <div className="w-full flex items-center justify-between mb-10 border-b pb-8 border-slate-200 dark:border-slate-800/50">
 
         {/* Sisi Kiri */}
-        <div className="flex items-center gap-3 px-5 py-2.5 rounded-full transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-500 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)]">
+        <div className="flex items-center gap-3 px-5 py-2.5 rounded-full transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)]">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
@@ -132,8 +131,8 @@ export default function NetworkSection() {
         </div>
 
         {/* Sisi Kanan */}
-        <div className="px-5 py-2.5 rounded-full transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-500 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)]">
-          <p className="text-sm font-bold text-white tracking-wide">
+        <div className="px-5 py-2.5 rounded-full transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)]">
+          <p className="text-sm font-normal text-white tracking-wide">
            {data.length} <span className="text-white font-medium">𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐬</span>
           </p>
         </div>
@@ -147,8 +146,7 @@ export default function NetworkSection() {
             className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border
               bg-white border-slate-200 shadow-sm
               dark:bg-slate-800 dark:border-sky-400/60 dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]
-              hover:-translate-y-2 hover:border-sky-300 hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]"            
-          >
+              hover:-translate-y-2 hover:border-sky-300 hover:shadow-[0_0_40px_rgba(56,189,248,0.3)]">
 
             {/* STATUS BADGE - Real-time dari API */}
             {getStatusBadge(item.name)}
@@ -181,7 +179,7 @@ export default function NetworkSection() {
                   href={item.delegateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 rounded-full font-bold shadow-lg active:scale-95 transition-all"
+                  className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 rounded-full font-bold shadow-lg active:scale-95 transition-all"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
@@ -191,7 +189,7 @@ export default function NetworkSection() {
                   Delegate
                 </a>
               ) : (
-                <span className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-500/40 text-white/40 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">
+                <span className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-600/40 text-white/40 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
                     <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
@@ -201,7 +199,7 @@ export default function NetworkSection() {
                 </span>
               )}
 
-              {/* Tombol Explorer */}
+              {/* Explorer */}
               {item.explorerUrl ? (
                 <a
                   href={item.explorerUrl}
@@ -239,9 +237,9 @@ function TabButton({ active, onClick, label }: { active: boolean; onClick: () =>
   return (
     <button
       onClick={onClick}
-      className={`py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer w-full
+      className={`py-2.5 rounded-xl text-sm font-normal transition-all duration-300 cursor-pointer w-full
         ${active
-          ? "bg-gradient-to-r from-purple-600 to-blue-500 text-white border-2 border-sky-400 scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.5)] rounded-full"
+          ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white border-2 border-sky-400 scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.5)] rounded-full"
           : "text-slate-400 hover:text-sky-400 rounded-full"
         }`}
     >

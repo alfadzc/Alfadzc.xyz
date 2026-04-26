@@ -103,7 +103,7 @@ function ValidatorMonitor() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: handleBackToHome,
-                            className: "text-sm text-slate-400 hover:text-slate-300 mb-4 inline-block cursor-pointer hover:underline",
+                            className: "text-sm text-slate-900 dark:text-slate-200 mb-4 inline-block cursor-pointer hover:underline",
                             children: "← Back to Home"
                         }, void 0, false, {
                             fileName: "[project]/app/tools/validator-monitor/page.tsx",
@@ -167,22 +167,22 @@ function ValidatorMonitor() {
                         className: "grid grid-cols-1 md:grid-cols-3 gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6",
+                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_ 30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-slate-900 dark:text-slate-300 mb-2",
+                                        className: "text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2",
                                         children: "Total Validators"
                                     }, void 0, false, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 116,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-3xl font-bold text-emerald-400",
+                                        className: "text-2xl text-center font-bold text-blue-500",
                                         children: validators.length
                                     }, void 0, false, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 116,
+                                        lineNumber: 117,
                                         columnNumber: 13
                                     }, this)
                                 ]
@@ -192,56 +192,56 @@ function ValidatorMonitor() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6",
+                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_ 30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-slate-900 dark:text-slate-300 mb-2",
+                                        className: "text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2",
                                         children: "Avg Uptime"
                                     }, void 0, false, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 119,
+                                        lineNumber: 121,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-3xl font-bold text-blue-400",
+                                        className: "text-2xl text-center font-bold text-emerald-500",
                                         children: [
                                             validators.length > 0 ? (validators.reduce((sum, v)=>sum + v.uptime, 0) / validators.length).toFixed(2) : "—",
                                             "%"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 120,
+                                        lineNumber: 122,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 118,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6",
+                                className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_ 30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-slate-900 dark:text-slate-300 mb-2",
+                                        className: "text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2",
                                         children: "Last Updated"
                                     }, void 0, false, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 130,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-slate-900 dark:text-slate-300",
+                                        className: "text-lg text-center text-[#ff7b00]",
                                         children: validators[0]?.lastUpdated ? new Date(validators[0].lastUpdated).toLocaleTimeString() : "—"
                                     }, void 0, false, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 128,
+                                        lineNumber: 131,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 126,
+                                lineNumber: 128,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -254,7 +254,7 @@ function ValidatorMonitor() {
                         className: "space-y-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-2xl font-bold flex items-center gap-2",
+                                className: "text-2xl font-bold text-[#ff7b00] flex items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                         xmlns: "http://www.w3.org/2000/svg",
@@ -274,7 +274,7 @@ function ValidatorMonitor() {
                                                 strokeLinejoin: "round"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 140,
+                                                lineNumber: 143,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -287,7 +287,7 @@ function ValidatorMonitor() {
                                                 strokeLinejoin: "round"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 141,
+                                                lineNumber: 144,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -296,20 +296,20 @@ function ValidatorMonitor() {
                                                 d: "M6 7h.01M6 17h.01"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 145,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 142,
                                         columnNumber: 13
                                     }, this),
                                     "𝐎𝐮𝐫 𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 138,
+                                lineNumber: 141,
                                 columnNumber: 11
                             }, this),
                             loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -317,19 +317,19 @@ function ValidatorMonitor() {
                                 children: "Loading validators..."
                             }, void 0, false, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 147,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, this) : validators.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "text-center py-12 text-slate-300",
                                 children: "No validators found"
                             }, void 0, false, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 149,
+                                lineNumber: 152,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
                                 children: validators.map((validator, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_ 20px_rgba(56,189,248,0.3)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] dark:hover:bg-[#1e2444] cursor-pointer",
+                                        className: "rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0 _0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer",
                                         onClick: ()=>setSelectedChain(validator.chain),
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -340,25 +340,25 @@ function ValidatorMonitor() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "w-10 h-10 rounded-full overflow-hidden border border-slate-600 flex-shrink-0",
-                                                                children: CHAIN_LOGOS[validator.chain.toLowerCase()] ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                    src: CHAIN_LOGOS[validator.chain.toLowerCase()],
+                                                                children: CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""] ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                    src: CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""],
                                                                     alt: validator.chain,
                                                                     className: "w-full h-full object-cover"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                    lineNumber: 163,
+                                                                    lineNumber: 166,
                                                                     columnNumber: 27
                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "w-full h-full bg-slate-700 flex items-center justify-center text-xs font-bold",
                                                                     children: validator.chain?.[0]
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                    lineNumber: 169,
+                                                                    lineNumber: 172,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 161,
+                                                                lineNumber: 164,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -368,7 +368,7 @@ function ValidatorMonitor() {
                                                                         children: validator.moniker
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                        lineNumber: 175,
+                                                                        lineNumber: 178,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -376,19 +376,19 @@ function ValidatorMonitor() {
                                                                         children: validator.chain
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                        lineNumber: 176,
+                                                                        lineNumber: 179,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 174,
+                                                                lineNumber: 177,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                        lineNumber: 160,
+                                                        lineNumber: 163,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -396,23 +396,23 @@ function ValidatorMonitor() {
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: getUptimeColor(validator.uptime),
                                                             children: [
-                                                                validator.uptime.toFixed(2),
+                                                                (validator.uptime ?? 99.9).toFixed(2),
                                                                 "%"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 183,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                        lineNumber: 179,
+                                                        lineNumber: 182,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 159,
+                                                lineNumber: 162,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -426,7 +426,7 @@ function ValidatorMonitor() {
                                                                 children: "Total Staked:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 188,
+                                                                lineNumber: 191,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -437,13 +437,13 @@ function ValidatorMonitor() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 189,
+                                                                lineNumber: 192,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 190,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -454,7 +454,7 @@ function ValidatorMonitor() {
                                                                 children: "Tokens:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 192,
+                                                                lineNumber: 195,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -462,13 +462,13 @@ function ValidatorMonitor() {
                                                                 children: validator.totalBonded
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 193,
+                                                                lineNumber: 196,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                        lineNumber: 191,
+                                                        lineNumber: 194,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -479,7 +479,7 @@ function ValidatorMonitor() {
                                                                 children: "Network Validators:"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 196,
+                                                                lineNumber: 199,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -487,19 +487,19 @@ function ValidatorMonitor() {
                                                                 children: validator.validators
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                                lineNumber: 197,
+                                                                lineNumber: 200,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                        lineNumber: 195,
+                                                        lineNumber: 198,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 186,
+                                                lineNumber: 189,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -508,33 +508,33 @@ function ValidatorMonitor() {
                                                     className: "text-xs text-slate-900 dark:text-slate-300",
                                                     children: [
                                                         "Updated: ",
-                                                        new Date(validator.lastUpdated).toLocaleTimeString()
+                                                        validator.lastUpdated ? new Date(validator.lastUpdated).toLocaleTimeString() : "—"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                    lineNumber: 202,
+                                                    lineNumber: 205,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                                lineNumber: 201,
+                                                lineNumber: 204,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                        lineNumber: 153,
+                                        lineNumber: 156,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                                lineNumber: 151,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/tools/validator-monitor/page.tsx",
-                        lineNumber: 137,
+                        lineNumber: 140,
                         columnNumber: 9
                     }, this)
                 ]

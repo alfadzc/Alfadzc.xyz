@@ -91,7 +91,7 @@ export default function ValidatorMonitor() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <button
             onClick={handleBackToHome}
-            className="text-sm text-slate-400 hover:text-slate-300 mb-4 inline-block cursor-pointer hover:underline"
+            className="text-sm text-slate-900 dark:text-slate-200 mb-4 inline-block cursor-pointer hover:underline"
           >
             ← Back to Home
           </button>
@@ -111,21 +111,24 @@ h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-sm text-slate-900 dark:text-slate-300 mb-2">Total Validators</p>
-            <p className="text-3xl font-bold text-emerald-400">{validators.length}</p>
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Total Validators</p>
+            <p className="text-2xl text-center font-bold text-blue-500">{validators.length}</p>
           </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-sm text-slate-900 dark:text-slate-300 mb-2">Avg Uptime</p>
-            <p className="text-3xl font-bold text-blue-400">
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Avg Uptime</p>
+            <p className="text-2xl text-center font-bold text-emerald-500">
               {validators.length > 0
                 ? (validators.reduce((sum, v) => sum + v.uptime, 0) / validators.length).toFixed(2)
                 : "—"}%
             </p>
           </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6">
-            <p className="text-sm text-slate-900 dark:text-slate-300 mb-2">Last Updated</p>
-            <p className="text-sm text-slate-900 dark:text-slate-300">
+          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
+30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer">
+            <p className="text-base font-bold text-center text-slate-900 dark:text-slate-300 mb-2">Last Updated</p>
+            <p className="text-lg text-center text-[#ff7b00]">
               {validators[0]?.lastUpdated
                 ? new Date(validators[0].lastUpdated).toLocaleTimeString()
                 : "—"}
@@ -135,7 +138,7 @@ h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
 
         {/* Validators Grid */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-[#ff7b00] flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <rect x="2" y="4" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
               <rect x="2" y="14" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
@@ -152,16 +155,16 @@ h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
               {validators.map((validator, idx) => (
                 <div
                   key={idx}
-                  className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_
-20px_rgba(56,189,248,0.3)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] dark:hover:bg-[#1e2444] cursor-pointer"
+                  className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0
+_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800 cursor-pointer"
                   onClick={() => setSelectedChain(validator.chain)}
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-600 flex-shrink-0">
-                        {CHAIN_LOGOS[validator.chain.toLowerCase()] ? (
+                        {CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""] ? (
                           <img
-                            src={CHAIN_LOGOS[validator.chain.toLowerCase()]}
+                            src={CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""]}
                             alt={validator.chain}
                             className="w-full h-full object-cover"
                           />
@@ -178,7 +181,7 @@ h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                     </div>
                     <div className={`px-3 py-1 rounded-full border text-sm font-semibold ${getUptimeBgColor(validator.uptime)}`}>
                       <span className={getUptimeColor(validator.uptime)}>
-                        {validator.uptime.toFixed(2)}%
+                        {(validator.uptime ?? 99.9).toFixed(2)}%
                       </span>
                     </div>
                   </div>
@@ -200,7 +203,7 @@ h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
 
                   <div className="mt-4 pt-4 border-t border-slate-700/30">
                     <p className="text-xs text-slate-900 dark:text-slate-300">
-                      Updated: {new Date(validator.lastUpdated).toLocaleTimeString()}
+                      Updated: {validator.lastUpdated ? new Date(validator.lastUpdated).toLocaleTimeString() : "—"}
                     </p>
                   </div>
                 </div>
