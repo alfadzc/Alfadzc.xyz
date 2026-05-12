@@ -1,24 +1,55 @@
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-const LCD_URL = "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money";
+
+const LCD_URLS = [
+  "https://shido-api.polkachu.com",
+  "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money",
+  "https://swagger.shidoscan.com",
+];
 const VALIDATOR_OPERATOR = "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h";
 const CHAIN_DIVISOR = 1_000_000_000_000_000_000;
 const PRICE = 0.000204405;
+const FALLBACK = { chain: "Shido", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() };
+
+async function fetchFromMultiple(path: string) {
+  for (const url of LCD_URLS) {
+    try {
+      const res = await fetch(`${url}${path}`, { cache: "no-store", signal: AbortSignal.timeout(5000) });
+      if (res.ok) return res;
+    } catch { continue; }
+  }
+  return null;
+}
+
 export async function GET() {
   try {
     const [validatorRes, listRes] = await Promise.all([
-      fetch(`${LCD_URL}/cosmos/staking/v1beta1/validators/${VALIDATOR_OPERATOR}`, { cache: "no-store" }),
-      fetch(`${LCD_URL}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`, { cache: "no-store" }),
+      fetchFromMultiple(`/cosmos/staking/v1beta1/validators/${VALIDATOR_OPERATOR}`),
+      fetchFromMultiple(`/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`),
     ]);
-    if (!validatorRes.ok) return NextResponse.json({ chain: "Shido", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
-    const [validatorData, listData] = await Promise.all([validatorRes.json(), listRes.ok ? listRes.json() : { validators: [] }]);
+    if (!validatorRes) return NextResponse.json(FALLBACK);
+    const [validatorData, listData] = await Promise.all([
+      validatorRes.json(),
+      listRes ? listRes.json() : { validators: [] },
+    ]);
     const validator = validatorData?.validator;
-    if (!validator) return NextResponse.json({ chain: "Shido", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
+    if (!validator) return NextResponse.json(FALLBACK);
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
-    return NextResponse.json({ chain: "Shido", moniker: validator.description?.moniker || "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: totalBonded.toFixed(2), totalBondedUSD, price: PRICE, validators: listData.validators?.length || 0, uptime: 99.9, isFallback: false, lastUpdated: new Date().toISOString() });
+    return NextResponse.json({
+      chain: "Shido",
+      moniker: validator.description?.moniker || "alfadzc",
+      operatorAddress: VALIDATOR_OPERATOR,
+      totalBonded: totalBonded.toFixed(2),
+      totalBondedUSD,
+      price: PRICE,
+      validators: listData.validators?.length || 0,
+      uptime: 99.9,
+      isFallback: false,
+      lastUpdated: new Date().toISOString(),
+    });
   } catch {
-    return NextResponse.json({ chain: "Shido", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
+    return NextResponse.json(FALLBACK);
   }
 }
