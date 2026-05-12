@@ -3,8 +3,8 @@ export default function ContactSection() {
     <section
       id="contact"
       className="flex flex-col justify-center items-center text-center py-8 md:py-10 px-6">
-      <h3 className="text-2xl font-bold mb-6 text-[#ff7b00] flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <h3 className="text-xl font-bold mb-6 text-[#ff7b00] flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
         </svg>
@@ -14,7 +14,7 @@ export default function ContactSection() {
       <p className="text-gray-800 dark:text-gray-200 mb-6">
         📩 Email :{" "}
         <a href="mailto:contact@alfadzc.xyz" className="text-[#3d2e00] dark:text-[#FFD700] font-semibold">
-          contact@alfadzc.xyz
+         contact@alfadzc.xyz
         </a>
       </p>
 

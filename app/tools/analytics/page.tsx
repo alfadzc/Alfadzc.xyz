@@ -68,13 +68,13 @@ export default function AnalyticsDashboard() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 text-slate-800 dark:text-white">
-      {/* Header */}
+      {/* HEADER */}
       <div className="border-b border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <button onClick={() => window.location.href = "/"} className="text-sm text-slate-800 dark:text-slate-200 mb-4 inline-block cursor-pointer hover:underline">
+             <button onClick={() => { window.close(); setTimeout(() => { window.location.href = "/"; }, 100); }} className="text-sm text-slate-800 dark:text-slate-200 mb-4 inline-block cursor-pointer hover:underline">
             ← Back to Home
-          </button>
-          <h1 className="text-3xl font-bold text-blue-500 mb-4 flex items-center justify-center gap-3">
+</button>
+           <h1 className="text-3xl font-bold text-blue-500 mb-4 flex items-center justify-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 13h4l2-6 3 12 3-8 2 4h4"/>
             </svg>

@@ -14,7 +14,7 @@ export default function Navbar() {
     transition-colors duration-300"
    >
 
-   {/* Brand Kiri */}
+   {/* BRAND KIRI */}
     <div className="flex items-center gap-3">
    <button
     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -29,11 +29,11 @@ export default function Navbar() {
         className="w-full h-full object-cover rounded-full"
         />
       </div>
-      <span className="text-xl font-medium tracking-tighter gradient-text">𝙰𝚕𝚏𝚊𝚍𝚣𝚌.𝚡𝚢𝚣</span>
+      <span className="text-xl font-medium tracking-tighter gradient-text">𝐀𝐥𝐟𝐚𝐝𝐳𝐜.𝐱𝐲𝐳</span>
       </button>
      </div>
 
-    {/* Menu Kanan + Toggle */}
+    {/* MENU KANAN + Toggle */}
       <div className="flex items-center space-x-8">
         <div className="hidden md:flex items-center space-x-6">
           <NavLink href="#home" label="Home" icon={
@@ -71,7 +71,7 @@ export default function Navbar() {
           <ThemeToggle />
         </div>
 
-        {/* Hamburger - mobile only */}
+        {/* HAMBURGER - Mobile only */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
