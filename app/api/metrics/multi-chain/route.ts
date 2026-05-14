@@ -34,7 +34,7 @@ const CHAIN_CONFIG: Array<{
   timeout?: number;
 }> = [
   { chain: "Lava", lcd: "https://lava-api.polkachu.com", operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd", divisor: 1_000_000, price: 0.02188787, timeout: 4000 },
-  { chain: "Shido", lcd: "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, timeout: 4000 },
+  { chain: "Shido", lcd: "https://shido-api.polkachu.com", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, timeout: 4000 },
   { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 4000 },
   { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, price: 0, timeout: 4000 },
   { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, timeout: 8000 },
