@@ -94,7 +94,7 @@ async function fetchChain(cfg: typeof CHAIN_CONFIG[0]): Promise<ChainMetrics | n
     const myValidatorResOk = myValidatorRes.status === "fulfilled" && myValidatorRes.value.ok;
     const uptimeReady = uptimeData.status === "fulfilled" ? uptimeData.value : 99.9;
 
-    if (!validatorResOk || !myValidatorResOk) return null;
+    if (!validatorResOk || !myValidatorResOk) {console.error(`[${cfg.chain}] validatorResOk=${validatorResOk} myValidatorResOk=${myValidatorResOk}`); return null;}
 
     const [validatorData, myValidatorData] = await Promise.all([
       (validatorRes as PromiseFulfilledResult<Response>).value.json(),
