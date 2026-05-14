@@ -81,7 +81,7 @@ async function fetchChain(cfg: typeof CHAIN_CONFIG[0]): Promise<ChainMetrics | n
 
   try {
     const [validatorRes, myValidatorRes, uptimeData] = await Promise.allSettled([
-      fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
+      fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=200`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
       fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators/${cfg.operator}`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
       getValidatorUptime(cfg.lcd, cfg.operator, timeout),
     ]);
