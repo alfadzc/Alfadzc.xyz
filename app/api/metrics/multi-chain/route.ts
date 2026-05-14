@@ -39,7 +39,7 @@ const CHAIN_CONFIG: Array<{
   { chain: "Shido", lcd: "https://shido-api.polkachu.com", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, skipValidatorList: true, hardcodedValidators: 37, timeout: 4000 },
   { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 8000 },
   { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, price: 0, timeout: 4000 },
-  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
+  { chain: "CNHO", lcd: "https://cnhostables_mainnet_api.chain.whenmoonwhenlambo.money", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
   { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, price: 0, timeout: 8000 },
   { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
   { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, price: 0, skipValidatorList: true, hardcodedValidators: 84, timeout: 4000 },

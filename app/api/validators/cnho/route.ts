@@ -2,7 +2,8 @@
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-const LCD_URL = "https://api.cnho.io";
+
+const LCD_URL = "https://cnhostables_mainnet_api.chain.whenmoonwhenlambo.money";
 const VALIDATOR_OPERATOR = "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0";
 const CHAIN_DIVISOR = 1_000_000;
 const PRICE = 0;
@@ -18,8 +19,9 @@ export async function GET() {
     if (!validator) return NextResponse.json({ chain: "CNHO", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
-    return NextResponse.json({ chain: "CNHO", moniker: validator.description?.moniker || "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: totalBonded.toFixed(2), totalBondedUSD, price: PRICE, validators: listData.validators?.length || 0, uptime: 99.9, isFallback: false, lastUpdated: new Date().toISOString() });
+    return NextResponse.json({ chain: "CNHO", moniker: validator.description?.moniker || "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: totalBonded.toFixed(2), totalBondedUSD, price: PRICE, validators: listData.validators?.
+length || 0, uptime: 99.9, isFallback: false, lastUpdated: new Date().toISOString() });
   } catch {
-    return NextResponse.json({ chain: "CNHO", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
+   return NextResponse.json({ chain: "CNHO", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR, totalBonded: "0", totalBondedUSD: "0", price: PRICE, validators: 0, uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString() });
   }
 }
