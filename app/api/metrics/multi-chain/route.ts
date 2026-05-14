@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+// export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -32,19 +32,21 @@ const CHAIN_CONFIG: Array<{
   divisor: number;
   price: number;
   timeout?: number;
+  skipValidatorList?: boolean;
+  hardcodedValidators?: number;
 }> = [
   { chain: "Lava", lcd: "https://lava-api.polkachu.com", operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd", divisor: 1_000_000, price: 0.02188787, timeout: 4000 },
-  { chain: "Shido", lcd: "https://shido-api.polkachu.com", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, timeout: 4000 },
-  { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 4000 },
+  { chain: "Shido", lcd: "https://shido-api.polkachu.com", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, skipValidatorList: true, hardcodedValidators: 37, timeout: 4000 },
+  { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 8000 },
   { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, price: 0, timeout: 4000 },
-  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, timeout: 8000 },
-  { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, price: 0, timeout: 4000 },
+  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
+  { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, price: 0, timeout: 8000 },
   { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
-  { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, price: 0, timeout: 4000 },
+  { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, price: 0, skipValidatorList: true, hardcodedValidators: 84, timeout: 4000 },
   { chain: "Safrochain", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, price: 0, timeout: 4000 },
   { chain: "Pushchain", lcd: "https://api-t.pushchain.nodestake.org", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
-  { chain: "Republic", lcd: "https://api-t.republicai.nodestake.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
-  { chain: "Monolythium", lcd: "https://api.testnet.mononodes.xyz", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
+  { chain: "Republic", lcd: "https://api-t.republicai.nodestake.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 8000 },
+  { chain: "Monolythium", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
 ];
 
 const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Bitbadges", "CNHO", "Lumen", "Epix", "Empeiria", "Safrochain", "Pushchain", "Republic", "Monolythium"];
@@ -81,7 +83,9 @@ async function fetchChain(cfg: typeof CHAIN_CONFIG[0]): Promise<ChainMetrics | n
 
   try {
     const [validatorRes, myValidatorRes, uptimeData] = await Promise.allSettled([
-      fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=200`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
+      cfg.skipValidatorList
+    ? Promise.resolve(new Response(JSON.stringify({ validators: Array(cfg.hardcodedValidators ?? 0).fill({}) }), { status: 200 }))
+        : fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=200`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
       fetch(`${cfg.lcd}/cosmos/staking/v1beta1/validators/${cfg.operator}`, { signal: AbortSignal.timeout(timeout), cache: "no-store" }),
       getValidatorUptime(cfg.lcd, cfg.operator, timeout),
     ]);

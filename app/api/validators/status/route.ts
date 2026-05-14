@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+// export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
 
 export async function GET() {

@@ -10,7 +10,7 @@ interface ValidatorStatus {
 }
 
 export default function NetworkSection() {
-  const [tab, setTab] = useState<"all" | "mainnet" | "testnet">("mainnet");
+  const [tab, setTab] = useState<"all" | "mainnet" | "testnet">("all");
   const [validatorStatus, setValidatorStatus] = useState<ValidatorStatus>({});
   const [loading, setLoading] = useState(true);
 

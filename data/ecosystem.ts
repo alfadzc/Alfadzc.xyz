@@ -85,7 +85,7 @@ export const TESTNET: NetworkItem[] = [
   {
     name: "Monolythium",
     logo: "/chains/monolythium.png",
-    delegateUrl: "https://validators.monolythium.com/validators/monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",
-    explorerUrl: "https://validators.monolythium.com/validators",
+    delegateUrl: "https://explorer.alfadzc.xyz/mono/staking/monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",
+    explorerUrl: "https://explorer.alfadzc.xyz/mono/staking",
   }
 ];
