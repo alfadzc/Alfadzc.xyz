@@ -33,18 +33,18 @@ const CHAIN_CONFIG: Array<{
   price: number;
   timeout?: number;
 }> = [
-  { chain: "Lava", lcd: "https://lava-api.polkachu.com", operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd", divisor: 1_000_000, price: 0.02188787, timeout: 2000 },
-  { chain: "Shido", lcd: "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, timeout: 2000 },
-  { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 2000 },
-  { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, price: 0, timeout: 2000 },
-  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, timeout: 2000 },
-  { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, price: 0, timeout: 3000 },
-  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 2000 },
-  { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, price: 0, timeout: 2000 },
-  { chain: "Safrochain", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, price: 0, timeout: 2000 },
-  { chain: "Pushchain", lcd: "https://api-t.pushchain.nodestake.org", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 3000 },
-  { chain: "Republic", lcd: "https://api-t.republicai.nodestake.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 3000 },
-  { chain: "Monolythium", lcd: "https://api.testnet.mononodes.xyz", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 3000 },
+  { chain: "Lava", lcd: "https://lava-api.polkachu.com", operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd", divisor: 1_000_000, price: 0.02188787, timeout: 5000 },
+  { chain: "Shido", lcd: "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, price: 0.000204405, timeout: 5000 },
+  { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, price: 0.01410782, timeout: 5000 },
+  { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, price: 0, timeout: 5000 },
+  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, price: 0, timeout: 5000 },
+  { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, price: 0, timeout: 5000 },
+  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 5000 },
+  { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, price: 0, timeout: 5000 },
+  { chain: "Safrochain", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, price: 0, timeout: 5000 },
+  { chain: "Pushchain", lcd: "https://api-t.pushchain.nodestake.org", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 5000 },
+  { chain: "Republic", lcd: "https://api-t.republicai.nodestake.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 5000 },
+  { chain: "Monolythium", lcd: "https://api.testnet.mononodes.xyz", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 5000 },
 ];
 
 const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Bitbadges", "CNHO", "Lumen", "Epix", "Empeiria", "Safrochain", "Pushchain", "Republic", "Monolythium"];
@@ -120,6 +120,23 @@ async function fetchChain(cfg: typeof CHAIN_CONFIG[0]): Promise<ChainMetrics | n
 const sortByCustomOrder = (chains: ChainMetrics[]): ChainMetrics[] =>
   [...chains].sort((a, b) => CHAIN_ORDER.indexOf(a.chain) - CHAIN_ORDER.indexOf(b.chain));
 
+async function fetchLivePrices(): Promise<Record<string, number>> {
+  try {
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=lava-network,shido-2,paxi-network&vs_currencies=usd",
+      { signal: AbortSignal.timeout(5000), cache: "no-store" }
+    );
+    const data = await res.json();
+    return {
+      Lava: data["lava-network"]?.usd || 0.02188787,
+      Shido: data["shido-2"]?.usd || 0.0001711,
+      Paxi: data["paxi-network"]?.usd || 0.01274437,
+    };
+  } catch {
+    return { Lava: 0.02188787, Shido: 0.000204405 };
+  }
+}
+
 export async function GET() {
   const now = Date.now();
 
@@ -129,7 +146,12 @@ export async function GET() {
     });
   }
 
-  const results = await Promise.allSettled(CHAIN_CONFIG.map(fetchChain));
+  const livePrices = await fetchLivePrices();
+  const updatedConfig = CHAIN_CONFIG.map(cfg => ({
+    ...cfg,
+    price: livePrices[cfg.chain] ?? cfg.price,
+  }));
+  const results = await Promise.allSettled(updatedConfig.map(fetchChain));
 
   let chainMetrics: ChainMetrics[] = results
     .filter((r): r is PromiseFulfilledResult<ChainMetrics | null> => r.status === "fulfilled")
