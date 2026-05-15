@@ -70,11 +70,11 @@ export default function NetworkSection() {
   return (
     <section id="ecosystem" className="relative z-10 py-16 px-6 max-w-7xl mx-auto flex flex-col items-center">
 
-      {/* HEADER */}
+    {/* HEADER */}
       <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
 
-        {/* ICON + TITLE */}
-        <div className="flex items-center gap-3 mb-4">
+    {/* ICON + TITLE */}
+      <div className="flex items-center gap-3 mb-4">
 
         {/* ICON SERVER */}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">
@@ -99,9 +99,33 @@ export default function NetworkSection() {
          Across Cosmos-based network.
         </p>
       </div>
+  
+    {/* STAKE WITH US */}
+      <div className="relative z-10 flex flex-col items-center text-center mt-2">           
+   
+    {/* MAIN BOX */}
+      <div className="relative overflow-hidden rounded-2xl px-4 py-5 border border-pink-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
+        
+    {/* GLOW */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#ff7b00]/10 via-white/5 to-[#3b82f6]/10" />
 
-      {/* TABS */}
-        <div className="w-full flex justify-start mb-12">
+    {/* TEXT */}
+      <div className="relative z-10">
+    <h3 className="text-lg md:text-3xl font-black tracking-widest leading-none"> 
+          <span className="text-blue-600 dark:text-[#ff7b00]">
+     𝐒𝐓𝐀𝐊𝐄</span>{" "}
+           <span className="text-[#ff7b00] dark:text-white">
+     𝐖𝐢𝐭𝐡 𝐔𝐬 !</span>
+           </h3>
+           <p className="mt-7 text-sm font-semibold md:text-base text-slate-700 dark:text-slate-300">
+           Secure the Network, Earn rewards, and Grow together With Us.
+         </p>
+        </div>
+       </div>
+      </div>  
+
+     {/* TABS */}
+       <div className="w-full flex justify-start mt-16 mb-12">
          <div className="flex gap-2 p-1 rounded-2xl border bg-slate-200/60 dark:bg-slate-800/60 border-slate-300 dark:border-slate-700 shadow-[0_0_15px_rgba(56,189,248,0.15)]">
           <TabButton active={tab === "all"} onClick={() => setTab("all")} label="All Network" />
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="Mainnet" />
@@ -109,14 +133,14 @@ export default function NetworkSection() {
         </div>
       </div>
 
-      {/* TABS INDICATOR */}
+    {/* TABS INDICATOR */}
       <div className="w-full flex items-center justify-start mb-10">
          <div className="px-5 py-2 rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)] text-white font-semibold">
          {data.length} <span>Network</span>
         </div>
       </div>
 
-      {/* GRID CARDS */}
+    {/* GRID CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full">
         {data.map((item, index) => (
           <div
@@ -147,25 +171,22 @@ export default function NetworkSection() {
               )}
             </div>
 
-            {/* BUTTON */}
-            <div className="flex gap-2 w-full mt-auto">
-              {/* Tombol Delegate */}
-              {item.delegateUrl ? (
-                <a
-                  href={item.delegateUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 rounded-full font-bold shadow-lg active:scale-95 transition-all">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
-                    <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
-                    <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
-                  </svg>
-                  Delegate
-                </a>
-              ) : (
-                <span className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-600/40 text-white/40 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        {/* BUTTON */}
+          <div className="flex gap-2 w-full mt-auto">
+            {/* Tombol Delegate */}
+             {item.delegateUrl ? (
+               <a href={item.delegateUrl} target="_blank" rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 rounded-full font-bold shadow-lg active:scale-95 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+               <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
+              </svg>
+              Delegate
+              </a>
+             ) : (
+             <span className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-600/40 text-white/40 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
                     <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
                     <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
@@ -173,8 +194,9 @@ export default function NetworkSection() {
                   Delegate
                 </span>
               )}
-              {/* EXPLORER / SERVICES */}
-              {item.servicesUrl ? (
+  
+        {/* EXPLORER / SERVICES */}
+            {item.servicesUrl ? (
                 <a href={item.servicesUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 rounded-full font-bold transition-all">
                   Services
                 </a>
@@ -190,8 +212,8 @@ export default function NetworkSection() {
         ))}
       </div>
     </section>
-  );
-}
+   );
+ }
 
   {/* COMPONEN TAB BUTTON */}
    const TAB_ICONS: { [key: string]: React.ReactElement } = {

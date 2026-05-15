@@ -251,7 +251,8 @@ export default function ToolsSection() {
             <path d="M3 13h4l2-6 3 12 3-8 2 4h4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <h2 className="text-base md:text-3xl font-extrabold tracking-tight">
-            <span className="text-2xl md:text-3xl font-bold text-[#ff7b00]">𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠</span>
+           <span className="text-2xl md:text-3xl font-bold text-[#ff7b00]">
+            𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠</span>
           </h2>
         </div>
         <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-slate-200">
