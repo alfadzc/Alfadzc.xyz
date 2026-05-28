@@ -46,10 +46,10 @@ const CHAIN_CONFIG: Array<{
   { chain: "Safrochain", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, price: 0, timeout: 4000 },
   { chain: "Pushchain", lcd: "https://api-t.pushchain.nodestake.org", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
   { chain: "Republic", lcd: "https://api-t.republicai.nodestake.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 8000 },
-  { chain: "Monolythium", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
+  { chain: "Monolythium v1", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, price: 0, timeout: 4000 },
 ];
 
-const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Bitbadges", "CNHO", "Lumen", "Epix", "Empeiria", "Safrochain", "Pushchain", "Republic", "Monolythium"];
+const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Bitbadges", "CNHO", "Lumen", "Epix", "Empeiria", "Safrochain", "Pushchain", "Republic", "Monolythium v1"];
 
 let metricsCache: { data: AggregatedMetrics; timestamp: number } | null = null;
 const CACHE_TTL = 5000;
@@ -132,7 +132,7 @@ async function fetchLivePrices(): Promise<Record<string, number>> {
     );
     const data = await res.json();
     return {
-      Lava: data["lava-network"]?.usd || 0.02188787,
+    Lava: data["lava-network"]?.usd || 0.0244,
       Shido: data["shido-2"]?.usd || 0.0001711,
       Paxi: data["paxi-network"]?.usd || 0.01274437,
     };
@@ -157,10 +157,16 @@ export async function GET() {
   }));
   const results = await Promise.allSettled(updatedConfig.map(fetchChain));
 
-  let chainMetrics: ChainMetrics[] = results
+   let chainMetrics: ChainMetrics[] = results
     .filter((r): r is PromiseFulfilledResult<ChainMetrics | null> => r.status === "fulfilled")
     .map((r) => r.value)
     .filter((v): v is ChainMetrics => v !== null);
+
+  // Add fallback for offline chains
+   const fetchedChains = chainMetrics.map(c => c.chain);
+   if (!fetchedChains.includes("Monolythium v1")) {
+    chainMetrics.push({ chain: "Monolythium v1", validators: 0, totalBonded: "0", totalBondedUSD: 0, price: 0, uptime: 0, isFallback: true }); 
+}
 
   console.log(`[Multi-Chain] Fetched ${chainMetrics.length}/${CHAIN_CONFIG.length} chains`);
 

@@ -26,6 +26,12 @@ export const MAINNET: NetworkItem[] = [
     explorerUrl: "https://explorer.alfadzc.xyz/paxi/staking",
   },
   {
+    name: "Pactus",
+    logo: "/chains/pactus.png",
+    delegateUrl: "https://pactus.org",
+    explorerUrl: "https://pactus.org",
+  },
+  {
     name: "Bitbadges Chain",
     logo: "/chains/bitbadges.png",
     delegateUrl: "https://explorer.alfadzc.xyz/bitbadges/staking/bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v",
@@ -48,12 +54,6 @@ export const MAINNET: NetworkItem[] = [
     logo: "/chains/epix.png",
     delegateUrl: "",
     explorerUrl: "https://explorer.alfadzc.xyz/epix/staking",
-  },
-  {
-    name: "Pactus",
-    logo: "/chains/pactus.png",
-    delegateUrl: "https://pactus.org",
-    explorerUrl: "https://pactus.org",
   },
 ];
 
@@ -82,10 +82,13 @@ export const TESTNET: NetworkItem[] = [
     delegateUrl: "https://explorer.alfadzc.xyz/republic/staking/raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr",
     explorerUrl: "https://explorer.alfadzc.xyz/republic/staking",
   },
+];
+
+export const ARCHIVE: NetworkItem[] = [
   {
-    name: "Monolythium",
+    name: "Monolythium v1",
     logo: "/chains/monolythium.png",
     delegateUrl: "https://explorer.alfadzc.xyz/mono/staking/monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",
     explorerUrl: "https://explorer.alfadzc.xyz/mono/staking",
-  }
+  },
 ];

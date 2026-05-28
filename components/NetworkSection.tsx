@@ -2,7 +2,7 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
-import { MAINNET, TESTNET, NetworkItem } from "@/data/ecosystem";
+import { MAINNET, TESTNET, ARCHIVE, NetworkItem } from "@/data/ecosystem";
 import ChainLogo from "./chainLogo";
 
 interface ValidatorStatus {
@@ -10,12 +10,12 @@ interface ValidatorStatus {
 }
 
 export default function NetworkSection() {
-  const [tab, setTab] = useState<"all" | "mainnet" | "testnet">("all");
+  const [tab, setTab] = useState<"all" | "mainnet" | "testnet" | "archive">("all");
   const [validatorStatus, setValidatorStatus] = useState<ValidatorStatus>({});
   const [loading, setLoading] = useState(true);
 
   const ALL_NETWORKS = [...MAINNET, ...TESTNET];
-  const data: NetworkItem[] = tab === "all" ? ALL_NETWORKS : tab === "mainnet" ? MAINNET : TESTNET;
+  const data: NetworkItem[] = tab === "all" ? ALL_NETWORKS : tab === "mainnet" ? MAINNET : tab === "testnet" ? TESTNET : ARCHIVE;
 
   // Fetch real-time status dari API
   useEffect(() => {
@@ -130,6 +130,7 @@ export default function NetworkSection() {
           <TabButton active={tab === "all"} onClick={() => setTab("all")} label="All Network" />
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="Mainnet" />
           <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="Tesnet" />
+          <TabButton active={tab === "archive"} onClick={() => setTab("archive")} label="Archive Node" />
         </div>
       </div>
 
@@ -232,6 +233,11 @@ export default function NetworkSection() {
     <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
     </svg>
   ),
+  "Archive Node": (
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+  </svg>
+ ),
 };
 
 function TabButton({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
