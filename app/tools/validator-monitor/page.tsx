@@ -116,7 +116,8 @@ export default function ValidatorMonitor() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-white">
-      {/* Header */}
+       
+ {/* HEADER */}
       <div className="border-b border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <button
@@ -139,11 +140,11 @@ export default function ValidatorMonitor() {
 
         {/* STATS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
+          <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
             <p className="text-base font-bold text-center text-slate-800 dark:text-slate-300 mb-2">Total Validators</p>
             <p className="text-2xl text-center font-bold text-blue-500">{validators.length}</p>
           </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
+          <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
             <p className="text-base font-bold text-center text-slate-800 dark:text-slate-300 mb-2">Avg Uptime</p>
             <p className="text-2xl text-center font-bold text-emerald-500">
              {validators.length > 0
@@ -151,7 +152,7 @@ export default function ValidatorMonitor() {
               : "—"}%
             </p>
           </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
+          <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
             <p className="text-base font-bold text-center text-slate-800 dark:text-slate-300 mb-2">Last Updated</p>
             <p className="text-lg text-center text-[#ff7b00]">
               {validators[0]?.lastUpdated
@@ -212,7 +213,7 @@ export default function ValidatorMonitor() {
               {validators.map((validator, idx) => (
                 <div
                   key={idx}
-                  className="rounded-lg border border-slate-200 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)] dark:hover:bg-slate-800"
+                  className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]"
                   onClick={() => setSelectedChain(validator.chain)}>
                   <div className="flex items-start justify-between mb-4">
                    <div className="flex items-center gap-3">
@@ -240,7 +241,7 @@ export default function ValidatorMonitor() {
                     </div>
                   </div>
 
-                  {/* PRICE BADGE TAMBAHAN HARGA REALTIME */}
+                {/* PRICE BADGE TAMBAHAN HARGA REALTIME */}
                   <div className="mb-3 flex items-center justify-between bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-900/30 dark:to-purple-900/30 px-3 py-2 rounded-lg border border-blue-200 dark:border-blue-900/50">
                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-300">Price:</span>
                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{formatPrice(validator.price)}</span>

@@ -26,13 +26,13 @@ const CHAIN_LOGOS: Record<string, string> = {
   Shido: "/chains/shido.png",
   Paxi: "/chains/paxi.png",
   Bitbadges: "/chains/bitbadges.png",
-  CNHO: "/chains/cnho.png",
+  "CNHO Stable" : "/chains/cnho.png",
   Lumen: "/chains/lumen.png",
   Epix: "/chains/epix.png",
   Empeiria: "/chains/empeiria.png",
   Safrochain: "/chains/safrochain.png",
   Pushchain: "/chains/pushchain.png",
-  Republic: "/chains/republic.png",
+  "Republic AI": "/chains/republic.png",
   "Monolythium v1": "/chains/monolythium.png",
 };
 
@@ -41,13 +41,13 @@ const NETWORK_TYPE_MAP: Record<string, "mainnet" | "testnet" | "archive"> = {
   Shido: "mainnet",
   Paxi: "mainnet",
   Bitbadges: "mainnet",
-  CNHO: "mainnet",
+  "CNHO Stable": "mainnet",
   Lumen: "mainnet",
   Epix: "mainnet",
   Empeiria: "testnet",
   Safrochain: "testnet",
   Pushchain: "testnet",
-  Republic: "testnet",
+  "Republic AI": "testnet",
   "Monolythium v1": "archive",
 };
 
@@ -56,13 +56,13 @@ const TOKEN_CODE_MAP: Record<string, string> = {
   Shido: "SHIDO",
   Paxi: "PAXI",
   Bitbadges: "BADGE",
-  CNHO: "CNHO",
+  "CNHO Stable": "CNHO",
   Lumen: "LMN",
   Epix: "EPIX",
   Empeiria: "EMPE",
   Safrochain: "SAF",
   Pushchain: "PC",
-  Republic: "RAI",
+  "Republic AI": "RAI",
   "Monolythium v1": "LYTH",
 };
 
@@ -73,13 +73,13 @@ function normalizeChainName(name: string): string {
     shido: "Shido",
     paxi: "Paxi",
     bitbadges: "Bitbadges",
-    cnho: "CNHO",
+    cnho: "CNHO Stable",
     lumen: "Lumen",
     epix: "Epix",
     empeiria: "Empeiria",
     safrochain: "Safrochain",
     pushchain: "Pushchain",
-    republic: "Republic",
+    republic: "Republic AI",
     monolythium: "Monolythium v1",
   };
   return map[raw.toLowerCase()] ?? raw;
@@ -92,9 +92,6 @@ function getTokenCode(chainName: string): string {
 function formatTokenDisplay(totalBonded: string): string {
   const num = Number.parseFloat(totalBonded);
   if (Number.isNaN(num)) return "—";
-  if (num >= 1_000_000_000) return `${(num / 1_000_000_000).toFixed(2)}B`;
-  if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(2)}M`;
-  if (num >= 1_000) return `${(num / 1_000).toFixed(2)}K`;
   return num.toLocaleString("en-US", { maximumFractionDigits: 2 });
 }
 
@@ -185,11 +182,30 @@ export default function ToolsSection() {
 
   const normalizedNetworksSupported = metrics?.networksSupported ?? "12";
 
-  const normalizedChains: ChainMetrics[] = useMemo(
-    () => (metrics?.chains ?? []).map((c) => ({ ...c, chain: normalizeChainName(c.chain) })),
-    [metrics?.chains]
-  );
+  const normalizedChains: ChainMetrics[] = useMemo(() => {
+  const chains = (metrics?.chains ?? []).map((c) => ({
+    ...c,
+    chain: normalizeChainName(c.chain),
+   }));
 
+  const hasMonolythium = chains.some(
+    (c) => c.chain === "Monolythium v1"
+   );
+
+   if (!hasMonolythium) {
+    chains.push({
+      chain: "Monolythium v1",
+      validators: 1, // sesuaikan
+      totalBonded: "Archive",
+      totalBondedUSD: 0,
+      price: 0,
+      isFallback: true,
+    });
+  }
+
+  return chains;
+  }, [metrics?.chains]);
+  
   const filteredChains = useMemo(() => {
     const q = query.trim().toLowerCase();
     return normalizedChains.filter((c) =>
@@ -206,45 +222,83 @@ export default function ToolsSection() {
     () => filteredChains.filter((c) => NETWORK_TYPE_MAP[c.chain] === "testnet"),
     [filteredChains]
   );
-  
+   
   const archiveChains = useMemo(
-    () => filteredChains.filter((c) => NETWORK_TYPE_MAP[c.chain] === "archive"),
-    [filteredChains]
-  );
-
+  () => filteredChains.filter((c) => NETWORK_TYPE_MAP[c.chain] === "archive"),
+  [filteredChains]
+  );   
+  
   const renderCard = (chain: ChainMetrics) => {
-    const tokenCode = getTokenCode(chain.chain);
-    return (
-      <article
-        key={`card-${chain.chain}`}
-        className="max-w-[360px] rounded-lg border border-blue-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
-        <div className="mb-4 flex items-center gap-3">
-          <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
-            {CHAIN_LOGOS[chain.chain] ? (
-              <img src={CHAIN_LOGOS[chain.chain]} alt={chain.chain} className="h-full w-full object-cover" />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-900 dark:text-slate-300">
-                {chain.chain?.[0] ?? "?"}
-              </div>
-            )}
-          </div>
-          <div className="min-w-0">
-            <p className="truncate text-lg font-bold text-slate-900 dark:text-slate-300">{chain.chain}</p>
-            <span className="inline-block rounded-md border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400">
-              {aprFromChain(chain)}
-            </span>
-          </div>
+  const tokenCode = getTokenCode(chain.chain);
+
+  return (
+    <article
+      key={`card-${chain.chain}`}
+      className="max-w-[360px] rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
+      <div className="mb-10 flex items-center gap-3">
+        <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
+          {CHAIN_LOGOS[chain.chain] ? (
+            <img
+              src={CHAIN_LOGOS[chain.chain]}
+              alt={chain.chain}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-900 dark:text-slate-300">
+              {chain.chain?.[0] ?? "?"}
+            </div>
+          )}
         </div>
+
+        <div className="min-w-0">
+          <p className="truncate text-lg font-bold text-slate-900 dark:text-slate-300">
+            {chain.chain}
+          </p>
+
+          <span
+            className={`inline-block rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
+              chain.isFallback
+                ? "border border-amber-500/30 bg-amber-500/10 text-[#ff7b00]"
+                : "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+            }`}
+            >
+            {chain.isFallback
+             ? "Cosmos → Rust Migration"
+             : aprFromChain(chain)}
+          </span>
+        </div>
+       </div>
+
+     {chain.isFallback ? (
+        <div className="text-sm space-y-2">
+          <p className="text-[#ff7b00] font-semibold">
+           Migration v2.
+          </p>
+
+          <p className="text-slate-900 dark:text-slate-200">
+           Rust-Based Network Upgrade.
+          </p>
+        </div>
+       ) : (
         <div className="grid grid-cols-[1fr_auto] gap-y-1 text-sm">
-          <p className="text-slate-900 dark:text-slate-300">Staked</p>
-          <p className="text-slate-900 dark:text-slate-300 font-semibold">{formatTokenDisplay(chain.totalBonded)} {tokenCode}</p>
-          <p className="text-slate-900 dark:text-slate-300">TVL</p>
-          <p className="text-slate-900 dark:text-slate-300 font-semibold">{formatUsd(chain.totalBondedUSD)}</p>
+          <p className="text-slate-900 dark:text-slate-300">Total Staked</p>
+          <p className="text-slate-900 dark:text-slate-300 font-semibold">
+            {formatTokenDisplay(chain.totalBonded)} {tokenCode}
+          </p>
+
+          <p className="text-slate-900 dark:text-slate-300">Value (USD)</p>
+          <p className="text-slate-900 dark:text-slate-300 font-semibold">
+            {formatUsd(chain.totalBondedUSD)}
+          </p>
+
           <p className="text-slate-900 dark:text-slate-300">Validators</p>
-          <p className="text-orange-400 font-semibold">{chain.validators}</p>
+          <p className="text-orange-400 font-semibold">
+            {chain.validators}
+          </p>
         </div>
-      </article>
-    );
+       )}
+     </article>
+   );
   };
 
   return (
@@ -280,7 +334,7 @@ export default function ToolsSection() {
         </div>
       </div>   
 
-      {/* Networks Supported */}
+      {/* NETWORK SUPPORT */}
       <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="rounded-lg border border-orange-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
@@ -307,7 +361,7 @@ export default function ToolsSection() {
           </div>
           <p className="text-2xl font-bold text-center text-purple-500 mb-2">{formatUsd(metrics?.totalStakedUSD ?? 0)}</p>
           <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-200">Total Staked</p>
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-200">Total Value (USD)</p>
             <p className="text-xs text-center text-slate-900 dark:text-slate-400">Secured assets</p>
           </div>
         </div>
@@ -352,7 +406,7 @@ export default function ToolsSection() {
             </svg>
           </div>
           <p className="text-2xl text-center font-bold text-pink-500">24/7</p>
-          <p className="text-sm text-center font-semibold text-emerald-500">Monitoring</p>
+          <p className="text-base text-center font-semibold text-emerald-500">Monitoring</p>
         </div>
       </div>
 
@@ -366,7 +420,9 @@ export default function ToolsSection() {
         <div className="space-y-10">
           <div>
            <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">Mainnet</h3>
+           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+   Mainnet
+   </h3>
            <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{mainnetChains.length} Network</span>
          </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -375,7 +431,9 @@ export default function ToolsSection() {
            </div>
           <div>
             <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-              <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">Tesnet</h3>
+              <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+  Tesnet
+  </h3>
               <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} Network</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -384,7 +442,9 @@ export default function ToolsSection() {
          </div>
           <div>
             <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-             <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">Archive Node</h3>
+             <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+ Archive
+ </h3>
              <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{archiveChains.length} Network</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -425,7 +485,7 @@ export default function ToolsSection() {
         </button>
 
         <button onClick={() => handleToolClick("/tools/analytics")}
-        className="group rounded-xl border border-blue-500 dark:bg-slate-800/90 p-5 min-h-[140px] transition-all duration-300 text-center hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:-translate-y-1 dark:hover:bg-slate-800 cursor-pointer">
+        className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
 
           <h3 className="text-2xl font-bold mb-6 text-blue-500 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-blue-500 transition group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

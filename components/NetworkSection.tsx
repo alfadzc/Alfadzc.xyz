@@ -130,13 +130,13 @@ export default function NetworkSection() {
           <TabButton active={tab === "all"} onClick={() => setTab("all")} label="All Network" />
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="Mainnet" />
           <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="Tesnet" />
-          <TabButton active={tab === "archive"} onClick={() => setTab("archive")} label="Archive Node" />
+          <TabButton active={tab === "archive"} onClick={() => setTab("archive")} label="Archive" />
         </div>
       </div>
 
     {/* TABS INDICATOR */}
       <div className="w-full flex items-center justify-start mb-10">
-         <div className="px-5 py-2 rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 border-2 border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4),0_0_5px_rgba(255,255,255,0.2)] text-white font-semibold">
+         <div className="px-5 py-2 rounded-lg border border-emerald-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
          {data.length} <span>Network</span>
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function NetworkSection() {
         {data.map((item, index) => (
           <div
             key={`${item.name}-${index}`}
-            className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border border-blue-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
+            className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border border-blue-500 dark:bg-slate-800/90 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)]">
 
             {/* STATUS BADGE - Real-time dari API */}
             {getStatusBadge(item.name)}
@@ -165,29 +165,30 @@ export default function NetworkSection() {
                   Mainnet
                 </span>
 
-              ) : (
+               ) : (
                 <span className="text-[10px] uppercase tracking-[0.15em] font-black px-4 py-1 rounded-full border border-orange-400/70 text-orange-400 bg-orange-400/10">
-                  Testnet
+                 Testnet
                 </span>
               )}
             </div>
 
-        {/* BUTTON */}
-          <div className="flex gap-2 w-full mt-auto">
-            {/* Tombol Delegate */}
-             {item.delegateUrl ? (
-               <a href={item.delegateUrl} target="_blank" rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 rounded-full font-bold shadow-lg active:scale-95 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
-                <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
-               <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
-              </svg>
-              Delegate
-              </a>
-             ) : (
-             <span className="flex-1 flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-600/40 text-white/40 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+           {/* BUTTON */}
+            <div className="flex gap-2 w-full mt-auto flex-wrap">
+            
+            {/* TOMBOL DELEGATE */}
+              {item.delegateUrl ? (
+                <a href={item.delegateUrl} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 min-w-fit flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 px-3 rounded-full font-bold shadow-lg active:scale-95 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                    <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                    <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
+                  </svg>
+                  Delegate
+                </a>
+               ) : (
+                <span className="flex-1 min-w-fit flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600/40 to-blue-600/40 text-white/40 text-[11px] py-2 px-3 rounded-full font-bold cursor-not-allowed">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
                     <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
                     <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
@@ -195,49 +196,53 @@ export default function NetworkSection() {
                   Delegate
                 </span>
               )}
-  
-        {/* EXPLORER / SERVICES */}
-            {item.servicesUrl ? (
-                <a href={item.servicesUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 rounded-full font-bold transition-all">
+
+              {/* EXPLORER / Services */}
+              {item.servicesUrl ? (
+                <a href={item.servicesUrl} target="_blank" rel="noopener noreferrer" 
+                  className="flex-1 min-w-fit flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 px-3 rounded-full font-bold transition-all">
                   Services
                 </a>
-              ) : item.explorerUrl ? (
-                <a href={item.explorerUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 rounded-full font-bold transition-all">
+               ) : item.explorerUrl ? (
+                <a href={item.explorerUrl} target="_blank" rel="noopener noreferrer" 
+                  className="flex-1 min-w-fit flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 px-3 rounded-full font-bold transition-all">
                   Explorer
                 </a>
-              ) : (
-                <span className="flex-1 flex items-center justify-center gap-1 border border-slate-200 dark:border-slate-800 text-slate-400/40 dark:text-slate-600 bg-slate-50 dark:bg-slate-900 text-[11px] py-2 rounded-full font-bold cursor-not-allowed">Explorer</span>
+                ) : (
+                <span className="flex-1 min-w-fit flex items-center justify-center gap-1 border border-slate-200 dark:border-slate-800 text-slate-400/40 dark:text-slate-600 bg-slate-50 dark:bg-slate-900 text-[11px] py-2 px-3 rounded-full font-bold cursor-not-allowed">
+                 Explorer
+                </span>
               )}
             </div>
           </div>
         ))}
       </div>
     </section>
-   );
- }
+  );
+}
 
-  {/* COMPONEN TAB BUTTON */}
-   const TAB_ICONS: { [key: string]: React.ReactElement } = {
-   "All Network": (
+{/* COMPONEN TAB BUTTON */}
+const TAB_ICONS: { [key: string]: React.ReactElement } = {
+  "All Network": (
     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-     <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/>
-    </svg>
-   ),
-  "Mainnet": (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-    </svg>
-   ),
-  "Tesnet": (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/>
     </svg>
   ),
-  "Archive Node": (
-  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-  </svg>
- ),
+  "Mainnet": (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  ),
+  "Tesnet": (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+  ),
+  "Archive": (
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+    </svg>
+  ),
 };
 
 function TabButton({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {

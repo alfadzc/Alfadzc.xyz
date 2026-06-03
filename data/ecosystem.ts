@@ -12,7 +12,7 @@ export const MAINNET: NetworkItem[] = [
     logo: "/chains/lava.png",
     delegateUrl: "https://explorer.alfadzc.xyz/lava/staking/lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd",
     explorerUrl: "https://explorer.alfadzc.xyz/lava/staking",
-  },
+  }, 
   {
     name: "Shido",
     logo: "/chains/shido.png",
@@ -20,16 +20,16 @@ export const MAINNET: NetworkItem[] = [
     explorerUrl: "https://explorer.alfadzc.xyz/shido/staking",
   },
   {
+    name: "Pactus",
+    logo: "/chains/pactus.png",
+    delegateUrl: "https://pactusscan.com/hub/pc1rtpgm8xj4jx4jnsqctfps8r5mdtpqs5am7jujc5",
+    explorerUrl: "https://pactus.org",
+  },    
+  {
     name: "Paxi",
     logo: "/chains/paxi.png",
     delegateUrl: "https://explorer.alfadzc.xyz/paxi/staking/paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj",
     explorerUrl: "https://explorer.alfadzc.xyz/paxi/staking",
-  },
-  {
-    name: "Pactus",
-    logo: "/chains/pactus.png",
-    delegateUrl: "https://pactus.org",
-    explorerUrl: "https://pactus.org",
   },
   {
     name: "Bitbadges Chain",

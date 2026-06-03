@@ -22,8 +22,7 @@ export default function ChainLogo({
       ) : (
         <div
           className="w-18 h-18 flex items-center justify-center
-          rounded-full bg-slate-800 text-white text-2xl font-bold border border-slate-700"
-        >
+          rounded-full bg-slate-800 text-white text-2xl font-bold border border-slate-700">
           {name[0]}
         </div>
       )}
