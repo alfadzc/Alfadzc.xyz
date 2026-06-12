@@ -28,6 +28,7 @@ const CHAIN_LOGOS: Record<string, string> = {
   Bitbadges: "/chains/bitbadges.png",
   "CNHO Stable" : "/chains/cnho.png",
   Lumen: "/chains/lumen.png",
+  "Jay Network" : "/chains/jaynetwork.png",  
   Epix: "/chains/epix.png",
   Empeiria: "/chains/empeiria.png",
   Safrochain: "/chains/safrochain.png",
@@ -43,6 +44,7 @@ const NETWORK_TYPE_MAP: Record<string, "mainnet" | "testnet" | "archive"> = {
   Bitbadges: "mainnet",
   "CNHO Stable": "mainnet",
   Lumen: "mainnet",
+  "Jay Network": "mainnet",  
   Epix: "mainnet",
   Empeiria: "testnet",
   Safrochain: "testnet",
@@ -58,6 +60,7 @@ const TOKEN_CODE_MAP: Record<string, string> = {
   Bitbadges: "BADGE",
   "CNHO Stable": "CNHO",
   Lumen: "LMN",
+  "Jay Network": "JAY",  
   Epix: "EPIX",
   Empeiria: "EMPE",
   Safrochain: "SAF",
@@ -75,6 +78,7 @@ function normalizeChainName(name: string): string {
     bitbadges: "Bitbadges",
     cnho: "CNHO Stable",
     lumen: "Lumen",
+    jay: "Jay Network",
     epix: "Epix",
     empeiria: "Empeiria",
     safrochain: "Safrochain",
@@ -139,7 +143,7 @@ export default function ToolsSection() {
         const data: MetricsData = await res.json();
         console.log("Fetched metrics:", data);
         if (mounted) setMetrics(data);
-      } catch (error) {
+       } catch (error) {
         console.error("Metrics fetch error:", error);
         if (mounted) {
           setMetrics({
@@ -234,7 +238,7 @@ export default function ToolsSection() {
   return (
     <article
       key={`card-${chain.chain}`}
-      className="max-w-[360px] rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
+      className="max-w-[360px] rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
       <div className="mb-10 flex items-center gap-3">
         <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
           {CHAIN_LOGOS[chain.chain] ? (
@@ -336,7 +340,7 @@ export default function ToolsSection() {
 
       {/* NETWORK SUPPORT */}
       <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
-        <div className="rounded-lg border border-orange-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
+        <div className="rounded-lg border border-orange-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#ff7b00]/20">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -351,7 +355,7 @@ export default function ToolsSection() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-purple-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
+        <div className="rounded-lg border border-purple-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-purple-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -366,7 +370,7 @@ export default function ToolsSection() {
           </div>
         </div>
         
-        <div className="rounded-lg border border-emerald-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
+        <div className="rounded-lg border border-emerald-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-emerald-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -380,8 +384,8 @@ export default function ToolsSection() {
             <p className="text-xs text-center text-slate-900 dark:text-slate-400">7-day average</p>
           </div>
         </div>
-
-        <div className="rounded-lg border border-blue-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">          
+        
+        <div className="rounded-lg border border-blue-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">          
           <div className="relative flex items-center justify-center mb-4">
              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-blue-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>   
@@ -398,7 +402,7 @@ export default function ToolsSection() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-pink-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-3">        
+        <div className="rounded-lg border border-pink-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-3">        
           <div className="flex justify-center">   
              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
              <path strokeLinecap="round" strokeLinejoin="round" d="M3 18v-6a9 9 0 0 1 18 0v6"/>
@@ -413,7 +417,7 @@ export default function ToolsSection() {
       {loading ? (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="h-40 animate-pulse rounded-2xl border border-slate-700 bg-slate-800/90" />
+            <div key={i} className="h-40 animate-pulse rounded-2xl border border-slate-700 bg-slate-800" />
           ))}
         </div>
       ) : (
@@ -455,7 +459,7 @@ export default function ToolsSection() {
       )}
 
       {!loading && filteredChains.length === 0 && (
-        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/90 p-10 text-center">
+        <div className="rounded-2xl border border-slate-700 dark:bg-slate-900 p-10 text-center">
           <div className="inline-block mb-4">
             <div className="relative w-12 h-12">
               <div className="absolute inset-0 rounded-full border-4 border-slate-600 dark:border-slate-700"></div>
@@ -469,7 +473,7 @@ export default function ToolsSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-40 max-w-5xl mx-auto">
         <button onClick={() => handleToolClick("/tools/validator-monitor")}
-        className="group rounded-xl border border-pink-500 dark:bg-slate-800/90 p-5 min-h-[140px] transition-all duration-300 text-center hover:border-pink-400 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] hover:-translate-y-1 dark:hover:bg-slate-800 cursor-pointer">
+        className="group rounded-xl border border-pink-500 dark:bg-slate-800 p-5 min-h-[140px] transition-all duration-300 text-center hover:border-pink-400 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] hover:-translate-y-1 dark:hover:bg-slate-800 cursor-pointer">
           <h3 className="text-2xl font-bold mb-6 text-[#ff7b00] flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
@@ -485,7 +489,7 @@ export default function ToolsSection() {
         </button>
 
         <button onClick={() => handleToolClick("/tools/analytics")}
-        className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
+        className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
 
           <h3 className="text-2xl font-bold mb-6 text-blue-500 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-blue-500 transition group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

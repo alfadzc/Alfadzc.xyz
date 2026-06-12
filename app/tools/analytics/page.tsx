@@ -30,12 +30,34 @@ interface MetricsData {
   lastUpdated?: string;
 }
 
-const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
-  Lava: "mainnet", Shido: "mainnet", Paxi: "mainnet", Bitbadges: "mainnet",
-  CNHO: "mainnet", Lumen: "mainnet", Epix: "mainnet",
-  Empeiria: "testnet", Safrochain: "testnet", Pushchain: "testnet",
-  Republic: "testnet", Monolythium: "testnet",
+const normalizeChainName = (name: string): string => {
+  return name.toLowerCase().replace(/\s+/g, "").replace(/network/gi, "network");
 };
+
+const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
+  // MAINNET
+  lava: "mainnet",
+  shido: "mainnet",
+  paxi: "mainnet",
+  bitbadges: "mainnet",
+  cnho: "mainnet",
+  lumen: "mainnet",
+  jaynetwork: "mainnet",
+  jay: "mainnet",
+  epix: "mainnet",
+  // TESNET
+  empeiria: "testnet",
+  safrochain: "testnet",
+  pushchain: "testnet",
+  republic: "testnet",
+  monolythium: "testnet",
+};
+
+{/* FUNGSI HELPER UNTUK MENDAPATKAN NETWORK TYPE */} 
+ const getNetworkType = (chainName: string): "mainnet" | "testnet" => {
+  const normalized = normalizeChainName(chainName);
+  return NETWORK_TYPE[normalized] || "testnet"; // default ke testnet jika tidak ditemukan
+ };
 
 const CHAIN_COLORS: Record<string, string> = {
   Lava: "#facc15",
@@ -44,6 +66,8 @@ const CHAIN_COLORS: Record<string, string> = {
   Bitbadges: "#f97316",
   CNHO: "#10b981",
   Lumen: "#8b5cf6",
+  Jaynetwork: "#f43f5e",
+  "Jay Network": "#f43f5e",
   Epix: "#ec4899",
   Empeiria: "#22d3ee",
   Safrochain: "#3b82f6",
@@ -92,8 +116,8 @@ export default function AnalyticsDashboard() {
 
           setUptimeChartData(generateUptimeData());
 
-          const mainnetCount = sorted.filter(c => NETWORK_TYPE[c.chain] === "mainnet").length;
-          const testnetCount = sorted.filter(c => NETWORK_TYPE[c.chain] === "testnet").length;
+          const mainnetCount = sorted.filter(c => getNetworkType(c.chain) === "mainnet").length;
+          const testnetCount = sorted.filter(c => getNetworkType(c.chain) === "testnet").length;
           setNetworkTypeDistribution([
             { name: "Mainnet", value: mainnetCount, type: "mainnet" },
             { name: "Testnet", value: testnetCount, type: "testnet" }
@@ -114,31 +138,18 @@ export default function AnalyticsDashboard() {
   const totalValidators = chartData.reduce((sum, item) => sum + (item.validators || 0), 0);
   const avgUptime = chartData.length > 0 ? (chartData.reduce((sum, item) => sum + (item.uptime || 0), 0) / chartData.length).toFixed(1) : "0";
 
+ {/* UBAH WAVE (DOT) GANTI (3px|-3px) -> (5px|-5px) */} 
   return (
-    <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-800 dark:text-white">
-  
-      {/* CSS EFEK WAVE */}
+    <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-white">
       <style jsx global>{`
         @keyframes waveBounce {
-          0%, 100% {
-            transform: translateY(6px);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
+          0%, 100% { transform: translateY(3px); }
+          50% { transform: translateY(-3px); }
         }
-        .dot-wave {
-          animation: waveBounce 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-        }
-        .dot-delay-1 {
-          animation-delay: -0.4s;
-        }
-        .dot-delay-2 {
-          animation-delay: -0.2s;
-        }
-        .dot-delay-3 {
-          animation-delay: 0s;
-        }
+        .dot-wave { animation: waveBounce 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+        .dot-delay-1 { animation-delay: -0.4s; }
+        .dot-delay-2 { animation-delay: -0.2s; }
+        .dot-delay-3 { animation-delay: 0s; }
       `}</style>
 
       {/* HEADER */}
@@ -157,7 +168,7 @@ export default function AnalyticsDashboard() {
         </div>
       </div>
 
-      {/* CONTENT */}
+     {/* CONTENT */}
       <div className="max-w-7xl mx-auto px-6 py-12 space-y-8">
 
         {/* KEY METRICS */}
@@ -185,28 +196,32 @@ export default function AnalyticsDashboard() {
         </div>
 
         {loading ? (
-          <div className="rounded-2xl border border-slate-700 dark:bg-slate-900/90 p-10 text-center flex flex-col items-center justify-center min-h-[300px]">
-            <div className="inline-block mb-4">
-
-            {/* CONTAINER LOADING */}
-              <div className="relative w-16 h-16 bg-black rounded-full flex items-center justify-center shadow-inner">
-                {/* Busur luar berputar */}
-                <div className="absolute inset-0 rounded-full border-4 border-[#1e1e1e]"></div>
-                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#0088ff] border-l-[#0088ff] border-b-[#0088ff] animate-spin"></div>
-                
-                {/* Tiga titik dengan delay terpisah secara urut untuk efek gelombang mengalir halus */}
-                <div className="flex space-x-1 z-10 items-center h-4">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-1"></div>
-                  <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-2"></div>
-                  <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-3"></div>
-                </div>
+          <div className="flex items-center justify-center py-12">
+           <div className="flex flex-col items-center gap-4">
+            <div className="relative w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-inner mb-8">
+             <div className="absolute inset-0 rounded-full border-4 border-[#1e1e1e]"></div>
+              <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#0088ff] border-l-[#0088ff] border-b-[#0088ff] animate-spin"></div>
+              <div className="flex space-x-1 z-10 items-center h-4">
+              <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-1"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-2"></div>
+              <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-3"></div>
               </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-400 font-medium mt-2">Loading analytics...</p>
-          </div>
-        ) : (
-          <>
-            {/* CHARTS ROW */}
+             </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+           <p className="text-slate-300 font-medium m-0">
+   Loading analytics...</p>
+   <div className="flex space-x-1 items-center h-5">
+             <span className="text-slate-300 dot-wave dot-delay-1" style={{ display: "inline-block" }}>•</span>
+               <span className="text-slate-300 dot-wave dot-delay-2" style={{ display: "inline-block" }}>•</span>
+               <span className="text-slate-300 dot-wave dot-delay-3" style={{ display: "inline-block" }}>•</span>
+               </div>
+              </div>
+             </div>
+           </div>
+          ) : (
+           <>
+  
+          {/* CHARTS ROW */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {chartData.length > 0 && (
                 <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
@@ -325,7 +340,7 @@ export default function AnalyticsDashboard() {
                       <tbody>
                         {chartData.map((chain, idx) => {
                           const percentage = totalStakedValue > 0 ? ((chain.totalBondedUSD || 0) / totalStakedValue * 100).toFixed(1) : "0";
-                          const type = NETWORK_TYPE[chain.chain] || "unknown";
+                          const type = getNetworkType(chain.chain);
                           const variation = (Math.random() - 0.5) * 1.5;
                           const realtimeUptime = Math.min(100, Math.max(94, chain.uptime + variation));
                           return (
@@ -333,7 +348,7 @@ export default function AnalyticsDashboard() {
                               <td className="px-4 py-3 font-semibold text-slate-800 dark:text-slate-300">{chain.chain}</td>
                               <td className="px-4 py-3 text-center">
                                 <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold ${type === "mainnet" ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400" : "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400"}`}>
-                                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                                 {type.charAt(0).toUpperCase() + type.slice(1)}
                                 </span>
                               </td>
                               <td className="px-4 py-3 text-center text-slate-600 dark:text-slate-300">{chain.validators}</td>
@@ -351,7 +366,7 @@ export default function AnalyticsDashboard() {
                 </div>
               )}
 
-              {/* SUMMARY STATISTICS */}
+             {/* SUMMARY STATISTICS */}
               <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
                 <h3 className="text-xl font-semibold mb-6 text-slate-800 dark:text-slate-200 text-center">Summary Statistics</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

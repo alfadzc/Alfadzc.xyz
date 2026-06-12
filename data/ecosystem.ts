@@ -50,11 +50,17 @@ export const MAINNET: NetworkItem[] = [
     explorerUrl: "https://explorer.alfadzc.xyz/lumen/staking",
   },
   {
+    name: "Jay Network",
+    logo: "/chains/jaynetwork.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/jaynetwork/staking/yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe",
+    explorerUrl: "https://explorer.alfadzc.xyz/jaynetwork/staking",
+  }, 
+  {
     name: "Epix",
     logo: "/chains/epix.png",
     delegateUrl: "",
     explorerUrl: "https://explorer.alfadzc.xyz/epix/staking",
-  },
+  },  
 ];
 
 export const TESTNET: NetworkItem[] = [

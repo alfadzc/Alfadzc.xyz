@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 export default function LoadingWrapper({ children }: { children: React.ReactNode }) {
@@ -9,12 +10,14 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   useEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.style.overflow = "hidden";
+
     setMounted(true);
     const fadeTimer = setTimeout(() => setFadeOut(true), 2200);
     const doneTimer = setTimeout(() => {
       setLoading(false);
       document.documentElement.style.overflow = "";
     }, 2700);
+
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(doneTimer);
@@ -25,60 +28,102 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   if (!mounted) return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 9999,
-      background: "linear-gradient(135deg, #0a0e27 0%, #0d1535 100%)",
+      background: "linear-gradient(135deg, #0a0a1a 0%, #0d0d2b 40%, #0a0a1a 100%)",
     }} />
   );
 
   if (!loading) return <>{children}</>;
-  
-{/* UBAH WAVE (dot) DALAM CINCIN GANTI (5px|-5px) -> (3px|-3px) */}
-{/* UBAH WAVE (dot) BELAKANG TEXT GANTI (3px|-3px) -> (2px|-2px) */}  
+
   return (
     <>
-      <style jsx global>{`
-        @keyframes waveBounce {
-          0%, 100% { transform: translateY(5px); }
-          50% { transform: translateY(-5px); }
+      <style>{`
+        @keyframes coinFlip {
+          0%   { transform: rotateY(0deg); }
+          100% { transform: rotateY(360deg); }
         }
-        @keyframes waveSmall {
-          0%, 100% { transform: translateY(3px); }
-          50% { transform: translateY(-3px); }
+        @keyframes pulse-ring {
+          0%   { opacity: 0.6; transform: scale(0.85); }
+          50%  { opacity: 0.2; transform: scale(1.1); }
+          100% { opacity: 0.6; transform: scale(0.85); }
         }
-        .dot-wave { animation: waveBounce 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-        .dot-wave-small { animation: waveSmall 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-        .dot-delay-1 { animation-delay: -0.4s; }
-        .dot-delay-2 { animation-delay: -0.2s; }
-        .dot-delay-3 { animation-delay: 0s; }
+        @keyframes pulse-ring2 {
+          0%   { opacity: 0.4; transform: scale(0.75); }
+          50%  { opacity: 0.1; transform: scale(1.2); }
+          100% { opacity: 0.4; transform: scale(0.75); }
+        }
+        @keyframes dotBounce {
+          0%, 80%, 100% { transform: translateY(0);    opacity: 0.4; }
+          40%            { transform: translateY(-6px); opacity: 1;   }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .coin-flip {
+          animation: coinFlip 1.2s linear infinite;
+          transform-style: preserve-3d;
+        }
+        .ring1 { animation: pulse-ring  2s ease-in-out infinite; }
+        .ring2 { animation: pulse-ring2 2s ease-in-out infinite 0.3s; }
+        .dot1  { animation: dotBounce 1.2s ease-in-out infinite 0s; }
+        .dot2  { animation: dotBounce 1.2s ease-in-out infinite 0.2s; }
+        .dot3  { animation: dotBounce 1.2s ease-in-out infinite 0.4s; }
+        .fade-in-text { animation: fadeInUp 0.8s ease forwards 0.4s; opacity: 0; }
       `}</style>
 
       <div style={{
         position: "fixed", inset: 0, zIndex: 9999,
-        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        background: "linear-gradient(135deg, #0a0e27 0%, #0d1535 100%)",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        background: "linear-gradient(135deg, #0a0a1a 0%, #0d0d2b 40%, #0a0a1a 100%)",
         transition: "opacity 0.5s ease",
         opacity: fadeOut ? 0 : 1,
         pointerEvents: fadeOut ? "none" : "all",
-      }}> 
-  
-{/* UBAH UKURAN CINCIN GANTI w-20 h-20 -> w-16 h-16 */}  
-        <div className="relative w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-inner mb-8">
-          <div className="absolute inset-0 rounded-full border-4 border-[#1e1e1e]"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#0088ff] border-l-[#0088ff] border-b-[#0088ff] animate-spin"></div>
-          <div className="flex space-x-1 z-10 items-center h-4">
-            <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-1"></div>
-            <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-2"></div>
-            <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-3"></div>
+      }}>
+        <div style={{
+          position: "absolute", inset: "12px",
+          border: "1.5px solid rgba(236,72,153,0.5)",
+          borderRadius: "16px",
+          boxShadow: "0 0 30px rgba(236,72,153,0.15), inset 0 0 30px rgba(236,72,153,0.05)",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "relative", width: "220px", height: "220px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          marginBottom: "8px",
+        }}>
+          <div className="ring2" style={{
+            position: "absolute", width: "210px", height: "210px",
+            borderRadius: "50%", border: "1px solid rgba(168,85,247,0.35)",
+            top: 0, left: 0,
+          }} />
+          <div className="ring1" style={{
+            position: "absolute", width: "160px", height: "160px",
+            borderRadius: "50%", border: "1.5px solid rgba(168,85,247,0.55)",
+            top: "30px", left: "30px",
+          }} />
+          <div style={{ perspective: "600px", position: "relative", zIndex: 1 }}>
+            <div className="coin-flip" style={{
+              width: "120px", height: "120px", borderRadius: "50%",
+              overflow: "hidden", border: "3px solid #A855F7",
+              boxShadow: "0 0 30px rgba(168,85,247,0.7), 0 0 60px rgba(168,85,247,0.3)",
+            }}>
+              <img src="/logo.png" alt="alfadzc logo"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
           </div>
         </div>
-        
-        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <p className="text-slate-300 font-medium m-0">
-  Initializing Network</p>
-          <div className="flex space-x-1 items-center h-5">
-            <span className="text-slate-300 dot-wave-small dot-delay-1" style={{ display: "inline-block" }}>•</span>
-            <span className="text-slate-300 dot-wave-small dot-delay-2" style={{ display: "inline-block" }}>•</span>
-            <span className="text-slate-300 dot-wave-small dot-delay-3" style={{ display: "inline-block" }}>•</span>
-          </div>
+        <div className="fade-in-text" style={{ textAlign: "center" }}>
+          <p style={{
+            fontSize: "16px", color: "white", fontFamily: "system-ui",
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "4px",
+            margin: 0,
+          }}>
+            Loading data
+            <span className="dot1" style={{ display:"inline-block", color:"white" }}>•</span>
+            <span className="dot2" style={{ display:"inline-block", color:"white" }}>•</span>
+            <span className="dot3" style={{ display:"inline-block", color:"white" }}>•</span>
+          </p>
         </div>
       </div>
 

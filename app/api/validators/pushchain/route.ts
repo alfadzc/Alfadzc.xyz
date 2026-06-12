@@ -23,6 +23,7 @@ const FALLBACK = {
   price: PRICE,
   validators: 0,
   uptime: 99.9,
+  rank: 0,
   isFallback: true,
   lastUpdated: new Date().toISOString(),
 };
@@ -66,6 +67,24 @@ export async function GET() {
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
 
+    // HITUNG RANK PER CHAIN
+    let rank = 0;
+    if (listData?.validators && Array.isArray(listData.validators)) {
+      // Sort by tokens descending
+      const sortedValidators = [...listData.validators].sort((a: any, b: any) => {
+        const tokensA = BigInt(a.tokens || 0);
+        const tokensB = BigInt(b.tokens || 0);
+        return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
+      });
+      
+      // Find my position
+      const myIndex = sortedValidators.findIndex((v: any) => 
+        v.operator_address === VALIDATOR_OPERATOR
+      );
+      
+      rank = myIndex !== -1 ? myIndex + 1 : 0;
+    }
+
     return NextResponse.json({
       chain: "Pushchain",
       moniker: validator.description?.moniker || "alfadzc",
@@ -75,6 +94,7 @@ export async function GET() {
       price: PRICE,
       validators: listData?.validators?.length || 0,
       uptime,
+      rank, // <-- TAMBAHKAN RANK
       isFallback: false,
       lastUpdated: new Date().toISOString(),
     });

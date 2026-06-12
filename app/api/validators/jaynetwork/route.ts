@@ -1,21 +1,22 @@
 // export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://safrochain-testnet-api.linknode.org",
-  "https://api-t.safrochain.nodestake.org",  
-  "https://rest.testnet.safrochain.com",
+  "https://api-jay.onenov.xyz",
+  "https://api-jaynetwork.vinjan-inc.com",
 ];
-const VALIDATOR_OPERATOR = "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs";
-const VALCONS_ADDRESS = "safrovalcons1sz7xxrc77as20yg4t2maf3p33hwh6n6c9f0cdh";
+
+const VALIDATOR_OPERATOR = "yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe";
+const VALCONS_ADDRESS = "jayvalcons1y6ahw96qyuwck2z42020cwpnsu54w6mswvhsaj";
 const CHAIN_DIVISOR = 1_000_000;
-const SIGNED_BLOCKS_WINDOW = 50000;
+const SIGNED_BLOCKS_WINDOW = 10000;
 const PRICE = 0;
 
 const FALLBACK = {
-  chain: "Safrochain",
+  chain: "Jaynetwork",
   moniker: "alfadzc",
   operatorAddress: VALIDATOR_OPERATOR,
   totalBonded: "0",
@@ -31,8 +32,11 @@ const FALLBACK = {
 async function fetchWithFallback(path: string) {
   for (const url of LCD_URLS) {
     try {
-      const res = await fetch(`${url}${path}`, { cache: "no-store", signal: AbortSignal.timeout(5000) });
-      if (res.ok) return res.json();
+      const res = await fetch(`${url}${path}`, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000)
+      });
+      if (res.ok) return await res.json();
     } catch {}
   }
   return null;
@@ -45,9 +49,9 @@ async function fetchUptime(): Promise<number> {
     );
     const info = data?.val_signing_info;
     if (!info) return 99.9;
-    const missedBlocks = parseInt(info.missed_blocks_counter || "0");
+    const missedBlocks = Number(info.missed_blocks_counter || 0);
     const uptime = ((SIGNED_BLOCKS_WINDOW - missedBlocks) / SIGNED_BLOCKS_WINDOW) * 100;
-    return parseFloat(Math.min(uptime, 100).toFixed(4));
+    return parseFloat(Math.max(0, Math.min(uptime, 100)).toFixed(4));
   } catch {
     return 99.9;
   }
@@ -64,8 +68,8 @@ export async function GET() {
     const validator = validatorData?.validator;
     if (!validator) return NextResponse.json({ ...FALLBACK, uptime });
 
-    const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
-    const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
+    const totalBonded = Number(BigInt(validator.tokens || "0")) / CHAIN_DIVISOR;
+    const totalBondedUSD = PRICE ? (totalBonded * PRICE).toFixed(2) : "0";
 
     // HITUNG RANK PER CHAIN
     let rank = 0;
@@ -85,20 +89,31 @@ export async function GET() {
       rank = myIndex !== -1 ? myIndex + 1 : 0;
     }
 
-    return NextResponse.json({
-      chain: "Safrochain",
-      moniker: validator.description?.moniker || "alfadzc",
-      operatorAddress: VALIDATOR_OPERATOR,
-      totalBonded: totalBonded.toFixed(2),
-      totalBondedUSD,
-      price: PRICE,
-      validators: listData?.validators?.length || 0,
-      uptime,
-      rank, // <-- TAMBAHKAN RANK
-      isFallback: false,
-      lastUpdated: new Date().toISOString(),
-    });
+    return NextResponse.json(
+      {
+        chain: "Jaynetwork",
+        moniker: validator.description?.moniker || "alfadzc",
+        operatorAddress: validator.operator_address || VALIDATOR_OPERATOR,
+        totalBonded: totalBonded.toFixed(2),
+        totalBondedUSD,
+        price: PRICE,
+        validators: listData?.validators?.length || 0,
+        uptime,
+        rank, // <-- TAMBAHKAN RANK
+        isFallback: false,
+        lastUpdated: new Date().toISOString(),
+      },
+      {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      }
+    );
   } catch {
-    return NextResponse.json(FALLBACK);
+    return NextResponse.json(FALLBACK, {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
   }
 }

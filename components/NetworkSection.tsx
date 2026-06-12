@@ -118,7 +118,7 @@ export default function NetworkSection() {
      𝐖𝐢𝐭𝐡 𝐔𝐬 !</span>
            </h3>
            <p className="mt-7 text-sm font-semibold md:text-base text-slate-700 dark:text-slate-300">
-           Secure the Network, Earn rewards, and Grow together With Us.
+           Stake your tokens with us and earn passive income everyday.
          </p>
         </div>
        </div>

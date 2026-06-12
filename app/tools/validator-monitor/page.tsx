@@ -11,10 +11,11 @@ interface ValidatorMetrics {
   price: number;
   validators: number;
   uptime: number;
+  rank: number; // <-- PASTIKAN ADA INI
   lastUpdated: string;
 }
 
-const CHAINS = ["lava", "shido", "paxi", "bitbadges", "cnho", "lumen", "empeiria", "safrochain", "pushchain", "republic", "monolythium v1"];
+const CHAINS = ["lava", "shido", "paxi", "bitbadges", "cnho", "lumen", "jaynetwork", "empeiria", "safrochain", "pushchain", "republic", "monolythium"];
 
 const CHAIN_LOGOS: { [key: string]: string } = {
   lava: "/chains/lava.png",
@@ -23,11 +24,17 @@ const CHAIN_LOGOS: { [key: string]: string } = {
   bitbadges: "/chains/bitbadges.png",
   cnho: "/chains/cnho.png",
   lumen: "/chains/lumen.png",
+  jaynetwork: "/chains/jaynetwork.png",
   empeiria: "/chains/empeiria.png",
   safrochain: "/chains/safrochain.png",
   pushchain: "/chains/pushchain.png",
   republic: "/chains/republic.png",
   monolythium: "/chains/monolythium.png",
+};
+
+const CHAIN_DISPLAY_NAMES: Record<string, string> = {
+  jaynetwork: "jay network",
+  monolythium: "Monolythium v1",
 };
 
 function formatPrice(price: number): string {
@@ -78,6 +85,7 @@ export default function ValidatorMonitor() {
            const v = (r as PromiseFulfilledResult<ValidatorMetrics>).value;
            if (priceMap[v.chain?.toLowerCase()]) v.price = priceMap[v.chain.toLowerCase()];
            if (tvlMap[v.chain?.toLowerCase()]) v.totalBondedUSD = tvlMap[v.chain.toLowerCase()].toFixed(2);
+           console.log(`✅ Validator ${v.chain} rank:`, v.rank);
            return v;
           });
         setValidators(validatorsData);
@@ -89,7 +97,7 @@ export default function ValidatorMonitor() {
     };
 
     fetchValidators();
-    const interval = setInterval(fetchValidators, 30000); // Update setiap 30 detik
+    const interval = setInterval(fetchValidators, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -116,8 +124,17 @@ export default function ValidatorMonitor() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-white">
-       
- {/* HEADER */}
+      <style jsx global>{`
+        @keyframes waveBounce {
+          0%, 100% { transform: translateY(3px); }
+          50% { transform: translateY(-3px); }
+        }
+        .dot-wave { animation: waveBounce 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+        .dot-delay-1 { animation-delay: -0.4s; }
+        .dot-delay-2 { animation-delay: -0.2s; }
+        .dot-delay-3 { animation-delay: 0s; }
+      `}</style>
+
       <div className="border-b border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-900/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <button
@@ -129,16 +146,13 @@ export default function ValidatorMonitor() {
             <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751 h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
             </svg>
-            𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫 𝐌𝐨𝐧𝐢𝐭𝐨𝐫
+            Validator Monitor
           </h1>
           <p className="text-center font-semibold text-slate-900 dark:text-slate-300">Track Uptime, Performance and Reliability Across all Validator</p>
         </div>
       </div>
 
-      {/* CONTENT */}
       <div className="max-w-7xl mx-auto px-6 py-12 space-y-8">
-
-        {/* STATS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
             <p className="text-base font-bold text-center text-slate-800 dark:text-slate-300 mb-2">Total Validators</p>
@@ -162,7 +176,6 @@ export default function ValidatorMonitor() {
           </div>
         </div>
 
-        {/* VALIDATOR GRID */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-[#ff7b00] mt-10 mb-6 flex items-center justify-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -170,40 +183,29 @@ export default function ValidatorMonitor() {
               <rect x="2" y="14" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 7h.01M6 17h.01"/>
             </svg>
-            𝐎𝐮𝐫 𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫
+            Our Validator
           </h2>
   
           {loading ? (
             <div className="flex items-center justify-center py-12">
               <div className="flex flex-col items-center gap-4">
-                {/* Blue circle with rotating border */}
-                <style>{`
-                  @keyframes spin {
-                    to { transform: rotate(360deg); }
-                  }
-                  @keyframes bounce {
-                    0%, 100% { opacity: 0.3; transform: translateY(0); }
-                    50% { opacity: 1; transform: translateY(-8px); }
-                  }
-                  .animate-spin-custom {
-                    animation: spin 1.5s linear infinite;
-                  }
-                  .animate-bounce-custom {
-                    animation: bounce 1.4s ease-in-out infinite;
-                  }
-                `}</style>
-                <div className="relative w-16 h-16">
-                  <div className="absolute inset-0 rounded-full border-4 border-slate-700 dark:border-slate-600"></div>
-                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-sky-500 dark:border-t-sky-400 animate-spin-custom"></div>
-                  
-                  {/* LOADING SCANN VALIDATOR */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-bounce-custom" style={{animationDelay: "0ms"}}></div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-bounce-custom" style={{animationDelay: "150ms"}}></div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-bounce-custom" style={{animationDelay: "300ms"}}></div>
+                <div className="relative w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-inner mb-8">
+                  <div className="absolute inset-0 rounded-full border-4 border-[#1e1e1e]"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#0088ff] border-l-[#0088ff] border-b-[#0088ff] animate-spin"></div>
+                  <div className="flex space-x-1 z-10 items-center h-4">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-1"></div>
+                    <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-2"></div>
+                    <div className="w-1.5 h-1.5 bg-white rounded-full dot-wave dot-delay-3"></div>
                   </div>
                 </div>
-                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Scanning Validators...</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  <p className="text-slate-300 font-medium m-0">Scanning Validators</p>
+                  <div className="flex space-x-1 items-center h-5">
+                    <span className="text-slate-300 dot-wave dot-delay-1" style={{ display: "inline-block" }}>•</span>
+                    <span className="text-slate-300 dot-wave dot-delay-2" style={{ display: "inline-block" }}>•</span>
+                    <span className="text-slate-300 dot-wave dot-delay-3" style={{ display: "inline-block" }}>•</span>
+                  </div>
+                </div>
               </div>
             </div>
           ) : validators.length === 0 ? (
@@ -216,35 +218,41 @@ export default function ValidatorMonitor() {
                   className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]"
                   onClick={() => setSelectedChain(validator.chain)}>
                   <div className="flex items-start justify-between mb-4">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-600 flex-shrink-0">
-                       {CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""] ? (
-                        <img
-                        src={CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""]}
-                        alt={validator.chain}
-                        className="w-full h-full object-cover"/>
+                    <div className="flex items-center gap-3">
+                      {/* RANK DISPLAY */}
+                      <div className="flex flex-col items-center justify-center w-10 h-11 rounded-lg bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex-shrink-0">
+                        <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 leading-none uppercase tracking-tighter">Rank</span>
+                        <span className="text-lg font-extrabold text-[#ff7b00] leading-tight">
+                          {validator.rank > 0 ? `#${validator.rank}` : '—'}
+                        </span>
+                      </div>
+                      <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-600 flex-shrink-0">
+                        {CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""] ? (
+                          <img
+                            src={CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""]}
+                            alt={validator.chain}
+                            className="w-full h-full object-cover"/>
                         ) : (
-                        <div className="w-full h-full bg-slate-700 flex items-center justify-center text-xs font-bold">
-                        {validator.chain?.[0]}
-                        </div>
+                          <div className="w-full h-full bg-slate-700 flex items-center justify-center text-xs font-bold">
+                            {validator.chain?.[0]}
+                          </div>
                         )}
                       </div>
                       <div>
-                      <h3 className="font-semibold text-slate-900 dark:text-slate-300">{validator.moniker}</h3>
-                      <p className="text-xs text-slate-900 dark:text-slate-300">{validator.chain}</p>
+                        <h3 className="font-semibold text-slate-900 dark:text-slate-300">{validator.moniker}</h3>
+                        <p className="text-xs text-slate-900 dark:text-slate-300">{CHAIN_DISPLAY_NAMES[validator.chain] || validator.chain}</p>
                       </div>
                     </div>
                     <div className={`px-3 py-1 rounded-full border text-sm font-semibold ${getUptimeBgColor(validator.uptime)}`}>
                       <span className={getUptimeColor(validator.uptime)}>
-                      {(validator.uptime ?? 99.9).toFixed(2)}%
+                        {(validator.uptime ?? 99.9).toFixed(2)}%
                       </span>
                     </div>
                   </div>
 
-                {/* PRICE BADGE TAMBAHAN HARGA REALTIME */}
                   <div className="mb-3 flex items-center justify-between bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-900/30 dark:to-purple-900/30 px-3 py-2 rounded-lg border border-blue-200 dark:border-blue-900/50">
-                   <span className="text-sm font-semibold text-slate-900 dark:text-slate-300">Price:</span>
-                   <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{formatPrice(validator.price)}</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-300">Price:</span>
+                    <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{formatPrice(validator.price)}</span>
                   </div>
 
                   <div className="space-y-2 border-t border-slate-700/30 pt-4">
@@ -264,9 +272,9 @@ export default function ValidatorMonitor() {
 
                   <div className="mt-4 pt-4 border-t border-slate-700/30">
                     <p className="text-xs text-slate-900 dark:text-slate-300">
-                    Updated: {validator.lastUpdated ? new Date(validator.lastUpdated).toLocaleTimeString() : "—"}
-                   </p>
-                 </div>
+                      Updated: {validator.lastUpdated ? new Date(validator.lastUpdated).toLocaleTimeString() : "—"}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

@@ -15,7 +15,7 @@ const SIGNED_BLOCKS_WINDOW = 100000;
 const FALLBACK = {
   chain: "Shido", moniker: "alfadzc", operatorAddress: VALIDATOR_OPERATOR,
   totalBonded: "0", totalBondedUSD: "0", price: 0, validators: 0,
-  uptime: 99.9, isFallback: true, lastUpdated: new Date().toISOString(),
+  uptime: 99.9, rank: 0, isFallback: true, lastUpdated: new Date().toISOString(),
 };
 
 async function fetchWithFallback(path: string) {
@@ -60,14 +60,35 @@ export async function GET() {
   try {
     const [validatorData, listData, price, uptime] = await Promise.all([
       fetchWithFallback(`/cosmos/staking/v1beta1/validators/${VALIDATOR_OPERATOR}`),
-      fetchWithFallback(`/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=200`),
+      fetchWithFallback(`/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=300`),
       fetchPrice(),
       fetchUptime(),
     ]);
+    
     const validator = validatorData?.validator;
     if (!validator) return NextResponse.json({ ...FALLBACK, price, uptime });
+    
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * price).toFixed(2);
+    
+    // HITUNG RANK PER CHAIN
+    let rank = 0;
+    if (listData?.validators && Array.isArray(listData.validators)) {
+      // Sort by tokens descending
+      const sortedValidators = [...listData.validators].sort((a: any, b: any) => {
+        const tokensA = BigInt(a.tokens || 0);
+        const tokensB = BigInt(b.tokens || 0);
+        return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
+      });
+      
+      // Find my position
+      const myIndex = sortedValidators.findIndex((v: any) => 
+        v.operator_address === VALIDATOR_OPERATOR
+      );
+      
+      rank = myIndex !== -1 ? myIndex + 1 : 0;
+    }
+    
     return NextResponse.json({
       chain: "Shido",
       moniker: validator.description?.moniker || "alfadzc",
@@ -77,6 +98,7 @@ export async function GET() {
       price,
       validators: listData?.validators?.length || 0,
       uptime,
+      rank, // <-- TAMBAHKAN RANK
       isFallback: false,
       lastUpdated: new Date().toISOString(),
     });
