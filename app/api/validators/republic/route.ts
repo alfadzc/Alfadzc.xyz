@@ -4,9 +4,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://api-t.republicai.nodestake.org",
   "https://republic-testnet-api.linknode.org",
-  "https://api-t.republic.vinjan-inc.com",
+  "https://api-t.republic.vinjan-inc.com",  
+  "https://api-t.republicai.nodestake.org",
 ];
 const VALIDATOR_OPERATOR = "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr";
 const VALCONS_ADDRESS = "republicvalcons1ky85dph5xz9xu5zv5cg2epj0cuv48dvvj0wpva";

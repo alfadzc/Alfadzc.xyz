@@ -1,17 +1,20 @@
 // export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://safrochain-testnet-api.linknode.org",
-  "https://api-t.safrochain.nodestake.org",  
-  "https://rest.testnet.safrochain.com",
+  "https://api1.safrochain.network",
+  "https://api2.safrochain.network",
+  "https://api.safrochain.nodestake.org",
+  "https://api-safro.vinjan-inc.com",
 ];
-const VALIDATOR_OPERATOR = "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs";
-const VALCONS_ADDRESS = "safrovalcons1sz7xxrc77as20yg4t2maf3p33hwh6n6c9f0cdh";
+
+const VALIDATOR_OPERATOR = "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5";
+const VALCONS_ADDRESS = "addr_safrovalcons1n7jprwdx3ntd4dyaa05dm3pp3v53fu2ydkx0yy";
 const CHAIN_DIVISOR = 1_000_000;
-const SIGNED_BLOCKS_WINDOW = 50000;
+const SIGNED_BLOCKS_WINDOW = 10000;
 const PRICE = 0;
 
 const FALLBACK = {
@@ -67,17 +70,14 @@ export async function GET() {
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
 
-    // HITUNG RANK PER CHAIN
     let rank = 0;
     if (listData?.validators && Array.isArray(listData.validators)) {
-      // Sort by tokens descending
       const sortedValidators = [...listData.validators].sort((a: any, b: any) => {
         const tokensA = BigInt(a.tokens || 0);
         const tokensB = BigInt(b.tokens || 0);
         return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
       });
       
-      // Find my position
       const myIndex = sortedValidators.findIndex((v: any) => 
         v.operator_address === VALIDATOR_OPERATOR
       );
@@ -94,7 +94,7 @@ export async function GET() {
       price: PRICE,
       validators: listData?.validators?.length || 0,
       uptime,
-      rank, // <-- TAMBAHKAN RANK
+      rank,
       isFallback: false,
       lastUpdated: new Date().toISOString(),
     });

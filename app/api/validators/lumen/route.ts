@@ -1,11 +1,11 @@
-// export const runtime = 'edge';
+// export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://api.lumen.chaintools.tech",
   "https://lumen-api.linknode.org",
+  "https://api.lumen.chaintools.tech",
 ];
 const VALIDATOR_OPERATOR = "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah";
 const VALCONS_ADDRESS = "lmnvalcons1j49ytqt3twtmdrrqqhtpqkjj3dfu60dsgw4zm2";

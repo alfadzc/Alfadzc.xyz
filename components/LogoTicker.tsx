@@ -6,16 +6,18 @@ const TICKER_LOGOS = [
   { name: "Lava",        logo: "/chains/lava.png" },
   { name: "Shido",       logo: "/chains/shido.png" },
   { name: "Paxi",        logo: "/chains/paxi.png" },
+  { name: "Safrochain",  logo: "/chains/safrochain.png" },  
   { name: "Bitbadges",   logo: "/chains/bitbadges.png" },
   { name: "CNHO",        logo: "/chains/cnho.png" },
   { name: "Lumen",       logo: "/chains/lumen.png" },
   { name: "Jay Network", logo: "/chains/jaynetwork.png" }, 
   { name: "Epix",        logo: "/chains/epix.png" },
   { name: "Empeiria",    logo: "/chains/empeiria.png" },
-  { name: "Safrochain",  logo: "/chains/safrochain.png" },
+  { name: "Safrochain Testnet",  logo: "/chains/safrochain.png" },
   { name: "Pushchain",   logo: "/chains/pushchain.png" },
   { name: "Republic AI", logo: "/chains/republic.png" },
   { name: "Monolythium", logo: "/chains/monolythium.png" },
+  { name: "Limonata", logo: "/chains/limonata.png" },
 ];
 
 const ROW1 = [...TICKER_LOGOS, ...TICKER_LOGOS];

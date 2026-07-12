@@ -39,6 +39,7 @@ const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
   lava: "mainnet",
   shido: "mainnet",
   paxi: "mainnet",
+  safrochain: "mainnet",
   bitbadges: "mainnet",
   cnho: "mainnet",
   lumen: "mainnet",
@@ -47,9 +48,10 @@ const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
   epix: "mainnet",
   // TESNET
   empeiria: "testnet",
-  safrochain: "testnet",
+  "safrochain-testnet": "testnet",
   pushchain: "testnet",
   republic: "testnet",
+  limonata: "testnet",
   monolythium: "testnet",
 };
 
@@ -63,6 +65,7 @@ const CHAIN_COLORS: Record<string, string> = {
   Lava: "#facc15",
   Shido: "#60a5fa",
   Paxi: "#fbbf24",
+  Safrochain: "#3b82f6",
   Bitbadges: "#f97316",
   CNHO: "#10b981",
   Lumen: "#8b5cf6",
@@ -70,9 +73,10 @@ const CHAIN_COLORS: Record<string, string> = {
   "Jay Network": "#f43f5e",
   Epix: "#ec4899",
   Empeiria: "#22d3ee",
-  Safrochain: "#3b82f6",
+  "Safrochain-tesnert": "#FF00FF",
   Pushchain: "#ffedd5",
-  Republic: "#d946ef",
+  "Republic AI": "#d946ef",
+  Limonata: "#FF5349",
   Monolythium: "#0ea5e9",
 };
 
@@ -162,7 +166,7 @@ export default function AnalyticsDashboard() {
             <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 13h4l2-6 3 12 3-8 2 4h4"/>
             </svg>
-            𝐀𝐧𝐚𝐥𝐲𝐭𝐢𝐜s 𝐃𝐚𝐬𝐡𝐛𝐨𝐚𝐫đ
+            𝐀𝐧𝐚𝐥𝐲𝐭𝐢𝐜𝐬 𝐃𝐚𝐬𝐛𝐨𝐚𝐫𝐝
           </h1>
           <p className="text-center font-semibold text-slate-800 dark:text-slate-300">Real-Time Blockchain Metrics & Validator Insights</p>
         </div>

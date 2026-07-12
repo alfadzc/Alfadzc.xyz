@@ -32,6 +32,13 @@ export const MAINNET: NetworkItem[] = [
     explorerUrl: "https://explorer.alfadzc.xyz/paxi/staking",
   },
   {
+    name: "Safrochain",
+    logo: "/chains/safrochain.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/safrochain/staking/addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5",
+    explorerUrl: "https://explorer.alfadzc.xyz/safrochain/staking",
+  },  
+  
+  {
     name: "Bitbadges Chain",
     logo: "/chains/bitbadges.png",
     delegateUrl: "https://explorer.alfadzc.xyz/bitbadges/staking/bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v",
@@ -71,10 +78,10 @@ export const TESTNET: NetworkItem[] = [
     explorerUrl: "https://explorer.alfadzc.xyz/empeiria/staking",
   },
   {
-    name: "Safrochain",
+    name: "Safrochain Testnet",
     logo: "/chains/safrochain.png",
-    delegateUrl: "https://explorer.alfadzc.xyz/safrochain/staking/addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs",
-    explorerUrl: "https://explorer.alfadzc.xyz/safrochain/staking",
+    delegateUrl: "https://explorer.alfadzc.xyz/safrochain-testnet/staking/addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs",
+    explorerUrl: "https://explorer.alfadzc.xyz/safrochain-testnet/staking",
   },
   {
     name: "Pushchain",
@@ -88,6 +95,12 @@ export const TESTNET: NetworkItem[] = [
     delegateUrl: "https://explorer.alfadzc.xyz/republic/staking/raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr",
     explorerUrl: "https://explorer.alfadzc.xyz/republic/staking",
   },
+  {
+    name: "Limonata",
+    logo: "/chains/limonata.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/limonata-testnet/staking/cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww",
+    explorerUrl: "https://explorer.alfadzc.xyz/limonata-testnet/staking",
+  },  
 ];
 
 export const ARCHIVE: NetworkItem[] = [

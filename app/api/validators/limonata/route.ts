@@ -2,22 +2,21 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 30; // Cache 30 detik
+export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://lcd.pushchain.xyz",
-  "https://rest-pushchain.nodestake.top",
-  "https://api-push.vinjan-inc.com",
+  "https://rest.limonata.xyz",
+  "https://api-t.limonata.vinjan-inc.com", 
 ];
 
-const VALIDATOR_OPERATOR = "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx";
-const VALCONS_ADDRESS = "pushvalcons1nnyasz54zm6gc2w07yxh9rl63tj76yfg5ka4w7";
-const CHAIN_DIVISOR = 1_000_000_000_000;
+const VALIDATOR_OPERATOR = "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww";
+const VALCONS_ADDRESS = "limonatavalcons1x5yq5xk76fntexndt4zql8lspcga5wwcg2vham";
+const CHAIN_DIVISOR = 1_000_000_000_000_000_000;
 const SIGNED_BLOCKS_WINDOW = 10000;
 const PRICE = 0;
 
 const FALLBACK = {
-  chain: "Pushchain",
+  chain: "Limonata",
   moniker: "alfadzc",
   operatorAddress: VALIDATOR_OPERATOR,
   totalBonded: "0",
@@ -33,7 +32,7 @@ const FALLBACK = {
 async function fetchWithFallback(path: string) {
   for (const url of LCD_URLS) {
     try {
-      const res = await fetch(`${url}${path}`, { cache: "no-store", signal: AbortSignal.timeout(8000) });
+      const res = await fetch(`${url}${path}`, { cache: "no-store", signal: AbortSignal.timeout(5000) });
       if (res.ok) return res.json();
     } catch {}
   }
@@ -85,7 +84,7 @@ export async function GET() {
     }
 
     return NextResponse.json({
-      chain: "Pushchain",
+      chain: "Limonata",
       moniker: validator.description?.moniker || "alfadzc",
       operatorAddress: VALIDATOR_OPERATOR,
       totalBonded: totalBonded.toFixed(2),

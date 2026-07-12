@@ -15,26 +15,30 @@ interface ValidatorMetrics {
   lastUpdated: string;
 }
 
-const CHAINS = ["lava", "shido", "paxi", "bitbadges", "cnho", "lumen", "jaynetwork", "empeiria", "safrochain", "pushchain", "republic", "monolythium"];
+const CHAINS = ["lava", "shido", "paxi", "safrochain", "bitbadges", "cnho", "lumen", "jaynetwork", "empeiria", "safrochain-testnet", "pushchain", "republic", "limonata", "monolythium"];
 
 const CHAIN_LOGOS: { [key: string]: string } = {
   lava: "/chains/lava.png",
   shido: "/chains/shido.png",
   paxi: "/chains/paxi.png",
+  safrochain: "/chains/safrochain.png",
   bitbadges: "/chains/bitbadges.png",
   cnho: "/chains/cnho.png",
   lumen: "/chains/lumen.png",
   jaynetwork: "/chains/jaynetwork.png",
   empeiria: "/chains/empeiria.png",
-  safrochain: "/chains/safrochain.png",
+  "Safrochain Testnet": "/chains/safrochain.png",
   pushchain: "/chains/pushchain.png",
   republic: "/chains/republic.png",
+  limonata: "/chains/limonata.png",
   monolythium: "/chains/monolythium.png",
 };
 
 const CHAIN_DISPLAY_NAMES: Record<string, string> = {
   jaynetwork: "jay network",
   monolythium: "Monolythium v1",
+  safrochain: "Safrochain",
+  "safrochain-testnet": "Safrochain Testnet",
 };
 
 function formatPrice(price: number): string {
@@ -45,10 +49,16 @@ function formatPrice(price: number): string {
   return `$${price.toFixed(2)}`;
 }
 
+const DENOM_MAP: Record<string, string> = {
+  "Safrochain": "SAF",
+  "Safrochain Testnet": "SAF",
+  "Monolythium v1": "LYTH",
+};
+
 function formatBonded(value: string, chain: string): string {
   const num = parseFloat(value || "0");
   if (num === 0) return "—";
-  const symbol = chain?.toUpperCase() ?? "";
+  const symbol = DENOM_MAP[chain] ?? chain?.toUpperCase() ?? "";
   if (num >= 1_000_000) return `${num.toLocaleString("en-US", { maximumFractionDigits: 0 })} ${symbol}`;
   if (num >= 1_000) return `${num.toLocaleString("en-US", { maximumFractionDigits: 0 })} ${symbol}`;
   return `${num.toLocaleString("en-US", { maximumFractionDigits: 2 })} ${symbol}`;
@@ -122,6 +132,7 @@ export default function ValidatorMonitor() {
     return "bg-red-900/30 border-red-700/50";
   };
 
+ {/* UBAH WAVE (DOT) GANTI (3px|-3px) -> (5px|-5px) */}
   return (
     <main className="min-h-screen bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-white">
       <style jsx global>{`
@@ -185,7 +196,7 @@ export default function ValidatorMonitor() {
             </svg>
             Our Validator
           </h2>
-  
+
           {loading ? (
             <div className="flex items-center justify-center py-12">
               <div className="flex flex-col items-center gap-4">
@@ -199,7 +210,8 @@ export default function ValidatorMonitor() {
                   </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                  <p className="text-slate-300 font-medium m-0">Scanning Validators</p>
+                  <p className="text-slate-300 font-medium m-0">
+                  Scanning Validators</p>
                   <div className="flex space-x-1 items-center h-5">
                     <span className="text-slate-300 dot-wave dot-delay-1" style={{ display: "inline-block" }}>•</span>
                     <span className="text-slate-300 dot-wave dot-delay-2" style={{ display: "inline-block" }}>•</span>
@@ -227,9 +239,9 @@ export default function ValidatorMonitor() {
                         </span>
                       </div>
                       <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-600 flex-shrink-0">
-                        {CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""] ? (
+                        {CHAIN_LOGOS[validator.chain] || CHAIN_LOGOS[validator.chain?.toLowerCase()] ? (
                           <img
-                            src={CHAIN_LOGOS[validator.chain?.toLowerCase() ?? ""]}
+                            src={CHAIN_LOGOS[validator.chain] || CHAIN_LOGOS[validator.chain?.toLowerCase()] || ""}
                             alt={validator.chain}
                             className="w-full h-full object-cover"/>
                         ) : (

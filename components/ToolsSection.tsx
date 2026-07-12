@@ -25,15 +25,17 @@ const CHAIN_LOGOS: Record<string, string> = {
   Lava: "/chains/lava.png",
   Shido: "/chains/shido.png",
   Paxi: "/chains/paxi.png",
+  Safrochain: "/chains/safrochain.png",  
   Bitbadges: "/chains/bitbadges.png",
   "CNHO Stable" : "/chains/cnho.png",
   Lumen: "/chains/lumen.png",
   "Jay Network" : "/chains/jaynetwork.png",  
   Epix: "/chains/epix.png",
   Empeiria: "/chains/empeiria.png",
-  Safrochain: "/chains/safrochain.png",
+  "Safrochain Testnet": "/chains/safrochain.png",
   Pushchain: "/chains/pushchain.png",
   "Republic AI": "/chains/republic.png",
+  Limonata: "/chains/limonata.png",  
   "Monolythium v1": "/chains/monolythium.png",
 };
 
@@ -41,15 +43,17 @@ const NETWORK_TYPE_MAP: Record<string, "mainnet" | "testnet" | "archive"> = {
   Lava: "mainnet",
   Shido: "mainnet",
   Paxi: "mainnet",
+  Safrochain: "mainnet",
   Bitbadges: "mainnet",
   "CNHO Stable": "mainnet",
   Lumen: "mainnet",
   "Jay Network": "mainnet",  
   Epix: "mainnet",
   Empeiria: "testnet",
-  Safrochain: "testnet",
+  "Safrochain Testnet": "testnet",
   Pushchain: "testnet",
   "Republic AI": "testnet",
+  Limonata: "testnet",  
   "Monolythium v1": "archive",
 };
 
@@ -57,15 +61,17 @@ const TOKEN_CODE_MAP: Record<string, string> = {
   Lava: "LAVA",
   Shido: "SHIDO",
   Paxi: "PAXI",
+  Safrochain: "SAF",  
   Bitbadges: "BADGE",
   "CNHO Stable": "CNHO",
   Lumen: "LMN",
   "Jay Network": "JAY",  
   Epix: "EPIX",
   Empeiria: "EMPE",
-  Safrochain: "SAF",
+  "Safrochain Testnet": "SAF",
   Pushchain: "PC",
   "Republic AI": "RAI",
+  Limonata: "LIMO",  
   "Monolythium v1": "LYTH",
 };
 
@@ -75,17 +81,20 @@ function normalizeChainName(name: string): string {
     lava: "Lava",
     shido: "Shido",
     paxi: "Paxi",
+    safrochain: "Safrochain",
     bitbadges: "Bitbadges",
     cnho: "CNHO Stable",
     lumen: "Lumen",
     jay: "Jay Network",
     epix: "Epix",
     empeiria: "Empeiria",
-    safrochain: "Safrochain",
+    "safrochain-testnet": "Safrochain Testnet",
     pushchain: "Pushchain",
     republic: "Republic AI",
+  limonata: "Limonata",
     monolythium: "Monolythium v1",
   };
+  
   return map[raw.toLowerCase()] ?? raw;
 }
 
@@ -338,7 +347,7 @@ export default function ToolsSection() {
         </div>
       </div>   
 
-      {/* NETWORK SUPPORT */}
+     {/* NETWORK SUPPORT */}
       <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="rounded-lg border border-orange-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
@@ -436,7 +445,7 @@ export default function ToolsSection() {
           <div>
             <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
               <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-  Tesnet
+  Testnet
   </h3>
               <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} Network</span>
             </div>
