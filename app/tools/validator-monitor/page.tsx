@@ -23,7 +23,7 @@ const CHAIN_LOGOS: { [key: string]: string } = {
   paxi: "/chains/paxi.png",
   safrochain: "/chains/safrochain.png",
   bitbadges: "/chains/bitbadges.png",
-  cnho: "/chains/cnho.png",
+  "CNHO Stable": "/chains/cnho.png",
   lumen: "/chains/lumen.png",
   jaynetwork: "/chains/jaynetwork.png",
   empeiria: "/chains/empeiria.png",
@@ -50,10 +50,22 @@ function formatPrice(price: number): string {
 }
 
 const DENOM_MAP: Record<string, string> = {
-  "Safrochain": "SAF",
+  Lava: "LAVA",
+  Shido: "SHIDO",
+  Paxi: "PAXI",
+  Safrochain: "SAF",  
+  Bitbadges: "BADGE",
+  "CNHO Stable": "CNHO",
+  Lumen: "LMN",
+  Jaynetwork: "JAY",  
+  Epix: "EPIX",
+  Empeiria: "EMPE",
   "Safrochain Testnet": "SAF",
-  "Monolythium v1": "LYTH",
-};
+  Pushchain: "PC",
+  Republic: "RAI",
+  Limonata: "LIMO",  
+  Monolythium: "LYTH",
+};  
 
 function formatBonded(value: string, chain: string): string {
   const num = parseFloat(value || "0");

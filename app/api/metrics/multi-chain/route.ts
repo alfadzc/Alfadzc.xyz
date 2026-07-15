@@ -80,7 +80,7 @@ const CHAIN_CONFIG: Array<{
   { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 84, timeout: 4000 },
   { chain: "Safrochain Testnet", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, timeout: 4000 },
-  { chain: "Pushchain", lcd: "https://api-t.pushchain.nodestake.org", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
+  { chain: "Pushchain", lcd: "https://api-test.pchain.vinjan-inc.com", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Republic AI", lcd: "https://republic-testnet-api.linknode.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Limonata", lcd: "https://rest.limonata.xyz", operator: "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww", divisor: 1_000_000_000_000_000_000, timeout: 4000 },  
   { chain: "Monolythium v1", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
