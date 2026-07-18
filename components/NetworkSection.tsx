@@ -11,7 +11,7 @@ interface ValidatorStatus {
 
 export default function NetworkSection() {
   const [tab, setTab] = useState<"all" | "mainnet" | "testnet" | "archive">("all");
-  const [validatorStatus, setValidatorStatus] = useState<ValidatorStatus>({});
+  const [validatorStatus, setValidatorStatus] = useState<ValidatorStatus>({ Epix: "offline" });
   const [loading, setLoading] = useState(true);
 
   const ALL_NETWORKS = [...MAINNET, ...TESTNET];
@@ -22,12 +22,13 @@ export default function NetworkSection() {
     const fetchStatus = async () => {
       try {
         const res = await fetch(`/api/validators/status?t=${Date.now()}`, {
-          cache: "no-store",
+        cache: "no-store",
         });
-        if (res.ok) {
-          const status = await res.json();
-          setValidatorStatus(status);
-        }
+   if (res.ok) {
+        const status = await res.json();
+        status.Epix = "offline"; // Hardcode Epix offline
+        setValidatorStatus(status);
+       }
       } catch (error) {
         console.error("Failed to fetch validator status:", error);
       } finally {

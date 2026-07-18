@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 60; // Cache 60 detik (fallback lambat)
+export const revalidate = 60;
 
 const LCD_URLS = [
   "https://api-push.vinjan-inc.com",
@@ -13,14 +13,14 @@ const LCD_URLS = [
 
 const VALIDATOR_OPERATOR = "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx";
 const VALCONS_ADDRESS = "pushvalcons1nnyasz54zm6gc2w07yxh9rl63tj76yfg5ka4w7";
-const CHAIN_DIVISOR = 1_000_000_000_000;
+const CHAIN_DIVISOR = 1_000_000_000_000_000_000; // 18 digit
 const PRICE = 0;
 
 const FALLBACK = {
   chain: "Pushchain",
   moniker: "alfadzc",
   operatorAddress: VALIDATOR_OPERATOR,
-  totalBonded: "241.49",
+  totalBonded: "0.00024149",
   totalBondedUSD: "0",
   price: PRICE,
   validators: 67,

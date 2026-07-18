@@ -74,7 +74,7 @@ const CHAIN_CONFIG: Array<{
   { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, timeout: 8000 },
   { chain: "Safrochain", lcd: "https://api1.safrochain.network", operator: "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5", divisor: 1_000_000, timeout: 4000 },  
   { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, timeout: 4000 },
-  { chain: "CNHO", lcd: "https://cnhostables_mainnet_api.chain.whenmoonwhenlambo.money", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
+  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
   { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, timeout: 8000 },
   { chain: "Jay Network", lcd: "https://api-jay.onenov.xyz", operator: "yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe", divisor: 1_000_000, timeout: 8000 },  
   { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 },

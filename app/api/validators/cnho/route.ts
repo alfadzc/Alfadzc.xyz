@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
 const LCD_URLS = [
+  "https://api.cnho.io",
   "https://cnhostables_mainnet_api.chain.whenmoonwhenlambo.money",
   "https://api-cnho.vinjan-inc.com",
   "https://rest.cnho.nodestake.top",
@@ -19,12 +20,12 @@ const FALLBACK = {
   chain: "CNHO Stable",
   moniker: "alfadzc",
   operatorAddress: VALIDATOR_OPERATOR,
-  totalBonded: "45000",
+  totalBonded: "213120",
   totalBondedUSD: "0",
   price: PRICE,
   validators: 25,
   uptime: 99.9,
-  rank: 15,
+  rank: 9,
   isFallback: true,
   lastUpdated: new Date().toISOString(),
 };
@@ -59,7 +60,7 @@ export async function GET() {
       price: PRICE,
       validators: 25,
       uptime: 99.9,
-      rank: 15,
+      rank: 9,
       isFallback: false,
       lastUpdated: new Date().toISOString(),
     });
