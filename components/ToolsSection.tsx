@@ -348,22 +348,7 @@ export default function ToolsSection() {
       </div>   
 
      {/* NETWORK SUPPORT */}
-      <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
-        <div className="rounded-lg border border-orange-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
-          <div className="relative flex items-center justify-center mb-4">
-            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#ff7b00]/20">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </div>
-          </div>
-          <p className="text-3xl font-bold text-center text-orange-500 mb-2">{normalizedNetworksSupported}+</p>
-          <div className="border-t border-slate-700 pt-2">
-            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-200">Networks Supported</p>
-            <p className="text-xs text-center text-slate-900 dark:text-slate-400">Mainnet & Testnet Validator</p>
-          </div>
-        </div>
-
+      <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4"> 
         <div className="rounded-lg border border-purple-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-purple-500/20">
@@ -378,7 +363,7 @@ export default function ToolsSection() {
             <p className="text-xs text-center text-slate-900 dark:text-slate-400">Secured assets</p>
           </div>
         </div>
-        
+
         <div className="rounded-lg border border-emerald-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-emerald-500/20">
@@ -393,6 +378,21 @@ export default function ToolsSection() {
             <p className="text-xs text-center text-slate-900 dark:text-slate-400">7-day average</p>
           </div>
         </div>
+
+        <div className="rounded-lg border border-orange-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 dark:hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] dark:hover:shadow-[0_0_35px_rgba(249,115,22,0.7)] dark:hover:bg-slate-800">
+          <div className="relative flex items-center justify-center mb-4">
+            <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#ff7b00]/20">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+          </div>
+          <p className="text-3xl font-bold text-center text-orange-500 mb-2">{normalizedNetworksSupported}+</p>
+          <div className="border-t border-slate-700 pt-2">
+            <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-200">Networks Supported</p>
+            <p className="text-xs text-center text-slate-900 dark:text-slate-400">Mainnet & Testnet Validator</p>
+          </div>
+        </div>        
         
         <div className="rounded-lg border border-blue-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">          
           <div className="relative flex items-center justify-center mb-4">
@@ -431,33 +431,33 @@ export default function ToolsSection() {
         </div>
       ) : (
         <div className="space-y-10">
-          <div>
-           <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+         <div>
+          <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
+          <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
    Mainnet
-   </h3>
-           <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{mainnetChains.length} Network</span>
+    </h3>
+         <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{mainnetChains.length} Network</span>
          </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {mainnetChains.map((chain) => renderCard(chain))}
             </div>
            </div>
           <div>
-            <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-              <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+           <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
+           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
   Testnet
-  </h3>
-              <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} Network</span>
+    </h3>
+            <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} Network</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
              {testnetChains.map((chain) => renderCard(chain))}
            </div>
          </div>
           <div>
-            <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-             <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+          <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
+         <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
  Archive
- </h3>
+  </h3>
              <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{archiveChains.length} Network</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

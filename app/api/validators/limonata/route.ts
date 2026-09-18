@@ -6,7 +6,10 @@ export const revalidate = 0;
 
 const LCD_URLS = [
   "https://rest.limonata.xyz",
-  "https://api-t.limonata.vinjan-inc.com", 
+  "https://api-testnet.limonata.cumulo.me",
+  "https://t-limonata.api.utsa.tech",
+  "https://api-t.limonata.vinjan-inc.com",
+  "https://api-limonata.incentived.org", 
 ];
 
 const VALIDATOR_OPERATOR = "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww";

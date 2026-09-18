@@ -7,6 +7,7 @@ export const revalidate = 0;
 const LCD_URLS = [
   "https://api1.safrochain.network",
   "https://api2.safrochain.network",
+  "https://safrochain-api.linknode.org",
   "https://api.safrochain.nodestake.org",
   "https://api-safro.vinjan-inc.com",
 ];

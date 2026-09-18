@@ -24,11 +24,10 @@ export default function NetworkSection() {
         const res = await fetch(`/api/validators/status?t=${Date.now()}`, {
         cache: "no-store",
         });
-   if (res.ok) {
+       if (res.ok) {
         const status = await res.json();
-        status.Epix = "offline"; // Hardcode Epix offline
         setValidatorStatus(status);
-       }
+       }    
       } catch (error) {
         console.error("Failed to fetch validator status:", error);
       } finally {
@@ -100,34 +99,10 @@ export default function NetworkSection() {
          Across Cosmos-based network.
         </p>
       </div>
-  
-    {/* STAKE WITH US */}
-      <div className="relative z-10 flex flex-col items-center text-center mt-2">           
-   
-    {/* MAIN BOX */}
-      <div className="relative overflow-hidden rounded-2xl px-4 py-5 border border-pink-500 dark:bg-slate-800/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
-        
-    {/* GLOW */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#ff7b00]/10 via-white/5 to-[#3b82f6]/10" />
-
-    {/* TEXT */}
-      <div className="relative z-10">
-    <h3 className="text-lg md:text-3xl font-black tracking-widest leading-none"> 
-          <span className="text-blue-600 dark:text-[#ff7b00]">
-     𝐒𝐓𝐀𝐊𝐄</span>{" "}
-           <span className="text-[#ff7b00] dark:text-white">
-     𝐖𝐢𝐭𝐡 𝐔𝐬 !</span>
-           </h3>
-           <p className="mt-7 text-sm font-semibold md:text-base text-slate-700 dark:text-slate-300">
-           Stake your tokens with us and earn passive income everyday.
-         </p>
-        </div>
-       </div>
-      </div>  
 
      {/* TABS */}
-       <div className="w-full flex justify-start mt-16 mb-12">
-         <div className="flex gap-2 p-1 rounded-2xl border bg-slate-200/60 dark:bg-slate-800/60 border-slate-300 dark:border-slate-700 shadow-[0_0_15px_rgba(56,189,248,0.15)]">
+       <div className="w-full flex justify-center mt-16 mb-12">
+         <div className="flex gap-2 p-1 rounded-2xl border bg-slate-200/60 dark:bg-slate-800/60 border-slate-300 dark:border-slate-700 shadow-[0_0_15px_rgba(56,189,248,0.15)] mx-auto">
           <TabButton active={tab === "all"} onClick={() => setTab("all")} label="All Network" />
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="Mainnet" />
           <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="Tesnet" />
@@ -250,7 +225,7 @@ function TabButton({ active, onClick, label }: { active: boolean; onClick: () =>
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2 rounded-xl whitespace-nowrap text-base font-semibold transition-all duration-300 cursor-pointer w-full flex items-center justify-center gap-2
+      className={`px-6 py-2 rounded-xl whitespace-nowrap text-base font-semibold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2
         ${active
           ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white border-2 border-sky-500 scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.5)] rounded-xl"
           : "text-slate-800 dark:text-slate-200"

@@ -3,11 +3,12 @@ import DocsSection from "@/components/DocsSection";
 import ToolsSection from "@/components/ToolsSection";
 import ContactSection from "@/components/ContactSection";
 import LogoTicker from "@/components/LogoTicker";
+import StakeSection from "@/components/StakeSection";
 
 export default function Home() {
   return (
     <>
-      {/* HOME */}
+     {/* HOME */}
       <section
         id="home"
         className="relative z-10 flex flex-col justify-center items-center text-center
@@ -27,6 +28,11 @@ export default function Home() {
             We are Independent Validator dedicated to securing decentralized network<br/>
             offering transparent validation service and modern tool the growing crypto community. 
           </p>
+       </div>
+
+      <div className="mt-12 w-full">                    
+      {/* STAKE SECTION */}
+      <StakeSection />
        </div>
       </section>
 

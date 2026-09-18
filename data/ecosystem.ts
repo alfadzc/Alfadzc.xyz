@@ -37,18 +37,11 @@ export const MAINNET: NetworkItem[] = [
     delegateUrl: "https://explorer.alfadzc.xyz/safrochain/staking/addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5",
     explorerUrl: "https://explorer.alfadzc.xyz/safrochain/staking",
   },  
-  
   {
     name: "Bitbadges Chain",
     logo: "/chains/bitbadges.png",
     delegateUrl: "https://explorer.alfadzc.xyz/bitbadges/staking/bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v",
     explorerUrl: "https://explorer.alfadzc.xyz/bitbadges/staking",
-  },
-  {
-    name: "CNHO Stable",
-    logo: "/chains/cnho.png",
-    delegateUrl: "https://explorer.alfadzc.xyz/cnho/staking/cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0",
-    explorerUrl: "https://explorer.alfadzc.xyz/cnho/staking",
   },
   {
     name: "Lumen",
@@ -62,12 +55,6 @@ export const MAINNET: NetworkItem[] = [
     delegateUrl: "https://explorer.alfadzc.xyz/jaynetwork/staking/yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe",
     explorerUrl: "https://explorer.alfadzc.xyz/jaynetwork/staking",
   },  
-  {
-    name: "Epix",
-    logo: "/chains/epix.png",
-    delegateUrl: "",
-    explorerUrl: "https://explorer.alfadzc.xyz/epix/staking",
-  }, 
 ];
 
 export const TESTNET: NetworkItem[] = [
@@ -105,9 +92,21 @@ export const TESTNET: NetworkItem[] = [
 
 export const ARCHIVE: NetworkItem[] = [
   {
+    name: "CNHO Stable",
+    logo: "/chains/cnho.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/cnho/staking/cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0",
+    explorerUrl: "https://explorer.alfadzc.xyz/cnho/staking",
+  },
+  {
+    name: "Epix",
+    logo: "/chains/epix.png",
+    delegateUrl: "https://explorer.alfadzc.xyz/epix/staking/epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f",
+    explorerUrl: "https://explorer.alfadzc.xyz/epix/staking",
+  },
+  {
     name: "Monolythium v1",
     logo: "/chains/monolythium.png",
-    delegateUrl: "https://explorer.alfadzc.xyz/mono/staking/monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl",
+    delegateUrl: "",
     explorerUrl: "https://explorer.alfadzc.xyz/mono/staking",
   },
 ];

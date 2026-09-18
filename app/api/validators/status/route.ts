@@ -5,6 +5,8 @@ export async function GET() {
       status: "ok",
       timestamp: new Date().toISOString(),
       "Monolythium v1": "offline",
+      "CNHO Stable": "offline",
+      "Epix": "offline",
     },
     { status: 200, headers: { "Cache-Control": "no-store" } }
   );
