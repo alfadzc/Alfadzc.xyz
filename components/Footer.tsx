@@ -7,8 +7,8 @@ export default function Footer() {
       text-center p-4 md:p-6
       border-t border-white/10
       z-50">
-      <p className="text-xs md:text-base font-bold text-gray-800 dark:text-gray-300">
-       © 2025 Alfadzc. &nbsp; All Right Reserved.
+      <p className="text-xs md:text-base font-normal text-gray-900 dark:text-gray-200">
+      Copyright © 2026 Alfadzc.xyz. &nbsp; All Rights Reserved.
       </p>
     </footer>
   );
