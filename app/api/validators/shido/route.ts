@@ -4,10 +4,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://shido-api.polkachu.com",
+  "https://rest.mavnode.io",
+  "https://api.shido.io",
+  "https://rest.shido.io",  
   "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money",
-  "https://swagger.shidoscan.com",
 ];
+
 const VALIDATOR_OPERATOR = "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h";
 const CONSENSUS_ADDRESS = "shidovalcons1md8f7zpjz8n7hgmag7ytpahxyrflfmcvw9s5du";
 const CHAIN_DIVISOR = 1_000_000_000_000_000_000;
@@ -64,13 +66,13 @@ export async function GET() {
       fetchPrice(),
       fetchUptime(),
     ]);
-    
+
     const validator = validatorData?.validator;
     if (!validator) return NextResponse.json({ ...FALLBACK, price, uptime });
-    
+
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
     const totalBondedUSD = (totalBonded * price).toFixed(2);
-    
+
     // HITUNG RANK PER CHAIN
     let rank = 0;
     if (listData?.validators && Array.isArray(listData.validators)) {
@@ -80,15 +82,15 @@ export async function GET() {
         const tokensB = BigInt(b.tokens || 0);
         return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
       });
-      
+
       // Find my position
-      const myIndex = sortedValidators.findIndex((v: any) => 
+      const myIndex = sortedValidators.findIndex((v: any) =>
         v.operator_address === VALIDATOR_OPERATOR
       );
-      
+
       rank = myIndex !== -1 ? myIndex + 1 : 0;
     }
-    
+
     return NextResponse.json({
       chain: "Shido",
       moniker: validator.description?.moniker || "alfadzc",
