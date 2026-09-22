@@ -5,9 +5,9 @@ export const revalidate = 0;
 
 const LCD_URLS = [
   "https://rest.mavnode.io",
+  "https://api.shidoscan.net",
   "https://api.shido.io",
-  "https://rest.shido.io",  
-  "https://shidochain_mainnet_api.chain.whenmoonwhenlambo.money",
+  "https://rest.shido.io",
 ];
 
 const VALIDATOR_OPERATOR = "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h";
