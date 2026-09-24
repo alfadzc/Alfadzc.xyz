@@ -266,6 +266,23 @@ export default function ToolsSection() {
   const renderCard = (chain: ChainMetrics) => {
   const tokenCode = getTokenCode(chain.chain);
 
+  const archiveInfo: Record<string, { title: string; description: string }> = {
+    "CNHO Stable": {
+    title: "CNHO Stable.",
+    description: "Archived Network.",
+    },
+    Epix: {
+    title: "Epix.",
+    description: "Archived Network.",
+    },
+    "Monolythium v1": {
+    title: "Migration v2.",
+    description: "Rust-Based Network Upgrade.",
+   },
+  };
+
+  const archive = archiveInfo[chain.chain];
+
   return (
     <article
       key={`card-${chain.chain}`}
@@ -290,31 +307,29 @@ export default function ToolsSection() {
             {chain.chain}
           </p>
 
-          <span
-            className={`inline-block rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
-              chain.isFallback
-                ? "border border-amber-500/30 bg-amber-500/10 text-[#ff7b00]"
-                : "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-            }`}
-            >
-            {chain.isFallback
-             ? "Cosmos → Rust Migration"
-             : aprFromChain(chain)}
-          </span>
+       <span
+       className={`inline-block rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
+         chain.isFallback
+        ? "border border-amber-500/30 bg-amber-500/10 text-[#ff7b00]"
+        : "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+        }`}
+        >
+       {chain.isFallback ? "Archive" : aprFromChain(chain)}
+        </span>
         </div>
        </div>
 
-     {chain.isFallback ? (
-        <div className="text-sm space-y-2">
-          <p className="text-[#ff7b00] font-semibold">
-           Migration v2.
-          </p>
+     {archive ? (
+     <div className="text-sm space-y-2">
+     <p className="text-[#ff7b00] font-semibold">
+      {archive.title}
+     </p>
 
-          <p className="text-slate-900 dark:text-slate-200">
-           Rust-Based Network Upgrade.
-          </p>
-        </div>
-       ) : (
+     <p className="text-slate-900 dark:text-slate-200">
+      {archive.description}
+     </p>
+     </div>
+     ) : (
         <div className="grid grid-cols-[1fr_auto] gap-y-1 text-sm">
           <p className="text-slate-900 dark:text-slate-300">Total Staked</p>
           <p className="text-slate-900 dark:text-slate-300 font-semibold">
@@ -350,7 +365,7 @@ export default function ToolsSection() {
           </h2>
         </div>
         <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-slate-200">
-  Real-Time Monitoring Validator Across Multiple Network.
+       Real-Time Monitoring Validator Across Multiple Network.
         </p>
       </div>
 
