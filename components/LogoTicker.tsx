@@ -18,6 +18,7 @@ const TICKER_LOGOS = [
   { name: "Republic AI", logo: "/chains/republic.png" },
   { name: "Monolythium", logo: "/chains/monolythium.png" },
   { name: "Limonata", logo: "/chains/limonata.png" },
+  { name: "Worrell Testnet", logo: "/chains/worrell.png" },
 ];
 
 const ROW1 = [...TICKER_LOGOS, ...TICKER_LOGOS];

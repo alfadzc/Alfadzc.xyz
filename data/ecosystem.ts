@@ -87,6 +87,12 @@ export const TESTNET: NetworkItem[] = [
     logo: "/chains/limonata.png",
     delegateUrl: "https://explorer.alfadzc.xyz/limonata-testnet/staking/cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww",
     explorerUrl: "https://explorer.alfadzc.xyz/limonata-testnet/staking",
+  },
+  {
+   name: "Worrell Testnet",
+   logo: "/chains/worrell.png",
+   delegateUrl: "https://explorer.alfadzc.xyz/worrell-testnet/staking/worrellvaloper1kw3lzqgf2nvq4gluna60qzdf9jgl59mrxwwr67",
+   explorerUrl: "https://explorer.alfadzc.xyz/worrell-testnet/staking",
   },  
 ];
 

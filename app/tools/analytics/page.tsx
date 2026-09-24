@@ -36,23 +36,24 @@ const normalizeChainName = (name: string): string => {
 
 const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
   // MAINNET
-  lava: "mainnet",
-  shido: "mainnet",
-  paxi: "mainnet",
-  safrochain: "mainnet",
-  bitbadges: "mainnet",
-  cnho: "mainnet",
-  lumen: "mainnet",
-  jaynetwork: "mainnet",
-  jay: "mainnet",
-  epix: "mainnet",
-  // TESNET
-  empeiria: "testnet",
-  "safrochain-testnet": "testnet",
-  pushchain: "testnet",
-  republic: "testnet",
-  limonata: "testnet",
-  monolythium: "testnet",
+    lava: "mainnet",
+    shido: "mainnet",
+    paxi: "mainnet",
+    safrochain: "mainnet",
+    bitbadges: "mainnet",
+//  cnho: "mainnet",
+    lumen: "mainnet",
+    jaynetwork: "mainnet",
+    jay: "mainnet",
+//  epix: "mainnet",
+
+ // TESNET
+    empeiria: "testnet",
+    "safrochain-testnet": "testnet",
+    pushchain: "testnet",
+    republic: "testnet",
+    limonata: "testnet",
+//  monolythium: "testnet",
 };
 
 {/* FUNGSI HELPER UNTUK MENDAPATKAN NETWORK TYPE */} 
@@ -62,22 +63,23 @@ const NETWORK_TYPE: Record<string, "mainnet" | "testnet"> = {
  };
 
 const CHAIN_COLORS: Record<string, string> = {
-  Lava: "#facc15",
-  Shido: "#60a5fa",
-  Paxi: "#fbbf24",
-  Safrochain: "#3b82f6",
-  Bitbadges: "#f97316",
-  CNHO: "#10b981",
-  Lumen: "#8b5cf6",
-  Jaynetwork: "#f43f5e",
-  "Jay Network": "#f43f5e",
-  Epix: "#ec4899",
-  Empeiria: "#22d3ee",
-  "Safrochain-tesnert": "#FF00FF",
-  Pushchain: "#ffedd5",
-  "Republic AI": "#d946ef",
-  Limonata: "#FF5349",
-  Monolythium: "#0ea5e9",
+    Lava: "#facc15",
+    Shido: "#60a5fa",
+    Paxi: "#fbbf24",
+    Safrochain: "#3b82f6",
+    Bitbadges: "#f97316",
+//  CNHO: "#10b981",
+    Lumen: "#8b5cf6",
+    Jaynetwork: "#f43f5e",
+    "Jay Network": "#f43f5e",
+//  Epix: "#ec4899",
+    Empeiria: "#22d3ee",
+    "Safrochain-tesnert": "#FF00FF",
+    Pushchain: "#ffedd5",
+    "Republic AI": "#d946ef",
+    Limonata: "#FF5349",
+    "Worrell Testnet": "#22c55e",
+//  Monolythium: "#0ea5e9",
 };
 
 export default function AnalyticsDashboard() {
@@ -90,19 +92,34 @@ export default function AnalyticsDashboard() {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const res = await fetch(`/api/metrics/multi-chain?t=${Date.now()}`, { cache: "no-store" });
+        const res = await fetch(`/api/metrics/multi-chain?t=${Date.now()}`, {
+          cache: "no-store",
+        });
+
         const data: MetricsData = await res.json();
         setMetrics(data);
+
         if (data.chains && data.chains.length > 0) {
-          const sorted = [...data.chains].sort((a, b) => b.totalBondedUSD - a.totalBondedUSD);
+          // Disable CNHO and EPIX from Analytics Dashboard
+          const filteredChains = data.chains.filter((chain) => {
+            const normalized = normalizeChainName(chain.chain);
+
+            return normalized !== "cnho" && normalized !== "epix";
+          });
+
+          const sorted = [...filteredChains].sort(
+            (a, b) => b.totalBondedUSD - a.totalBondedUSD
+          );
+
           setChartData(sorted);
-          
+
           // Generate real-time uptime data with hourly format
           const generateUptimeData = () => {
             const timePoints = Array.from({ length: 24 }, (_, i) => {
               const date = new Date();
               date.setHours(date.getHours() - (23 - i));
-              const hour = String(date.getHours()).padStart(2, '0');
+              const hour = String(date.getHours()).padStart(2, "0");
+
               return `${hour}:00`;
             });
 

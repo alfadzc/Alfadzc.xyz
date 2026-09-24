@@ -74,19 +74,20 @@ const CHAIN_CONFIG: Array<{
   { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, timeout: 8000 },
   { chain: "Safrochain", lcd: "https://api1.safrochain.network", operator: "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5", divisor: 1_000_000, timeout: 4000 },  
   { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, timeout: 4000 },
-  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
   { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, timeout: 8000 },
   { chain: "Jay Network", lcd: "https://api-jay.onenov.xyz", operator: "yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe", divisor: 1_000_000, timeout: 8000 },  
-  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 84, timeout: 4000 },
   { chain: "Safrochain Testnet", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, timeout: 4000 },
   { chain: "Pushchain", lcd: "https://api-test.pchain.vinjan-inc.com", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Republic AI", lcd: "https://republic-testnet-api.linknode.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
-  { chain: "Limonata", lcd: "https://rest.limonata.xyz", operator: "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww", divisor: 1_000_000_000_000_000_000, timeout: 4000 },  
+  { chain: "Limonata", lcd: "https://rest.limonata.xyz", operator: "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
+  { chain: "Worrell Testnet", lcd: "https://worrell-testnet-api.itrocket.net", operator: "worrellvaloper1kw3lzqgf2nvq4gluna60qzdf9jgl59mrxwwr67", divisor: 1_000_000_000, timeout: 4000 },  
+  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 }, 
+  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 }, 
   { chain: "Monolythium v1", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
 ];
 
-const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Safrochain", "Bitbadges", "CNHO", "Lumen", "Jay Network", "Epix", "Empeiria", "Safrochain Testnet", "Pushchain", "Republic", "Limonata", "Monolythium v1"];
+const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Safrochain", "Bitbadges", "Lumen", "Jay Network", "Empeiria", "Safrochain Testnet", "Pushchain", "Republic", "Limonata", "Worrell Testnet", "CNHO", "Epix", "Monolythium v1"];
 
 let metricsCache: { data: AggregatedMetrics; timestamp: number } | null = null;
 const CACHE_TTL = 5000;

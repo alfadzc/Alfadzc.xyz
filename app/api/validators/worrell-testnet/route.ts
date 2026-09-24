@@ -1,23 +1,26 @@
 // export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const LCD_URLS = [
-  "https://api-bitbadges.alfadzc.xyz",
-  "https://lcd.bitbadges.io",
-  "https://rest.cosmos.directory/bitbadges",  
-  "https://bitbadges-api.polkachu.com",  
+  "https://worrell.api.t.anode.team",
+  "https://t-worrell.api.utsa.tech",
+  "https://worrell-testnet-api.itrocket.net",
+  "https://api-t.worrell.vinjan-inc.com",
+  "https://worrell-testnet-api.nodesync.top",
+  "https://api-worrell.test.onenov.xyz",
+  "https://worrellchain-apitest.codeblocklabs.com",
 ];
 
-const VALIDATOR_OPERATOR = "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v";
-const VALCONS_ADDRESS = "bbvalcons1twwpsa4r2z87j9888m8f5c0z0l04shst223z66";
+const VALIDATOR_OPERATOR = "worrellvaloper1kw3lzqgf2nvq4gluna60qzdf9jgl59mrxwwr67";
+const VALCONS_ADDRESS = "worrellvalcons1tl2pscknm7ja5cnf6xzz8n5gm2xgn8q96mp2ad";
 const CHAIN_DIVISOR = 1_000_000;
-const SIGNED_BLOCKS_WINDOW = 10000;
 const PRICE = 0;
 
 const FALLBACK = {
-  chain: "Bitbadges",
+  chain: "Worrell Testnet",
   moniker: "alfadzc",
   operatorAddress: VALIDATOR_OPERATOR,
   totalBonded: "0",
@@ -122,7 +125,7 @@ export async function GET() {
       ) + 1;
 
     return NextResponse.json({
-      chain: "Bitbadges",
+      chain: "Worrell Testnet",
       moniker:
         validator.description?.moniker ?? "alfadzc",
       operatorAddress: VALIDATOR_OPERATOR,
