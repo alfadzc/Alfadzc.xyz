@@ -25,18 +25,18 @@ const CHAIN_LOGOS: Record<string, string> = {
    Lava: "/chains/lava.png",
    Shido: "/chains/shido.png",
    Paxi: "/chains/paxi.png",
-   Safrochain: "/chains/safrochain.png",  
+   Safrochain: "/chains/safrochain.png",
    Bitbadges: "/chains/bitbadges.png",
-   "CNHO Stable" : "/chains/cnho.png",    
+   "CNHO Stable" : "/chains/cnho.png",
    Lumen: "/chains/lumen.png",
-   "Jay Network" : "/chains/jaynetwork.png",  
+   "Jay Network" : "/chains/jaynetwork.png",
    Empeiria: "/chains/empeiria.png",
    "Safrochain Testnet": "/chains/safrochain.png",
    Pushchain: "/chains/pushchain.png",
    "Republic AI": "/chains/republic.png",
    Limonata: "/chains/limonata.png",
-   "Worrell Testnet": "/chains/worrell.png",     
-   Epix: "/chains/epix.png",  
+   "Worrell Testnet": "/chains/worrell.png",
+   Epix: "/chains/epix.png",
    "Monolythium v1": "/chains/monolythium.png",
   };
 
@@ -45,15 +45,15 @@ const NETWORK_TYPE_MAP: Record<string, "mainnet" | "testnet" | "archive"> = {
    Shido: "mainnet",
    Paxi: "mainnet",
    Safrochain: "mainnet",
-   Bitbadges: "mainnet",   
+   Bitbadges: "mainnet",
    Lumen: "mainnet",
-   "Jay Network": "mainnet",  
+   "Jay Network": "mainnet",
    Empeiria: "testnet",
    "Safrochain Testnet": "testnet",
    Pushchain: "testnet",
    "Republic AI": "testnet",
    Limonata: "testnet",
-   "Worrell Testnet": "testnet",     
+   "Worrell Testnet": "testnet",
    "CNHO Stable": "archive",
    Epix: "archive",
    "Monolythium v1": "archive",
@@ -63,18 +63,18 @@ const TOKEN_CODE_MAP: Record<string, string> = {
    Lava: "LAVA",
    Shido: "SHIDO",
    Paxi: "PAXI",
-   Safrochain: "SAF",  
+   Safrochain: "SAF",
    Bitbadges: "BADGE",
    "CNHO Stable": "CNHO",
    Lumen: "LMN",
-   "Jay Network": "JAY",  
+   "Jay Network": "JAY",
    Epix: "EPIX",
    Empeiria: "EMPE",
    "Safrochain Testnet": "SAF",
    Pushchain: "PC",
    "Republic AI": "RAI",
    Limonata: "LIMO",
-   "Worrell Testnet": "WORRELL",     
+   "Worrell Testnet": "WORRELL",
    "Monolythium v1": "LYTH",
   };
 
@@ -98,7 +98,7 @@ function normalizeChainName(name: string): string {
   "worrell-testnet":  "Worrell Testnet",
     monolythium: "Monolythium v1",
   };
-  
+
   return map[raw.toLowerCase()] ?? raw;
 }
 
@@ -200,29 +200,47 @@ export default function ToolsSection() {
   const normalizedNetworksSupported = metrics?.networksSupported ?? "12";
 
   const normalizedChains: ChainMetrics[] = useMemo(() => {
-  const chains = (metrics?.chains ?? []).map((c) => ({
-    ...c,
-    chain: normalizeChainName(c.chain),
-   }));
+    const chains = (metrics?.chains ?? []).map((c) => ({
+      ...c,
+      chain: normalizeChainName(c.chain),
+    }));
 
-  const hasMonolythium = chains.some(
-    (c) => c.chain === "Monolythium v1"
-   );
+    const archiveChains: ChainMetrics[] = [
+      {
+        chain: "CNHO Stable",
+        validators: 1,
+        totalBonded: "Archive",
+        totalBondedUSD: 0,
+        price: 0,
+        isFallback: true,
+      },
+      {
+        chain: "Epix",
+        validators: 1,
+        totalBonded: "Archive",
+        totalBondedUSD: 0,
+        price: 0,
+        isFallback: true,
+      },
+      {
+        chain: "Monolythium v1",
+        validators: 1,
+        totalBonded: "Archive",
+        totalBondedUSD: 0,
+        price: 0,
+        isFallback: true,
+      },
+    ];
 
-   if (!hasMonolythium) {
-    chains.push({
-      chain: "Monolythium v1",
-      validators: 1, // sesuaikan
-      totalBonded: "Archive",
-      totalBondedUSD: 0,
-      price: 0,
-      isFallback: true,
-    });
-  }
+    for (const archive of archiveChains) {
+      if (!chains.some((c) => c.chain === archive.chain)) {
+        chains.push(archive);
+      }
+    }
 
-  return chains;
+    return chains;
   }, [metrics?.chains]);
-  
+
   const filteredChains = useMemo(() => {
     const q = query.trim().toLowerCase();
     return normalizedChains.filter((c) =>
@@ -239,12 +257,12 @@ export default function ToolsSection() {
     () => filteredChains.filter((c) => NETWORK_TYPE_MAP[c.chain] === "testnet"),
     [filteredChains]
   );
-   
+
   const archiveChains = useMemo(
   () => filteredChains.filter((c) => NETWORK_TYPE_MAP[c.chain] === "archive"),
   [filteredChains]
-  );   
-  
+  );
+
   const renderCard = (chain: ChainMetrics) => {
   const tokenCode = getTokenCode(chain.chain);
 
@@ -328,7 +346,7 @@ export default function ToolsSection() {
           </svg>
           <h2 className="text-base md:text-3xl font-extrabold tracking-tight">
            <span className="text-2xl md:text-3xl font-bold text-[#ff7b00]">
-            𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠</span>
+           𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠</span>
           </h2>
         </div>
         <p className="mt-4 max-w-2xl mx-auto text-slate-900 dark:text-slate-200">
@@ -349,10 +367,10 @@ export default function ToolsSection() {
             {'/'}
           </span>
         </div>
-      </div>   
+      </div>
 
      {/* NETWORK SUPPORT */}
-      <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4"> 
+      <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="rounded-lg border border-purple-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
             <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-purple-500/20">
@@ -396,12 +414,12 @@ export default function ToolsSection() {
             <p className="text-sm text-center font-semibold text-slate-900 dark:text-slate-200">Networks Supported</p>
             <p className="text-xs text-center text-slate-900 dark:text-slate-400">Mainnet & Testnet Validator</p>
           </div>
-        </div>        
-        
-        <div className="rounded-lg border border-blue-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">          
+        </div>
+
+        <div className="rounded-lg border border-blue-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-blue-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>   
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <rect x="2" y="4" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
                 <rect x="2" y="14" width="20" height="6" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 7h.01M6 17h.01"/>
@@ -415,8 +433,8 @@ export default function ToolsSection() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-pink-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-3">        
-          <div className="flex justify-center">   
+        <div className="rounded-lg border border-pink-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 dark:hover:border-pink-400 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-3">
+          <div className="flex justify-center">
              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
              <path strokeLinecap="round" strokeLinejoin="round" d="M3 18v-6a9 9 0 0 1 18 0v6"/>
              <path strokeLinecap="round" strokeLinejoin="round" d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
@@ -438,8 +456,8 @@ export default function ToolsSection() {
          <div>
           <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-   Mainnet
-    </h3>
+       Mainnet
+         </h3>
          <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{mainnetChains.length} Network</span>
          </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
@@ -449,10 +467,11 @@ export default function ToolsSection() {
           <div>
            <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
            <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-  Testnet
-    </h3>
-            <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} Network</span>
-            </div>
+          Testnet
+         </h3>
+         <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} 
+ Network</span>
+          </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
              {testnetChains.map((chain) => renderCard(chain))}
            </div>
@@ -460,8 +479,8 @@ export default function ToolsSection() {
           <div>
           <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
          <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
- Archive
-  </h3>
+         Archive
+        </h3>
              <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{archiveChains.length} Network</span>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
