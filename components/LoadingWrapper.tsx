@@ -119,7 +119,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
             display: "flex", alignItems: "center", justifyContent: "center", gap: "4px",
             margin: 0,
           }}>
-            Loading data
+            Initializing Network
             <span className="dot1" style={{ display:"inline-block", color:"white" }}>•</span>
             <span className="dot2" style={{ display:"inline-block", color:"white" }}>•</span>
             <span className="dot3" style={{ display:"inline-block", color:"white" }}>•</span>

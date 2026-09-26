@@ -17,7 +17,6 @@ export default function NetworkSection() {
   const ALL_NETWORKS = [...MAINNET, ...TESTNET];
   const data: NetworkItem[] = tab === "all" ? ALL_NETWORKS : tab === "mainnet" ? MAINNET : tab === "testnet" ? TESTNET : ARCHIVE;
 
-  // Fetch real-time status dari API
   useEffect(() => {
     const fetchStatus = async () => {
       try {
@@ -27,7 +26,7 @@ export default function NetworkSection() {
        if (res.ok) {
         const status = await res.json();
         setValidatorStatus(status);
-       }    
+       }
       } catch (error) {
         console.error("Failed to fetch validator status:", error);
       } finally {
@@ -36,8 +35,6 @@ export default function NetworkSection() {
     };
 
     fetchStatus();
-
-    // Poll setiap 15 detik
     const interval = setInterval(fetchStatus, 15000);
     return () => clearInterval(interval);
   }, []);
@@ -68,7 +65,7 @@ export default function NetworkSection() {
   };
 
   return (
-    <section id="ecosystem" className="relative z-10 py-16 px-6 max-w-7xl mx-auto flex flex-col items-center">
+    <section id="ecosystem" className="relative z-10 pt-32 md:pt-40 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center">
 
     {/* HEADER */}
       <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
@@ -76,7 +73,6 @@ export default function NetworkSection() {
     {/* ICON + TITLE */}
       <div className="flex items-center gap-3 mb-4">
 
-        {/* ICON SERVER */}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">
            <rect x="3" y="4" width="18" height="6" rx="2"/>
            <rect x="3" y="14" width="18" height="6" rx="2"/>
@@ -86,15 +82,13 @@ export default function NetworkSection() {
            <line x1="11" y1="17" x2="17" y2="17"/>
           </svg>
 
-          {/* TITLE */}
           <h2 className="text-xl md:text-3xl font-extrabold tracking-tight text-[#ff7b00]">
-           𝐎𝐮𝐫 𝐍𝐞𝐭𝐰𝐨𝐫𝐤
+           Explore Our Network
           </h2>
         </div>
 
-       {/* DESCRIPTION */}
         <p className="mt-2 max-w-2xl text-sm font-semibold md:text-base leading-relaxed text-slate-800 dark:text-slate-200">
-         We support multiple mainnet and tesnet ecosystem<br/>
+         We support multiple mainnet and testnet ecosystem,<br/>
          Providing reliable validation and infrastructure service<br/>
          Across Cosmos-based network.
         </p>
@@ -105,7 +99,7 @@ export default function NetworkSection() {
          <div className="flex gap-2 p-1 rounded-2xl border bg-slate-200/60 dark:bg-slate-800/60 border-slate-300 dark:border-slate-700 shadow-[0_0_15px_rgba(56,189,248,0.15)] mx-auto">
           <TabButton active={tab === "all"} onClick={() => setTab("all")} label="All Network" />
           <TabButton active={tab === "mainnet"} onClick={() => setTab("mainnet")} label="Mainnet" />
-          <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="Tesnet" />
+          <TabButton active={tab === "testnet"} onClick={() => setTab("testnet")} label="Testnet" />
           <TabButton active={tab === "archive"} onClick={() => setTab("archive")} label="Archive" />
         </div>
       </div>
@@ -124,10 +118,8 @@ export default function NetworkSection() {
             key={`${item.name}-${index}`}
             className="relative flex flex-col items-center p-6 transition-all duration-500 group rounded-3xl border border-blue-500 dark:bg-slate-800/90 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 dark:hover:border-sky-400 hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] dark:hover:shadow-[0_0_35px_rgba(56,189,248,0.7)]">
 
-            {/* STATUS BADGE - Real-time dari API */}
             {getStatusBadge(item.name)}
 
-            {/* LOGO */}
             <div className="mb-4 transform group-hover:scale-110 transition-all duration-500">
               <ChainLogo name={item.name} logo={item.logo} />
             </div>
@@ -148,10 +140,7 @@ export default function NetworkSection() {
               )}
             </div>
 
-           {/* BUTTON */}
             <div className="flex gap-2 w-full mt-auto flex-wrap">
-            
-            {/* TOMBOL DELEGATE */}
               {item.delegateUrl ? (
                 <a href={item.delegateUrl} target="_blank" rel="noopener noreferrer"
                   className="flex-1 min-w-fit flex items-center justify-center gap-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-400 text-white text-[11px] py-2 px-3 rounded-full font-bold shadow-lg active:scale-95 transition-all">
@@ -173,14 +162,13 @@ export default function NetworkSection() {
                 </span>
               )}
 
-              {/* EXPLORER / Services */}
               {item.servicesUrl ? (
-                <a href={item.servicesUrl} target="_blank" rel="noopener noreferrer" 
+                <a href={item.servicesUrl} target="_blank" rel="noopener noreferrer"
                   className="flex-1 min-w-fit flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 px-3 rounded-full font-bold transition-all">
                   Services
                 </a>
                ) : item.explorerUrl ? (
-                <a href={item.explorerUrl} target="_blank" rel="noopener noreferrer" 
+                <a href={item.explorerUrl} target="_blank" rel="noopener noreferrer"
                   className="flex-1 min-w-fit flex items-center justify-center gap-1 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900 hover:bg-white dark:hover:bg-slate-800 text-[11px] py-2 px-3 rounded-full font-bold transition-all">
                   Explorer
                 </a>
@@ -197,7 +185,6 @@ export default function NetworkSection() {
   );
 }
 
-{/* COMPONEN TAB BUTTON */}
 const TAB_ICONS: { [key: string]: React.ReactElement } = {
   "All Network": (
     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -209,7 +196,7 @@ const TAB_ICONS: { [key: string]: React.ReactElement } = {
       <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
     </svg>
   ),
-  "Tesnet": (
+  "Testnet": (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
     </svg>
