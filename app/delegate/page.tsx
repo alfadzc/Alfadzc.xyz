@@ -83,6 +83,8 @@ const CHAIN_ID_MAP: Record<string, string> = {
 const CHAIN_COMMISSION_MAP: Record<string, number> = {
   "Lava": 10,
   "Paxi": 1,
+  "Safrochain": 8,
+  "Bitbadges Chain": 10,
 };
 
 function normalizeChain(name: string): string {
