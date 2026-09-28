@@ -11,7 +11,7 @@ const VALIDATOR_OPERATOR = "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah";
 const VALCONS_ADDRESS = "lmnvalcons1j49ytqt3twtmdrrqqhtpqkjj3dfu60dsgw4zm2";
 const CHAIN_DIVISOR = 1_000_000;
 const SIGNED_BLOCKS_WINDOW = 3000;
-const PRICE = 0;
+const PRICE = 0.0022365;
 const FALLBACK = {
   chain: "Lumen",
   moniker: "alfadzc",
@@ -74,12 +74,12 @@ export async function GET() {
         const tokensB = BigInt(b.tokens || 0);
         return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
       });
-      
+
       // Find my position
-      const myIndex = sortedValidators.findIndex((v: any) => 
+      const myIndex = sortedValidators.findIndex((v: any) =>
         v.operator_address === VALIDATOR_OPERATOR
       );
-      
+
       rank = myIndex !== -1 ? myIndex + 1 : 0;
     }
 

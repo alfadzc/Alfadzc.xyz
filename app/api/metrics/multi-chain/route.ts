@@ -12,6 +12,8 @@ interface ChainMetrics {
   price: number;
   uptime: number;
   isFallback?: boolean;
+  isNonCosmos?: boolean;
+  commission?: number;
 }
 
 interface AggregatedMetrics {
@@ -46,6 +48,9 @@ async function fetchLivePrices(): Promise<Record<string, number>> {
         Lava: data["lava-network"]?.usd || priceCache.Lava || 0.0189,
         Shido: data["shido-2"]?.usd || priceCache.Shido || 0.000171,
         Paxi: data["paxi-network"]?.usd || priceCache.Paxi || 0.0127,
+        Safrochain: data["safrochain-saf-token"]?.usd || priceCache.Safrochain || 0.0000205,
+        Bitbadges: priceCache.Bitbadges || 0.000264,
+Lumen: priceCache.Lumen || 0.0022365,
       };
       lastPriceFetch = now;
     }
@@ -54,6 +59,10 @@ async function fetchLivePrices(): Promise<Record<string, number>> {
       Lava: priceCache.Lava || 0.0189,
       Shido: priceCache.Shido || 0.000171,
       Paxi: priceCache.Paxi || 0.0127,
+      Pactus: priceCache.Pactus || 0.01072077,
+      Safrochain: priceCache.Safrochain || 0.0000205,
+      Bitbadges: priceCache.Bitbadges || 0.000264,
+  Lumen: priceCache.Lumen || 0.0022365,
     };
   }
 
@@ -68,26 +77,29 @@ const CHAIN_CONFIG: Array<{
   timeout?: number;
   skipValidatorList?: boolean;
   hardcodedValidators?: number;
+  nonCosmos?: boolean;
+  commission?: number;
 }> = [
   { chain: "Lava", lcd: "https://lava-api.polkachu.com", operator: "lava@valoper18kuml80whhgw3g0dp2qthtlcsazvekfd9kzttd", divisor: 1_000_000, timeout: 4000 },
   { chain: "Shido", lcd: "https://rest.mavnode.io", operator: "shidovaloper1rqt23hexgl3erf2pcnelrmvcnana2kyz70zv2h", divisor: 1_000_000_000_000_000_000, skipValidatorList: true, hardcodedValidators: 37, timeout: 4000 },
   { chain: "Paxi", lcd: "https://mainnet-lcd.paxinet.io", operator: "paxivaloper1d6qj9qy5vzv9kj5x435w5klaxm3wc8l20628mj", divisor: 1_000_000, timeout: 8000 },
-  { chain: "Safrochain", lcd: "https://api1.safrochain.network", operator: "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5", divisor: 1_000_000, timeout: 4000 },  
-  { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000, timeout: 4000 },
+  { chain: "Pactus", lcd: "https://bootstrap1.pactus.org/jsonrpc", operator: "pc1pkq3wu3tkcjqw2qv7flmuhpczfsx68f5eaasn5z", divisor: 1_000_000_000, timeout: 5000, nonCosmos: true, commission: 0.2 },
+  { chain: "Safrochain", lcd: "https://api1.safrochain.network", operator: "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvetymxg5", divisor: 1_000_000, timeout: 4000 },
+  { chain: "Bitbadges", lcd: "https://api-bitbadges.alfadzc.xyz", operator: "bbvaloper18hgreu0c6n3essuc8arct7fx0w0ym6x52fwt2v", divisor: 1_000_000_000, timeout: 4000 },
   { chain: "Lumen", lcd: "https://api.lumen.chaintools.tech", operator: "lmnvaloper1vtesu7w3rvunf7f332ugy67l08ury2l7ft9pah", divisor: 1_000_000, timeout: 8000 },
-  { chain: "Jay Network", lcd: "https://api-jay.onenov.xyz", operator: "yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe", divisor: 1_000_000, timeout: 8000 },  
+  { chain: "Jay Network", lcd: "https://api-jay.onenov.xyz", operator: "yjayvaloper1h6699nz0v7kqjjng4czf022veeefjq0c0ue9fe", divisor: 1_000_000, timeout: 8000 },
   { chain: "Empeiria", lcd: "https://empeiria-testnet-api.itrocket.net", operator: "empevaloper1alf9sl64dgap3ps37qqcl40w8kjranh897t7y6", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 84, timeout: 4000 },
   { chain: "Safrochain Testnet", lcd: "https://rest.testnet.safrochain.com", operator: "addr_safrovaloper1qdpy8ju6lxy62r5jcv9dcjpj2pjrhzgzrxflqs", divisor: 1_000_000, timeout: 4000 },
   { chain: "Pushchain", lcd: "https://api-test.pchain.vinjan-inc.com", operator: "pushvaloper1nnyasz54zm6gc2w07yxh9rl63tj76yfg5k89gx", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Republic AI", lcd: "https://republic-testnet-api.linknode.org", operator: "raivaloper1qhzv04nc5ghe727len9hy20t49372fjpma74rr", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Limonata", lcd: "https://rest.limonata.xyz", operator: "cosmosvaloper1fzr8mmw88qz7cnr0r335en9xkfe6zewzcl6vww", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
-  { chain: "Worrell Testnet", lcd: "https://worrell-testnet-api.itrocket.net", operator: "worrellvaloper1kw3lzqgf2nvq4gluna60qzdf9jgl59mrxwwr67", divisor: 1_000_000_000, timeout: 4000 },  
-  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 }, 
-  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 }, 
+  { chain: "Worrell Testnet", lcd: "https://worrell-testnet-api.itrocket.net", operator: "worrellvaloper1kw3lzqgf2nvq4gluna60qzdf9jgl59mrxwwr67", divisor: 1_000_000_000, timeout: 4000 },
+  { chain: "CNHO", lcd: "https://api.cnho.io", operator: "cnhovaloper1aw3nz0zlurr040n8kct80rydlc6rzzfj7wn0c0", divisor: 1_000_000, skipValidatorList: true, hardcodedValidators: 17, timeout: 4000 },
+  { chain: "Epix", lcd: "https://api.epix.zone", operator: "epixvaloper1sc4dsg6t5q8l4dp40fyxuly59va6kqw7sfav9f", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
   { chain: "Monolythium v1", lcd: "https://api-test.monolyth.vinjan-inc.com", operator: "monovaloper10ers0hza3hg8nwy37rtcn9svje05md53uf7hdl", divisor: 1_000_000_000_000_000_000, timeout: 4000 },
 ];
 
-const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Safrochain", "Bitbadges", "Lumen", "Jay Network", "Empeiria", "Safrochain Testnet", "Pushchain", "Republic", "Limonata", "Worrell Testnet", "CNHO", "Epix", "Monolythium v1"];
+const CHAIN_ORDER = ["Lava", "Shido", "Paxi", "Pactus", "Safrochain", "Bitbadges", "Lumen", "Jay Network", "Empeiria", "Safrochain Testnet", "Pushchain", "Republic AI", "Limonata", "Worrell Testnet", "CNHO", "Epix", "Monolythium v1"];
 
 let metricsCache: { data: AggregatedMetrics; timestamp: number } | null = null;
 const CACHE_TTL = 5000;
@@ -111,7 +123,48 @@ async function getValidatorUptime(lcd: string, operator: string, timeout: number
   }
 }
 
+// ─── Pactus: Panggil endpoint standalone ────────────────────────────
+async function fetchPactus(
+  cfg: typeof CHAIN_CONFIG[0]
+): Promise<ChainMetrics | null> {
+  try {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+      `http://localhost:${process.env.PORT || 3000}`;
+
+    const res = await fetch(`${baseUrl}/api/validators/pactus`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(cfg.timeout || 15000),
+    });
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    if (!data || data.isFallback) return null;
+
+    return {
+      chain: "Pactus",
+      validators: data.validators || 0,
+      totalBonded: data.totalBonded || "0",
+      totalBondedUSD: data.totalBondedUSD || 0,
+      price: data.price || 0,
+      uptime: data.uptime || 100,
+      isFallback: false,
+      isNonCosmos: true,
+      commission: cfg.commission ?? 0.2,
+    };
+  } catch {
+    return null;
+  }
+}
+
 async function fetchChain(cfg: typeof CHAIN_CONFIG[0], priceMap: Record<string, number>): Promise<ChainMetrics | null> {
+  // Route ke endpoint Pactus standalone kalau bukan Cosmos
+  if (cfg.nonCosmos) {
+    return fetchPactus(cfg);
+  }
+
   const timeout = cfg.timeout || 2000;
   const price = priceMap[cfg.chain] || 0;
 

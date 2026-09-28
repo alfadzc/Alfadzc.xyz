@@ -110,7 +110,7 @@ export default function StakeSection() {
              Stake your tokens with us and earn <span className="text-emerald-500 dark:text-emerald-400 font-bold">
              Passive Income</span> everyday.
             </p>
-            <a href="/network" target="_blank" rel="noopener noreferrer" className="stake-btn inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-bold py-2 px-6 rounded-full text-sm md:text-base shadow-md border border-emerald-400/30 mt-6">
+            <a href="/delegate" target="_blank" rel="noopener noreferrer" className="stake-btn inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-bold py-2 px-6 rounded-full text-sm md:text-base shadow-md border border-emerald-400/30 mt-6">
               Start Staking Now
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>

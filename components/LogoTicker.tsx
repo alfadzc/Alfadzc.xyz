@@ -6,6 +6,7 @@ const TICKER_LOGOS = [
   { name: "Lava",        logo: "/chains/lava.png" },
   { name: "Shido",       logo: "/chains/shido.png" },
   { name: "Paxi",        logo: "/chains/paxi.png" },
+  { name: "Pactus",      logo: "/chains/pactus.png" },  
   { name: "Safrochain",  logo: "/chains/safrochain.png" },  
   { name: "Bitbadges",   logo: "/chains/bitbadges.png" },
   { name: "CNHO",        logo: "/chains/cnho.png" },

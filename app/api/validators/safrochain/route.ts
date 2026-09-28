@@ -16,7 +16,37 @@ const VALIDATOR_OPERATOR = "addr_safrovaloper1xmssy0xfhz0ed5h75a7am9ec7ue7fkvety
 const VALCONS_ADDRESS = "addr_safrovalcons1n7jprwdx3ntd4dyaa05dm3pp3v53fu2ydkx0yy";
 const CHAIN_DIVISOR = 1_000_000;
 const SIGNED_BLOCKS_WINDOW = 10000;
-const PRICE = 0;
+
+// Harga fallback SAF (CoinGecko belum punya data live)
+const SAF_PRICE_FALLBACK = 0.0000205;
+
+let priceCache = { value: SAF_PRICE_FALLBACK, ts: 0 };
+const PRICE_TTL = 300000; // 5 menit
+
+async function fetchSAFPrice(): Promise<number> {
+  const now = Date.now();
+  if (priceCache.ts && now - priceCache.ts < PRICE_TTL) {
+    return priceCache.value;
+  }
+
+  try {
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=safrochain-saf-token&vs_currencies=usd",
+      { signal: AbortSignal.timeout(5000), cache: "no-store" }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      const price = data["safrochain-saf-token"]?.usd;
+      if (typeof price === "number" && price > 0) {
+        priceCache = { value: price, ts: now };
+        return price;
+      }
+    }
+  } catch {}
+
+  priceCache = { value: priceCache.value || SAF_PRICE_FALLBACK, ts: now };
+  return priceCache.value;
+}
 
 const FALLBACK = {
   chain: "Safrochain",
@@ -24,7 +54,7 @@ const FALLBACK = {
   operatorAddress: VALIDATOR_OPERATOR,
   totalBonded: "0",
   totalBondedUSD: "0",
-  price: PRICE,
+  price: SAF_PRICE_FALLBACK,
   validators: 0,
   uptime: 99.9,
   rank: 0,
@@ -59,17 +89,18 @@ async function fetchUptime(): Promise<number> {
 
 export async function GET() {
   try {
-    const [validatorData, listData, uptime] = await Promise.all([
+    const [validatorData, listData, uptime, price] = await Promise.all([
       fetchWithFallback(`/cosmos/staking/v1beta1/validators/${VALIDATOR_OPERATOR}`),
       fetchWithFallback(`/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED&pagination.limit=500`),
       fetchUptime(),
+      fetchSAFPrice(),
     ]);
 
     const validator = validatorData?.validator;
-    if (!validator) return NextResponse.json({ ...FALLBACK, uptime });
+    if (!validator) return NextResponse.json({ ...FALLBACK, uptime, price });
 
     const totalBonded = Number(BigInt(validator.tokens || 0)) / CHAIN_DIVISOR;
-    const totalBondedUSD = (totalBonded * PRICE).toFixed(2);
+    const totalBondedUSD = (totalBonded * price).toFixed(2);
 
     let rank = 0;
     if (listData?.validators && Array.isArray(listData.validators)) {
@@ -78,11 +109,11 @@ export async function GET() {
         const tokensB = BigInt(b.tokens || 0);
         return tokensB > tokensA ? 1 : tokensB < tokensA ? -1 : 0;
       });
-      
-      const myIndex = sortedValidators.findIndex((v: any) => 
+
+      const myIndex = sortedValidators.findIndex((v: any) =>
         v.operator_address === VALIDATOR_OPERATOR
       );
-      
+
       rank = myIndex !== -1 ? myIndex + 1 : 0;
     }
 
@@ -92,7 +123,7 @@ export async function GET() {
       operatorAddress: VALIDATOR_OPERATOR,
       totalBonded: totalBonded.toFixed(2),
       totalBondedUSD,
-      price: PRICE,
+      price,
       validators: listData?.validators?.length || 0,
       uptime,
       rank,

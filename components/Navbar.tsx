@@ -8,11 +8,10 @@ export default function Navbar() {
   return (
     <nav
     className="sticky top-0 z-[100] flex justify-between items-center px-6 md:px-12 py-4
-    bg-transparent dark:bg-transparent
+    bg-slate-100/95 dark:bg-slate-800/80
     backdrop-blur-md
     border-b border-white/10 dark:border-white/5
-    transition-colors duration-300"
-   >
+    transition-colors duration-300">
 
    {/* BRAND KIRI */}
     <div className="flex items-center gap-3">
@@ -29,7 +28,8 @@ export default function Navbar() {
         className="w-full h-full object-cover rounded-full"
         />
       </div>
-      <span className="text-xl font-medium tracking-tighter gradient-text">𝐀𝐥𝐟𝐚𝐝𝐳𝐜.𝐱𝐲𝐳</span>
+      <span className="text-xl font-medium tracking-tighter gradient-text">
+      𝐀𝐥𝐟𝐚𝐝𝐳𝐜.𝐱𝐲𝐳</span>
       </button>
      </div>
 
@@ -74,8 +74,7 @@ export default function Navbar() {
         {/* HAMBURGER - Mobile only */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+          onClick={() => setMenuOpen(!menuOpen)}>
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}/>
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}/>
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}/>
@@ -104,8 +103,7 @@ function MobileNavLink({ href, label, onClick, external }: { href: string; label
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       onClick={onClick}
-      className="text-sm font-medium text-white/80 hover:text-white transition-colors py-2 border-b border-white/10"
-    >
+      className="text-sm font-medium text-white/80 hover:text-white transition-colors py-2 border-b border-white/10">
       {label}
     </Link>
   );
@@ -119,8 +117,7 @@ function NavLink({ href, label, icon, external }: { href: string; label: string;
       rel={external ? "noopener noreferrer" : undefined}
       className="flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-white/80
       hover:text-blue-600 dark:hover:text-white
-      transition-colors cursor-pointer"
-    >
+      transition-colors cursor-pointer">
       {icon}
       {label}
     </Link>
