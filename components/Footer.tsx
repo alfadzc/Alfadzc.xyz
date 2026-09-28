@@ -113,7 +113,7 @@ export default function Footer() {
               <li><a href="https://explorer.alfadzc.xyz" target="_blank" rel="noopener noreferrer" className="text-gray-700 dark:text-gray-300 hover:text-[#ff7b00] transition">Explorer</a></li>
               <li><a href="/tools/validator-monitor" className="text-gray-700 dark:text-gray-300 hover:text-[#ff7b00] transition">Monitoring</a></li>
               <li><a href="/tools/analytics" className="text-gray-700 dark:text-gray-300 hover:text-[#ff7b00] transition">Analytics</a></li>
-              <li><a href="mailto:contact@alfadzc.xyz" className="text-gray-700 dark:text-gray-300 hover:text-[#ff7b00] transition">Contact</a></li>
+              <li><a href="mailto:contact@alfadzc.xyz" className="text-gray-700 dark:text-gray-300 hover:text-[#ff7b00] transition">Contact us</a></li>
             </ul>
           </div>
 
