@@ -3,13 +3,6 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const RPC_URLS = [
-  "https://bootstrap1.pactus.org/jsonrpc",
-  "https://bootstrap2.pactus.org/jsonrpc",
-  "https://bootstrap3.pactus.org/jsonrpc",
-  "https://bootstrap4.pactus.org/jsonrpc",
-];
-
 // 8 Validator Address Pactus alfadzc
 const PACTUS_VALIDATORS = [
   "pc1pkq3wu3tkcjqw2qv7flmuhpczfsx68f5eaasn5z",
@@ -40,42 +33,37 @@ const FALLBACK = {
   lastUpdated: new Date().toISOString(),
 };
 
-async function rpcCall(method: string, params: Record<string, unknown> = {}) {
-  for (const url of RPC_URLS) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
+async function fetchValidator(address: string) {
+  try {
+    const res = await fetch(
+      `https://pactusscan.com/api/v1/address/${address}`,
+      {
         cache: "no-store",
-        signal: AbortSignal.timeout(5000),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.result) return data.result;
+        signal: AbortSignal.timeout(8000),
       }
-    } catch {}
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.validator ?? null;
+  } catch {
+    return null;
   }
-  return null;
 }
 
 export async function GET() {
   try {
     const validatorResults = await Promise.all(
-      PACTUS_VALIDATORS.map(addr =>
-        rpcCall("pactus.blockchain.get_validator", { address: addr })
-      )
+      PACTUS_VALIDATORS.map((addr) => fetchValidator(addr))
     );
 
     let totalStakeNano = 0;
     let totalAvailability = 0;
     let validCount = 0;
 
-    validatorResults.forEach((data) => {
-      const validator = data?.validator;
+    validatorResults.forEach((validator) => {
       if (validator) {
         totalStakeNano += Number(validator.stake || 0);
-        totalAvailability += Number(validator.availability_score ?? 1) * 100;
+        totalAvailability += Number(validator.availability_score ?? 0) * 100;
         validCount++;
       }
     });
