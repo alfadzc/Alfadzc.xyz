@@ -81,7 +81,7 @@ export default function ThemeToggle() {
           transition-all duration-300 cursor-pointer
           hover:scale-110 active:scale-95">
 
-        {/* BACKGROUND ABU-ABU - tampil saat LIGHT MODE (lebih tajam) */}
+        {/* BACKGROUND ABU-ABU - tampil saat LIGHT MODE */}
         <span
           className={`absolute inset-0 rounded-full transition-all duration-500 ease-in-out ${
             !isDark
@@ -90,25 +90,21 @@ export default function ThemeToggle() {
           }`}
         />
 
-        {/* CINCIN BIRU - tampil saat LIGHT MODE */}
+        {/* CINCIN TIPIS - BIRU MUDA di light, ORANGE di dark */}
         <span
-          className={`absolute inset-0 rounded-full border-2 border-blue-500 transition-all duration-500 ease-in-out ${
-            !isDark
-              ? "scale-100 opacity-100"
-              : "scale-0 opacity-0"
-          }`}
+          className="absolute inset-0 rounded-full border border-blue-300/40 dark:border-[#ff7b00]/60 transition-all duration-500 ease-in-out scale-100 opacity-100"
         />
 
-        {/* Cincin biru terang saat diklik */}
+        {/* RING saat diklik - BIRU di light, ORANGE di dark */}
         <span
           className={`absolute inset-0 rounded-full transition-all duration-500 ease-out ${
             clicked
-              ? "ring-2 ring-blue-400 scale-125 opacity-100"
-              : "ring-0 ring-blue-400/0 scale-100 opacity-0"
+              ? "ring-1 ring-blue-300/60 dark:ring-[#ff7b00] scale-125 opacity-100"
+              : "ring-0 ring-blue-300/0 dark:ring-[#ff7b00]/0 scale-100 opacity-0"
           }`}
         />
 
-        {/* MOON - BULAN SABIT TIPIS */}
+        {/* MOON - BULAN SABIT TIPIS - WARNA TETAP */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -125,17 +121,17 @@ export default function ThemeToggle() {
             cx="12"
             cy="12"
             r="9"
-            fill={clicked ? "#3b82f6" : "#0f172a"}
+            fill="#0f172a"
             mask="url(#moon-crescent-mask)"
           />
         </svg>
 
-        {/* SUN - tampil saat DARK */}
+        {/* SUN - tampil saat DARK - WARNA ORANGE */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
-          stroke={clicked ? "#3b82f6" : "#ffffff"}
+          stroke="#ff7b00"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -154,7 +150,7 @@ export default function ThemeToggle() {
         </svg>
       </button>
 
-      {/* TOOLTIP POPUP - DI BAWAH */}
+      {/* TOOLTIP */}
       <div
         className={`absolute top-full left-1/2 mt-3 whitespace-nowrap
           px-3 py-1.5 rounded-lg text-xs font-semibold

@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative w-full border-t border-slate-300/50 dark:border-white/10 bg-slate-100/95 dark:bg-slate-800/80 backdrop-blur-md z-50 mt-16">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16">
+      className="relative w-full border-t border-slate-300 dark:border-white/10 bg-gradient-to-b from-slate-100 to-slate-300 dark:from-slate-800/80 dark:to-slate-900/80 backdrop-blur-md z-50 mt-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-6 pb-6 md:pt-8 md:pb-8">
 
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
@@ -22,17 +22,17 @@ export default function Footer() {
                 className="w-8 h-8 rounded-full"
                 onError={(e) => (e.currentTarget.style.display = "none")}
               />
-              <span className="text-lg font-bold text-gray-900 dark:text-white">
+              <span className="text-lg font-bold text-gray-800 dark:text-white">
                 Alfadzc.xyz
               </span>
             </div>
 
             {/* DESCRIPTION */}
             <div>
-              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 Professional validator with enterprise-grade reliability.
               </p>
-              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mt-1">
+              <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
                 Stake with confidence.
               </p>
             </div>
@@ -75,26 +75,25 @@ export default function Footer() {
 
             {/* FEEDBACK & SUPPORT BUTTON → ke /contact (form) */}
             <a href="/contact"
-             className="mt-3 inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900/60 hover:bg-gray-200 dark:hover:bg-gray-800 transition max-w-xs">
-              <div className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-300 dark:bg-gray-800">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-bold text-[#ff7b00]">
-                  Feedback & Support
-                </p>
-                <p className="text-xs text-gray-700 dark:text-gray-300">
-                  Report bugs or suggest features
-                </p>
-              </div>
-            </a>
+             className="mt-3 group inline-flex items-center gap-3 px-4 py-2.5 rounded-xl border border-slate-300/70 dark:border-slate-700 bg-gradient-to-r from-slate-100/80 to-slate-200/80 dark:from-slate-900/60 dark:to-slate-800/60 hover:from-slate-200/90 hover:to-slate-300/90 dark:hover:from-slate-800/80 dark:hover:to-slate-700/80 transition-all duration-300 max-w-xs hover:scale-[1.02] hover:shadow-md">
+             <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 group-hover:from-orange-500/30 group-hover:to-orange-600/30 transition-all">
+             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+           </svg>
+         </div>
+           <div className="text-left">
+          <p className="text-sm font-bold text-[#ff7b00]">Feedback & Support</p>
+          <p className="text-xs text-slate-600 dark:text-slate-400">Report bugs or suggest features</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-slate-400 group-hover:text-[#ff7b00] group-hover:translate-x-1 transition-all ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+       </svg>
+       </a>
           </div>
 
           {/* MAIN SITE */}
           <div>
-            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">
+            <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-4">
               Main Site
             </h4>
             <ul className="space-y-3 text-sm">
@@ -106,7 +105,7 @@ export default function Footer() {
 
           {/* TOOLS */}
           <div>
-            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">
+            <h4 className="text-sm font-bold text-gray-800 dark:text-white mb-4">
               Tools
             </h4>
             <ul className="space-y-3 text-sm">
@@ -120,9 +119,9 @@ export default function Footer() {
         </div>
         {/* END MAIN GRID */}
 
-        {/* BOTTOM BAR - COPYRIGHT CENTER */}
-        <div className="border-t border-gray-200 dark:border-gray-700 mt-10 pt-6 text-center">
-          <p className="text-xs md:text-sm text-gray-700 dark:text-gray-300">
+        {/* BOTTOM BAR - COPYRIGHT CENTER (TIPIS) */}
+        <div className="border-t border-gray-400/60 dark:border-gray-700 mt-6 pt-3 text-center">
+          <p className="text-sm text-gray-800 dark:text-gray-300">
             Copyright © {currentYear} Alfadzc.xyz. All Rights Reserved.
           </p>
         </div>
