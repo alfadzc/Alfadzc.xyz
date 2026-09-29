@@ -1,5 +1,6 @@
 // export const runtime = 'edge'; // SETUP FOR CloudFlare
 import { NextResponse } from "next/server";
+import { fetchPactus as fetchPactusData } from "@/lib/fetchPactus";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 300;
@@ -50,7 +51,7 @@ async function fetchLivePrices(): Promise<Record<string, number>> {
         Paxi: data["paxi-network"]?.usd || priceCache.Paxi || 0.0127,
         Safrochain: data["safrochain-saf-token"]?.usd || priceCache.Safrochain || 0.0000205,
         Bitbadges: priceCache.Bitbadges || 0.000264,
-Lumen: priceCache.Lumen || 0.0022365,
+        Lumen: priceCache.Lumen || 0.0022365,
       };
       lastPriceFetch = now;
     }
@@ -62,7 +63,7 @@ Lumen: priceCache.Lumen || 0.0022365,
       Pactus: priceCache.Pactus || 0.01072077,
       Safrochain: priceCache.Safrochain || 0.0000205,
       Bitbadges: priceCache.Bitbadges || 0.000264,
-  Lumen: priceCache.Lumen || 0.0022365,
+      Lumen: priceCache.Lumen || 0.0022365,
     };
   }
 
@@ -123,24 +124,10 @@ async function getValidatorUptime(lcd: string, operator: string, timeout: number
   }
 }
 
-// ─── Pactus: Panggil endpoint standalone ────────────────────────────
-async function fetchPactus(
-  cfg: typeof CHAIN_CONFIG[0]
-): Promise<ChainMetrics | null> {
-  try {
-    const baseUrl =
-      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      "http://localhost:3000";
-
-    const res = await fetch(`${baseUrl}/api/validators/pactus`, {
-      cache: "no-store",
-      signal: AbortSignal.timeout(cfg.timeout || 15000),
-    });
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
+async function fetchChain(cfg: typeof CHAIN_CONFIG[0], priceMap: Record<string, number>): Promise<ChainMetrics | null> {
+  // Route ke fungsi Pactus langsung (tanpa HTTP self-fetch)
+  if (cfg.nonCosmos) {
+    const data = await fetchPactusData();
     if (!data || data.isFallback) return null;
 
     return {
@@ -154,15 +141,6 @@ async function fetchPactus(
       isNonCosmos: true,
       commission: cfg.commission ?? 0.2,
     };
-  } catch {
-    return null;
-  }
-}
-
-async function fetchChain(cfg: typeof CHAIN_CONFIG[0], priceMap: Record<string, number>): Promise<ChainMetrics | null> {
-  // Route ke endpoint Pactus standalone kalau bukan Cosmos
-  if (cfg.nonCosmos) {
-    return fetchPactus(cfg);
   }
 
   const timeout = cfg.timeout || 2000;
