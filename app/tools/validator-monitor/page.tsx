@@ -177,7 +177,7 @@ export default function ValidatorMonitor() {
         <div className="border-b border-slate-200 dark:border-slate-700/50 bg-transparent dark:bg-slate-900/50 backdrop-blur-sm">
 
          {/* ✅UBAH LEBAR HEADER py-16 ganti nilai lebih besar */}
-          <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+          <div className="max-w-[1600px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
 
             <div className="flex justify-center md:justify-start">
               <button
@@ -203,7 +203,7 @@ export default function ValidatorMonitor() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-16 space-y-8">
+        <div className="max-w-[1600px] mx-auto px-6 py-16 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.8)]">
               <p className="text-base font-bold text-center text-slate-800 dark:text-slate-300 mb-2">Total Validators</p>

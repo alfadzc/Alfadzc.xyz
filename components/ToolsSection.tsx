@@ -94,8 +94,8 @@ function normalizeChainName(name: string): string {
     "safrochain-testnet": "Safrochain Testnet",
     pushchain: "Pushchain",
     republic: "Republic AI",
-  limonata: "Limonata",
-  "worrell-testnet":  "Worrell Testnet",
+    limonata: "Limonata",
+    "worrell-testnet":  "Worrell Testnet",
     monolythium: "Monolythium v1",
   };
 
@@ -154,7 +154,6 @@ export default function ToolsSection() {
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data: MetricsData = await res.json();
-        console.log("Fetched metrics:", data);
         if (mounted) setMetrics(data);
        } catch (error) {
         console.error("Metrics fetch error:", error);
@@ -200,37 +199,16 @@ export default function ToolsSection() {
   const normalizedNetworksSupported = metrics?.networksSupported ?? "12";
 
   const normalizedChains: ChainMetrics[] = useMemo(() => {
+    const archiveChains: ChainMetrics[] = [
+      { chain: "CNHO Stable", validators: 1, totalBonded: "Archive", totalBondedUSD: 0, price: 0, isFallback: true },
+      { chain: "Epix", validators: 1, totalBonded: "Archive", totalBondedUSD: 0, price: 0, isFallback: true },
+      { chain: "Monolythium v1", validators: 1, totalBonded: "Archive", totalBondedUSD: 0, price: 0, isFallback: true },
+    ];
+
     const chains = (metrics?.chains ?? []).map((c) => ({
       ...c,
       chain: normalizeChainName(c.chain),
     }));
-
-    const archiveChains: ChainMetrics[] = [
-      {
-        chain: "CNHO Stable",
-        validators: 1,
-        totalBonded: "Archive",
-        totalBondedUSD: 0,
-        price: 0,
-        isFallback: true,
-      },
-      {
-        chain: "Epix",
-        validators: 1,
-        totalBonded: "Archive",
-        totalBondedUSD: 0,
-        price: 0,
-        isFallback: true,
-      },
-      {
-        chain: "Monolythium v1",
-        validators: 1,
-        totalBonded: "Archive",
-        totalBondedUSD: 0,
-        price: 0,
-        isFallback: true,
-      },
-    ];
 
     for (const archive of archiveChains) {
       if (!chains.some((c) => c.chain === archive.chain)) {
@@ -264,95 +242,111 @@ export default function ToolsSection() {
   );
 
   const renderCard = (chain: ChainMetrics) => {
-  const tokenCode = getTokenCode(chain.chain);
+    const tokenCode = getTokenCode(chain.chain);
+    const isArchive = chain.isFallback || ["CNHO Stable", "Epix", "Monolythium v1"].includes(chain.chain);
 
-  const archiveInfo: Record<string, { title: string; description: string }> = {
-    "CNHO Stable": {
-    title: "CNHO Stable.",
-    description: "Archived Network.",
-    },
-    Epix: {
-    title: "Epix.",
-    description: "Archived Network.",
-    },
-    "Monolythium v1": {
-    title: "Migration v2.",
-    description: "Rust-Based Network Upgrade.",
-   },
-  };
+    return (
+      <article
+        key={`card-${chain.chain}`}
+        className="relative pt-12 max-w-[360px] rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
+        
+{/* ✅ BADGE ONLINE/OFFLINE BERDENYUT */}
+        {isArchive ? (
+          <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-2.5 py-1 text-[11px] font-semibold text-red-400 shadow-[0_0_10px_rgba(248,113,113,0.2)]">
+            <div className="animate-dot-red h-1.5 w-1.5 rounded-full bg-red-400"></div>
+            Offline
+          </div>
+        ) : (
+          <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.2)]">
+            <div className="animate-dot-green h-1.5 w-1.5 rounded-full bg-emerald-400"></div>
+            Online
+          </div>
+        )}
 
-  const archive = archiveInfo[chain.chain];
+        <div className="mb-6 flex items-center gap-3">
+          <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
+            {CHAIN_LOGOS[chain.chain] ? (
+              <img src={CHAIN_LOGOS[chain.chain]} alt={chain.chain} className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-900 dark:text-slate-300">
+                {chain.chain?.[0] ?? "?"}
+              </div>
+            )}
+          </div>
 
-  return (
-    <article
-      key={`card-${chain.chain}`}
-      className="max-w-[360px] rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
-      <div className="mb-10 flex items-center gap-3">
-        <div className="h-11 w-11 overflow-hidden rounded-full border border-slate-700 bg-slate-800">
-          {CHAIN_LOGOS[chain.chain] ? (
-            <img
-              src={CHAIN_LOGOS[chain.chain]}
-              alt={chain.chain}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-sm font-bold text-slate-900 dark:text-slate-300">
-              {chain.chain?.[0] ?? "?"}
+          <div className="min-w-0 flex-1 pr-2 py-1">
+            <p className="text-[15px] tracking-tight font-bold text-slate-900 dark:text-slate-300 mb-1 truncate">
+              {chain.chain}
+            </p>
+            <span
+              className={`inline-block rounded-md px-2.5 py-1 text-xs font-semibold ${
+                isArchive
+                  ? "border border-[#ff7b00]/30 bg-[#ff7b00]/10 text-[#ff7b00]"
+                  : "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+              }`}
+            >
+              {isArchive ? "Archive" : aprFromChain(chain)}
+            </span>
+          </div>
+        </div>
+
+        {isArchive ? (
+          chain.chain === "Monolythium v1" ? (
+            <div className="text-sm space-y-2 pt-2">
+              <p className="text-slate-900 dark:text-slate-300 font-semibold">Migration v2.</p>
+              <p className="text-slate-900 dark:text-slate-300">Rust-Based Network Upgrade.</p>
             </div>
-          )}
-        </div>
+          ) : (
+            <div className="h-[70px]"></div>
+          )
+        ) : (
+          <div className="flex flex-col gap-1.5 text-[13px]">
+            <div className="flex justify-between items-center gap-1">
+              <span className="text-slate-900 dark:text-slate-300 font-medium whitespace-nowrap">Total Staked</span>
+              <span className="text-slate-900 dark:text-slate-300 font-semibold text-right whitespace-nowrap">
+                {formatTokenDisplay(chain.totalBonded)} {tokenCode}
+              </span>
+            </div>
 
-        <div className="min-w-0">
-          <p className="truncate text-lg font-bold text-slate-900 dark:text-slate-300">
-            {chain.chain}
-          </p>
+            <div className="flex justify-between items-center gap-1">
+              <span className="text-slate-900 dark:text-slate-300 font-medium whitespace-nowrap">Value (USD)</span>
+              <span className="text-slate-900 dark:text-slate-300 font-semibold text-right whitespace-nowrap">
+                {formatUsd(chain.totalBondedUSD)}
+              </span>
+            </div>
 
-       <span
-       className={`inline-block rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
-         chain.isFallback
-        ? "border border-amber-500/30 bg-amber-500/10 text-[#ff7b00]"
-        : "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-        }`}
-        >
-       {chain.isFallback ? "Archive" : aprFromChain(chain)}
-        </span>
-        </div>
-       </div>
-
-     {archive ? (
-     <div className="text-sm space-y-2">
-     <p className="text-[#ff7b00] font-semibold">
-      {archive.title}
-     </p>
-
-     <p className="text-slate-900 dark:text-slate-200">
-      {archive.description}
-     </p>
-     </div>
-     ) : (
-        <div className="grid grid-cols-[1fr_auto] gap-y-1 text-sm">
-          <p className="text-slate-900 dark:text-slate-300">Total Staked</p>
-          <p className="text-slate-900 dark:text-slate-300 font-semibold">
-            {formatTokenDisplay(chain.totalBonded)} {tokenCode}
-          </p>
-
-          <p className="text-slate-900 dark:text-slate-300">Value (USD)</p>
-          <p className="text-slate-900 dark:text-slate-300 font-semibold">
-            {formatUsd(chain.totalBondedUSD)}
-          </p>
-
-          <p className="text-slate-900 dark:text-slate-300">Validators</p>
-          <p className="text-orange-400 font-semibold">
-            {chain.validators}
-          </p>
-        </div>
-       )}
-     </article>
-   );
+            <div className="flex justify-between items-center gap-1">
+              <span className="text-slate-900 dark:text-slate-300 font-medium whitespace-nowrap">Validators</span>
+              <span className="text-[#ff7b00] font-semibold text-right whitespace-nowrap">
+                {chain.validators}
+              </span>
+            </div>
+          </div>
+        )}
+      </article>
+    );
   };
 
   return (
     <section id="tools" className="relative z-10 px-6 py-16 md:py-20">
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+        @keyframes pulse-dot-green {
+          0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 3px #34d399; }
+          50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 8px #34d399; }
+        }
+        @keyframes pulse-dot-red {
+          0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 3px #f87171; }
+          50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 8px #f87171; }
+        }
+        .animate-shimmer { background-size: 200% auto; animation: shimmer 3s linear infinite; }
+        .animate-dot-green { animation: pulse-dot-green 1.5s ease-in-out infinite; }
+        .animate-dot-red { animation: pulse-dot-red 1.5s ease-in-out infinite; }
+      `}</style>
+
       <div className="mx-auto w-full max-w-4xl text-center">
         <div className="flex items-center justify-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-12 w-12 text-[#ff7b00] flex-shrink-0" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -384,7 +378,7 @@ export default function ToolsSection() {
         </div>
       </div>
 
-     {/* NETWORK SUPPORT */}
+     {/* ✅ NETWORK SUPPORT */}
       <div className="mb-10 grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="rounded-lg border border-purple-500 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] dark:hover:shadow-[0_0_35px_rgba(236,72,153,0.7)] dark:hover:bg-slate-800">
           <div className="relative flex items-center justify-center mb-4">
@@ -469,35 +463,31 @@ export default function ToolsSection() {
       ) : (
         <div className="space-y-10">
          <div>
-          <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-          <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-       Mainnet
-         </h3>
-         <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{mainnetChains.length} Network</span>
-         </div>
+          <div className="mb-4 flex items-center">
+            <h3 className="flex items-center text-sm font-semibold text-white bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 animate-shimmer px-4 py-1.5 rounded-lg border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+              Mainnet <div className="animate-dot mx-2 h-1.5 w-1.5 rounded-full bg-emerald-400"></div> {mainnetChains.length > 0 ? mainnetChains.length : 7} Network
+            </h3>
+          </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {mainnetChains.map((chain) => renderCard(chain))}
             </div>
            </div>
           <div>
-           <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-           <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-          Testnet
-         </h3>
-         <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{testnetChains.length} 
- Network</span>
+           <div className="mb-4 flex items-center">
+            <h3 className="flex items-center text-sm font-semibold text-white bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 animate-shimmer px-4 py-1.5 rounded-lg border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+              Testnet <div className="animate-dot mx-2 h-1.5 w-1.5 rounded-full bg-emerald-400"></div> {testnetChains.length > 0 ? testnetChains.length : 4} Network
+            </h3>
           </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
              {testnetChains.map((chain) => renderCard(chain))}
            </div>
          </div>
           <div>
-          <div className="mb-4 flex items-center justify-between transition-all duration-300 text-white font-semibold">
-         <h3 className="text-base font-semibold text-slate-200 bg-gradient-to-r from-purple-600 to-blue-600 px-5 py-2 rounded-xl inline-block border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-         Archive
-        </h3>
-             <span className="text-base font-semibold text-slate-200 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-xl border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.4)]">{archiveChains.length} Network</span>
-            </div>
+          <div className="mb-4 flex items-center">
+            <h3 className="flex items-center text-sm font-semibold text-white bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 animate-shimmer px-4 py-1.5 rounded-lg border border-sky-400/80 shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+              Archive <div className="animate-dot mx-2 h-1.5 w-1.5 rounded-full bg-emerald-400"></div> {archiveChains.length > 0 ? archiveChains.length : 3} Network
+            </h3>
+          </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
              {archiveChains.map((chain) => renderCard(chain))}
            </div>
@@ -525,7 +515,7 @@ export default function ToolsSection() {
           <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
           </svg>
-           𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫 𝐌𝐨𝐧𝐢𝐭𝐨𝐫
+          𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐨𝐫 𝐌𝐨𝐧𝐢𝐭𝐨𝐫
           </h3>
           <p className="text-base font-medium text-slate-900 dark:text-slate-300">
            Track Validator Uptime, Health and Reliability in Real-Time.
@@ -537,7 +527,6 @@ export default function ToolsSection() {
 
         <button onClick={() => handleToolClick("/tools/analytics")}
         className="rounded-lg border border-blue-500 dark:border-blue-500 bg-slate-50 dark:bg-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-blue-400 shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,1)]">
-
           <h3 className="text-2xl font-bold mb-6 text-blue-500 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-blue-500 transition group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 13h4l2-6 3 12 3-8 2 4h4"/>
