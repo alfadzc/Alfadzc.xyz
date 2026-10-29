@@ -9,9 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/react": "^4.4.0",
+    "@tsparticles/slim": "^4.4.0",
+    "lucide-react": "^1.61.0",
     "next": "16.4.3",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-tsparticles": "^2.12.2",
+    "recharts": "^3.10.1",
+    "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
