@@ -28,7 +28,7 @@ export default function Footer() {
             </p>
 
            {/* ✅FEEDBACK & SUPPORT BUTTON */}
-            <a href="/contact"
+            <a href="/contact" target="_blank" rel="noopener noreferrer"
              className="mt-1 group inline-flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-200 dark:bg-slate-900/60 hover:bg-slate-300 dark:hover:bg-slate-800 transition-all duration-300 w-full max-w-[280px] hover:scale-[1.02] shadow-sm hover:shadow-md">
              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 group-hover:from-orange-500/30 group-hover:to-orange-600/30 transition-all flex-shrink-0">
              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#ff7b00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
