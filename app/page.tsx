@@ -10,7 +10,7 @@ export default function Home() {
       {/* HOME */}
       <section
         id="home"
-        className="relative z-10 flex flex-col justify-center items-center text-center pt-2 pb-8 md:py-24 px-6">
+        className="relative z-10 flex flex-col justify-center items-center text-center pt-2 pb-8 md:pt-4 md:pb-24 px-6">
 
         <h2 className="text-4xl md:text-4xl font-bold leading-tight">
           <span className="gradient-text">
